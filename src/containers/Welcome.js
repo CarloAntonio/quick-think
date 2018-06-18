@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 
 class Welcome extends Component {
+    
+    state = {
+        start: false
+    }
+    
     render() {
         return (
             <div>
