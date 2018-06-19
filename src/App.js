@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import './App.css';
+import classes from './App.css';
 
 //Containers
 import Welcome from './containers/Welcome';
@@ -16,7 +16,7 @@ class App extends Component {
     );
 
     return (
-      <div className="App">
+      <div className={classes.App}>
         {routes}
       </div>
     );
