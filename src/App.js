@@ -5,13 +5,15 @@ import classes from './App.css';
 
 //Containers
 import Welcome from './containers/Welcome/Welcome';
+import Game from './containers/Game/Game';
 
 class App extends Component {
   render() {
 
     let routes = (
       <Switch>
-        <Route path='/' component={Welcome} />
+        <Route path='/game' component={Game} />
+        <Route path='/' exact component={Welcome} />
       </Switch>
     );
 

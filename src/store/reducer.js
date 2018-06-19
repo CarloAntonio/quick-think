@@ -1,6 +1,6 @@
 
 const initialState = {
-    numPlayers: 0,
+    numPlayers: 2,
     maxScore: 10
 }
 
