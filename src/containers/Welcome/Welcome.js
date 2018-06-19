@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 
-import Aux from '../hoc/Aux';
-import Modal from '../components/UI/Modal/Modal';
+import Aux from '../../hoc/Aux';
+import Modal from '../../components/UI/Modal/Modal';
 
 class Welcome extends Component {
     
     state = {
-        start: true
+        start: false
     }
 
     startCancelHandler = () => {
         this.setState({ start: false });
+    }
+
+    startHandler = () => {
+        this.setState({ start: true });
     }
 
     render() {
@@ -20,7 +24,7 @@ class Welcome extends Component {
                 <h1>Hello, welcome to Quick Think!</h1>
                 <h2>How To Play</h2>
                 <p>Intructions: ipsum lorem</p>
-                <button>START</button>
+                <button onClick={this.startHandler}>START</button>
             </div>
         );
 

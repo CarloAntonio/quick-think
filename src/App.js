@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import classes from './App.css';
 
 //Containers
-import Welcome from './containers/Welcome';
+import Welcome from './containers/Welcome/Welcome';
 
 class App extends Component {
   render() {
