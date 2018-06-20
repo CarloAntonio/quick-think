@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
+import AppBar from './components/AppBar/AppBar';
 import classes from './App.css';
 
 //Containers
@@ -19,6 +20,7 @@ class App extends Component {
 
     return (
       <div className={classes.App}>
+        <AppBar />
         {routes}
       </div>
     );
