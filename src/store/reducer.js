@@ -2,7 +2,8 @@
 const initialState = {
     numPlayers: 2,
     maxScore: 10,
-    teamNames: []
+    teamOne: 'Awesome Possum!',
+    teamTwo: 'Blue Lightning!'
 }
 
 const reducer = (state = initialState, action) => {

@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
@@ -25,11 +27,6 @@ const styles = theme => ({
 
 class setup extends React.Component {
 
-    state = {
-        teamOne: 'Awesome Possum!',
-        teamTwo: 'Lighting Blue!'
-    }
-
     onTeamOneChanged = (event) => {
         this.setState({ teamOne: event.target.value });
     }
@@ -49,13 +46,13 @@ class setup extends React.Component {
             <div className={classes.div}>
                 <h1 className={ classes.title }>Teams</h1>
                 <Input
-                    value={this.state.teamOne}
+                    value={this.props.teamOne}
                     className={classes.input}
                     inputProps={{'aria-label': 'Description'}}
                     onChange={(event) => this.onTeamOneChanged(event)}/>
                 <br/>
                 <Input
-                    value={this.state.teamTwo}
+                    value={this.props.teamTwo}
                     className={classes.input}
                     inputProps={{'aria-label': 'Description'}}
                     onChange={(event) => this.onTeamTwoChanged(event)}/>
@@ -79,8 +76,15 @@ class setup extends React.Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        teamOne: state.teamOne,
+        teamTwo: state.teamTwo
+    };
+};
+
 setup.propTypes = {
     classes: PropTypes.object.isRequired,
-  };
+};
   
-export default withStyles(styles)(setup);
+export default connect(mapStateToProps)(withStyles(styles)(setup));
