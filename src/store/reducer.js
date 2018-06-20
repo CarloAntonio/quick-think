@@ -1,7 +1,8 @@
 
 const initialState = {
     numPlayers: 2,
-    maxScore: 10
+    maxScore: 10,
+    teamNames: []
 }
 
 const reducer = (state = initialState, action) => {
