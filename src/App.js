@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 import AppBar from './components/AppBar/AppBar';
-import classes from './App.css';
 
 //Containers
 import Welcome from './containers/Welcome/Welcome';
@@ -19,10 +19,11 @@ class App extends Component {
     );
 
     return (
-      <div className={classes.App}>
+      <React.Fragment>
+        <CssBaseline />
         <AppBar />
         {routes}
-      </div>
+      </React.Fragment>
     );
   }
 }
