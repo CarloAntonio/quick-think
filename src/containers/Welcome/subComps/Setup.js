@@ -6,6 +6,8 @@ import { withStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 
+import * as actions from '../../../store/actions/actions';
+
 const styles = theme => ({
     container: {
         display: 'flex',
@@ -27,14 +29,6 @@ const styles = theme => ({
 
 class setup extends React.Component {
 
-    onTeamOneChanged = (event) => {
-        this.setState({ teamOne: event.target.value });
-    }
-
-    onTeamTwoChanged = (event) => {
-        this.setState({ teamTwo: event.target.value });
-    }
-
     onConsoleLog = () => {
         console.log(this.state.teamOne);
     }
@@ -49,13 +43,13 @@ class setup extends React.Component {
                     value={this.props.teamOne}
                     className={classes.input}
                     inputProps={{'aria-label': 'Description'}}
-                    onChange={(event) => this.onTeamOneChanged(event)}/>
+                    onChange={(event) => this.props.onTeamOneNameChanged(event)}/>
                 <br/>
                 <Input
                     value={this.props.teamTwo}
                     className={classes.input}
                     inputProps={{'aria-label': 'Description'}}
-                    onChange={(event) => this.onTeamTwoChanged(event)}/>
+                    onChange={(event) => this.props.onTeamTwoNameChanged(event)}/>
                 <br/>
                 <Button 
                     variant="contained" 
@@ -83,8 +77,15 @@ const mapStateToProps = state => {
     };
 };
 
+const mapDispatchToProps = dispatch => {
+    return {
+        onTeamOneNameChanged: (event) => dispatch(actions.teamOneNameChanged(event.target.value)),
+        onTeamTwoNameChanged: (event) => dispatch(actions.teamTwoNameChanged(event.target.value)),
+    }
+}
+
 setup.propTypes = {
     classes: PropTypes.object.isRequired,
 };
   
-export default connect(mapStateToProps)(withStyles(styles)(setup));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(setup));
