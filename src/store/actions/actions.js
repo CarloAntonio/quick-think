@@ -14,3 +14,23 @@ export const teamTwoNameChanged = (teamTwoName) => {
         teamTwoName: teamTwoName
     }
 }
+
+const countToFive = () => {
+    return {
+        type: actionTypes.COUNT_TO_FIVE
+    }
+}
+
+export const startTimer = () => {
+    return dispatch => {
+        setTimeout(() => {
+            dispatch(countToFive);
+        }, 5000);
+    };
+}
+
+export const addPoint = () => {
+    return {
+        type: actionTypes.ADD_POINT
+    }
+}
