@@ -9,6 +9,26 @@
       padding: 16px;
       margin: 16px;
       text-align: center;
-      color:#ccc;
-      height: 85vh;
+      height: 85vh;    
+      color: #000;
+}
+
+.welcome {
+    max-width: 80%;
+    margin: 56px auto 112px;
+}
+
+.welcome p, .instruct p {
+    font-size: 1.5em;
+}
+
+.instruct {
+    max-width: 80%;
+    margin: 0px auto 56px;
+}
+
+@media (max-width: 450px) {
+    .paper {
+        height: 100%;
+    }
 }

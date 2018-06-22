@@ -35,14 +35,17 @@ class Welcome extends Component {
                 <Grid container spacing={24}>
                     <Grid item xs={12}>
                         <Paper className={classes.paper}>
-                            <h1>Welcome to Quick Think!</h1>
-                            <p>This game was inspired by playing games at bubble tea shops. Special shout out to the Fadrigo and Roderos family :)</p>
-                            <h1>How To Play:</h1>
-                            <p>Intructions: ipsum lorem</p>
+                            <div className={ classes.welcome }>
+                                <h1>Welcome to Quick Think!</h1>
+                                <p>The game where you've got to... think quick! Thanks for playing! <br/><br/> This game was inspired by playing games at bubble tea shops. Special shout out to the Fadrigo and Roderos family :)</p>
+                            </div>
+                            <div className= { classes.instruct }>
+                                <h1>How To Play:</h1>
+                                <p>Intructions: Pick team names, take turns coming up with three items that fit the category, first team to 10 points wins.</p>
+                            </div>
                             <Button 
                                 variant="contained" 
                                 color="primary"
-                                className={classes.flatPrimary}
                                 onClick={this.startHandler}
                                 >
                                 Start
