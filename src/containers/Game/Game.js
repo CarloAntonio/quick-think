@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
@@ -14,47 +12,10 @@ import Aux from '../../hoc/Aux';
 import Modal from '../../components/UI/Modal/Modal';
 
 import * as actions from '../../store/actions/actions';
+import iClasses from './Game.css';
 
-const styles = theme => ({
-    root: {
-      flexGrow: 1,
-    },
-    teamActive: {
-        marginTop: '16px',
-        padding: theme.spacing.unit * 2,
-        textAlign: 'center',
-        color: theme.palette.text.primary,
-        backgroundColor: '#cdcdcd',
-        height: '45vh'
-    },
-    teamNonactive: {
-        marginTop: '16px',
-        padding: theme.spacing.unit * 2,
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-        height: '45vh'
-    },
-    score: {
-        fontSize: '72px'
-    },
-    paper: {
-      padding: theme.spacing.unit * 2,
-      textAlign: 'center',
-      color: theme.palette.text.secondary,
-      height: '45vh',
-    },
-    card: {
-        maxWidth: 275,
-        margin: 'auto'
-    },
-    title: {
-        marginBottom: 16,
-        fontSize: 14,
-    },
-    button: {
-        margin: theme.spacing.unit,
-    },
-});
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 
 const questions = [
     "Types of dogs",
@@ -63,6 +24,28 @@ const questions = [
     "Types of coffee shops",
     "types of cars"
 ];
+
+const styles = theme => ({
+    button: {
+      margin: theme.spacing.unit,
+    },
+    teamActive: {
+        margin: '16px',
+        marginBottom: '0px',
+        padding: '16px',
+        textAlign: 'center',
+        height: '40vh',
+        backgroundColor: '#fff350',
+    },
+    teamNotActive: {
+        margin: '16px',
+        marginBottom: '0px',
+        padding: '16px',
+        textAlign: 'center',
+        height: '40vh',
+        backgroundColor: '#ccc',
+    },
+  });
 
 class Game extends Component {
 
@@ -91,10 +74,10 @@ class Game extends Component {
         const { classes } = this.props;
 
         let question = (
-            <Card className={classes.card}>
+            <Card className={iClasses.card}>
                 <CardContent>
                     <Typography variant="headline" component="h2">
-                        HIDDEN!
+                        HIDDEN
                     </Typography>
                 </CardContent>
             </Card>
@@ -103,9 +86,9 @@ class Game extends Component {
         let startButton = (
             <Button 
                 variant="contained" 
-                className={classes.button}
+                color="primary"
                 onClick={this.onStartTimer}>
-                START!
+                START
             </Button>
         );
 
@@ -131,14 +114,21 @@ class Game extends Component {
         
         if (this.props.hideQuestion !== true) {
             question = (
-                <Card className={classes.card}>
+                <Card className={iClasses.card}>
                     <CardContent>
-                        <Typography className={classes.title} color="textSecondary">
+                        <Typography 
+                            variant="display1" 
+                            color="primary"
+                            gutterBottom>
                             Question:
                         </Typography>
-                        <Typography variant="headline" component="h2">
+                        <br/><br/>
+                        <Typography 
+                            variant="headline" 
+                            component="h2">
                             {questions[this.props.questionNumber]}
                         </Typography>
+                        <br/><br/>
                     </CardContent>
                 </Card>
             );
@@ -147,22 +137,22 @@ class Game extends Component {
         }
 
         let game = (
-            <div className={classes.root}>
+            <div className={iClasses.root}>
                 <Grid container spacing={24}>
-                    <Grid item xs={6}>
-                        <Paper className={this.props.turn === 0 ? classes.teamActive : classes.teamNonactive}>
+                    <Grid item xs={12} sm={6}>
+                        <Paper className={this.props.turn === 0 ? classes.teamActive : classes.teamNotActive}>
                             <h1>{this.props.teamOneName}</h1>
-                            <p className={classes.score}>{this.props.teamOneScore}</p>
+                            <p className={iClasses.score}>{this.props.teamOneScore}</p>
                         </Paper>
                     </Grid>
-                    <Grid item xs={6}>
-                        <Paper className={this.props.turn === 1 ? classes.teamActive : classes.teamNonactive}>
+                    <Grid item xs={12} sm={6}>
+                        <Paper className={this.props.turn === 1 ? classes.teamActive : classes.teamNotActive}>
                             <h1>{this.props.teamTwoName}</h1>
-                            <p className={classes.score}>{this.props.teamTwoScore}</p>
+                            <p className={iClasses.score}>{this.props.teamTwoScore}</p>
                         </Paper>
                     </Grid>
                     <Grid item xs={12}>
-                        <Paper className={classes.paper}>
+                        <Paper className={iClasses.paper}>
                             { question }
                             { this.props.hideStartButton ? null : startButton }
                             { this.props.promptAddScore ? promptAddPoints : null }
@@ -179,7 +169,7 @@ class Game extends Component {
                     <Button 
                         variant="contained" 
                         color="primary" 
-                        className={classes.button}
+                        className={iClasses.button}
                         onClick={this.props.onPlayAgain}>
                         Play Again?
                     </Button>
