@@ -4,12 +4,31 @@ import { BrowserRouter } from 'react-router-dom';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
 import reducer from './store/reducer';
+
+//App level theme
+const theme = createMuiTheme({
+    palette: {
+      primary: {
+        light: '#6abf69',
+        main: '#388e3c',
+        dark: '#00600f',
+        contrastText: '#f5f5f5'
+      },
+      secondary: {
+        light: '#fff350',
+        main: '#ffc107',
+        dark: '#c79100f',
+        contrastText: '#f5f5f5'
+      },
+    }
+  });
 
 const composeEnhancers = 
     process.env.NODE_ENV === 'development' 
@@ -24,7 +43,9 @@ const store = createStore(
 const app = (
     <Provider store={store}>
         <BrowserRouter>
-            <App />
+            <MuiThemeProvider theme={theme}>
+                <App />
+            </MuiThemeProvider>
         </BrowserRouter>
     </Provider>
 );

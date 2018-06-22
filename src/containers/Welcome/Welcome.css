@@ -1,0 +1,14 @@
+
+.root {
+    flex-grow: 1;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.paper {
+      padding: 16px;
+      margin: 16px;
+      text-align: center;
+      color:#ccc;
+      height: 85vh;
+}

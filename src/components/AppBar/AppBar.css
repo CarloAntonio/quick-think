@@ -1,0 +1,9 @@
+
+.root {
+    flex-grow: 1;
+    color: #000;
+}
+
+.bar {
+    background-color: #388e3c;
+}

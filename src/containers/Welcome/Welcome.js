@@ -1,24 +1,14 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 
 import Aux from '../../hoc/Aux';
 import Modal from '../../components/UI/Modal/Modal';
 import Setup from './subComps/Setup';
 
-const styles = theme => ({
-    root: {
-      flexGrow: 1,
-    },
-    paper: {
-      padding: theme.spacing.unit * 2,
-      textAlign: 'center',
-      color: theme.palette.text.secondary,
-      height: '92vh'
-    },
-  });
+import classes from './Welcome.css';
 
 class Welcome extends Component {
     
@@ -40,10 +30,8 @@ class Welcome extends Component {
 
     render() {
 
-        const { classes } = this.props;
-
         let intro = (
-            <div>
+            <div className={classes.root}>
                 <Grid container spacing={24}>
                     <Grid item xs={12}>
                         <Paper className={classes.paper}>
@@ -51,7 +39,14 @@ class Welcome extends Component {
                             <p>This game was inspired by playing games at bubble tea shops. Special shout out to the Fadrigo and Roderos family :)</p>
                             <h1>How To Play:</h1>
                             <p>Intructions: ipsum lorem</p>
-                            <button onClick={this.startHandler}>START</button>
+                            <Button 
+                                variant="contained" 
+                                color="primary"
+                                className={classes.flatPrimary}
+                                onClick={this.startHandler}
+                                >
+                                Start
+                            </Button>
                         </Paper>
                     </Grid>
                 </Grid>
@@ -69,8 +64,4 @@ class Welcome extends Component {
     }
 }
 
-Welcome.propTypes = {
-    classes: PropTypes.object.isRequired,
-  };
-
-export default withStyles(styles)(Welcome);
+export default Welcome;
