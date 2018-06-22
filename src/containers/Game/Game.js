@@ -41,12 +41,10 @@ const styles = theme => ({
 class Game extends Component {
 
     state = {
-        gameOver: false,
-        hideQuestion: true
+        gameOver: false
     }
 
     onStartTimer = () => {
-        this.setState({ hideQuestion: false });
         this.props.onStartClock();
     }
 
@@ -91,7 +89,7 @@ class Game extends Component {
             </Button>
         );
         
-        if (this.state.hideQuestion !== true) {
+        if (this.props.hideQuestion !== true) {
             question = (
                 <Card className={classes.card}>
                     <CardContent>
@@ -114,7 +112,7 @@ class Game extends Component {
                     <Grid item xs={12}>
                         <Paper className={classes.paper}>
                             {question}
-                            {startButton}
+                            { this.props.hideStartButton ? null : startButton }
                             { this.props.promptAddScore ? promptAddPoints : null }
                         </Paper>
                     </Grid>
@@ -135,14 +133,16 @@ class Game extends Component {
 
 const mapStateToProps = state => {
     return {
-        promptAddScore: state.promptAddScore
+        promptAddScore: state.promptAddScore,
+        hideQuestion: state.hideQuestion,
+        hideStartButton: state.hideStartButton
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onStartClock: () => dispatch(actions.startTimer),
-        onAddPoint: () => dispatch(actions.addPoint)
+        onStartClock: () => dispatch(actions.startTimer()),
+        onAddPoint: () => dispatch(actions.addPoint())
     }
 }
 

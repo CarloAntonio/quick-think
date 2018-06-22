@@ -8,7 +8,9 @@ const initialState = {
     teamTwo: 'Blue Lightning!',
     teamOneScore: 0,
     teamTwoScore: 0,
-    promptAddScore: false
+    promptAddScore: false,
+    hideQuestion: true,
+    hideStartButton: false
 }
 
 const onTeamOneChanged = (state, action) => {
@@ -25,10 +27,18 @@ const onTeamTwoChanged = (state, action) => {
     }
 }
 
-const countToFive = (state, action) => {
+const hideStartButton = (state, action) => {
     return {
         ...state,
-        promptAddScore: true 
+        hideStartButton: true
+    }
+}
+
+const count = (state, action) => {
+    return {
+        ...state,
+        promptAddScore: true,
+        hideQuestion: false
     }
 }
 
@@ -47,7 +57,8 @@ const reducer = (state = initialState, action) => {
     switch(action.type) {
         case actionTypes.TEAM_ONE_NAME_CHANGE: return onTeamOneChanged(state, action);
         case actionTypes.TEAM_TWO_NAME_CHANGE: return onTeamTwoChanged(state, action);
-        case actionTypes.COUNT_TO_FIVE: return countToFive(state, action);
+        case actionTypes.HIDE_START_BUTTON: return hideStartButton(action, state);
+        case actionTypes.COUNT_TO_FIVE: return count(state, action);
         case actionTypes.ADD_POINT: return addPoint(state, action);
         default: return state;
     }
