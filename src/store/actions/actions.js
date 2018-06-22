@@ -45,3 +45,10 @@ export const addPoint = (turn) => {
         turn: turn
     };
 };
+
+export const noAddPoint = (turn) => {
+    return {
+        type: actionTypes.NO_ADD_POINT,
+        turn: turn
+    }
+}

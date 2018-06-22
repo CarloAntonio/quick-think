@@ -75,6 +75,32 @@ const addPoint = (state, action) => {
     return returnObject;
 }
 
+const noAddPoint = (state, action) => {
+    let returnObject = {};
+
+    if(action.turn === 0) {
+        returnObject = {
+            ...state,
+            hideQuestion: true,
+            promptAddScore: false,
+            questionNumber: state.questionNumber + 1,
+            hideStartButton: false,
+            turn: 1
+        }
+    } else {
+        returnObject = {
+            ...state,
+            hideQuestion: true,
+            promptAddScore: false,
+            questionNumber: state.questionNumber + 1,
+            hideStartButton: false,
+            turn: 0
+        }
+    }
+
+    return returnObject;
+}
+
 const reducer = (state = initialState, action) => {
 
     switch(action.type) {
@@ -83,6 +109,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.HIDE_START_BUTTON: return hideStartButton(state, action);
         case actionTypes.COUNT_TO_FIVE: return count(state, action);
         case actionTypes.ADD_POINT: return addPoint(state, action);
+        case actionTypes.NO_ADD_POINT: return noAddPoint(state, action);
         default: return state;
     }
     

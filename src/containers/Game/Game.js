@@ -74,10 +74,16 @@ class Game extends Component {
         this.props.onStartClock();
     }
 
-    onAddClicked = (e) => {
-        e.preventDefault();
+    onAddClicked = (event) => {
+        event.preventDefault();
 
         this.props.onAddPoint(this.props.turn);
+    }
+
+    onNoPointClicked = (event) => {
+        event.preventDefault();
+
+        this.props.onNoAddPoint(this.props.turn);
     }
 
     render() {
@@ -112,6 +118,13 @@ class Game extends Component {
                     onClick={this.onAddClicked}>
                     +1
                 </Button>
+                <Button 
+                    variant="contained" 
+                    color="primary" 
+                    className={classes.button}
+                    onClick={this.onNoPointClicked}>
+                    X
+                </Button>
             </div>
 
         );
@@ -137,13 +150,13 @@ class Game extends Component {
             <div className={classes.root}>
                 <Grid container spacing={24}>
                     <Grid item xs={6}>
-                        <Paper className={classes.teamActive}>
+                        <Paper className={this.props.turn === 0 ? classes.teamActive : classes.teamNonactive}>
                             <h1>{this.props.teamOneName}</h1>
                             <p className={classes.score}>{this.props.teamOneScore}</p>
                         </Paper>
                     </Grid>
                     <Grid item xs={6}>
-                        <Paper className={classes.teamNonactive}>
+                        <Paper className={this.props.turn === 1 ? classes.teamActive : classes.teamNonactive}>
                             <h1>{this.props.teamTwoName}</h1>
                             <p className={classes.score}>{this.props.teamTwoScore}</p>
                         </Paper>
@@ -187,7 +200,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onStartClock: () => dispatch(actions.startTimer()),
-        onAddPoint: (turn) => dispatch(actions.addPoint(turn))
+        onAddPoint: (turn) => dispatch(actions.addPoint(turn)),
+        onNoAddPoint: (turn) => dispatch(actions.noAddPoint(turn)),
     }
 }
 
