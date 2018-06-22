@@ -29,10 +29,6 @@ const styles = theme => ({
 
 class setup extends React.Component {
 
-    onConsoleLog = () => {
-        console.log(this.state.teamOne);
-    }
-
     render () {
         const { classes } = this.props;
 
@@ -57,13 +53,6 @@ class setup extends React.Component {
                     className={classes.button}
                     onClick={this.props.startGameHandler}>
                     PLAY
-                </Button>
-                <Button 
-                    variant="contained" 
-                    color="primary" 
-                    className={classes.button}
-                    onClick={this.onConsoleLog}>
-                    Console Log!
                 </Button>
             </div>
         );
