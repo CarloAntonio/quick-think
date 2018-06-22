@@ -174,8 +174,15 @@ class Game extends Component {
 
         return (
             <Aux>
-                <Modal show={this.state.gameOver} closeModalFx={null}>
+                <Modal show={this.props.teamOneScore === 2 || this.props.teamTwoScore === 2} closeModalFx={null}>
                     <h1>You Win!</h1>
+                    <Button 
+                        variant="contained" 
+                        color="primary" 
+                        className={classes.button}
+                        onClick={this.props.onPlayAgain}>
+                        Play Again?
+                    </Button>
                 </Modal>
                 {game}
             </Aux>
@@ -202,6 +209,7 @@ const mapDispatchToProps = dispatch => {
         onStartClock: () => dispatch(actions.startTimer()),
         onAddPoint: (turn) => dispatch(actions.addPoint(turn)),
         onNoAddPoint: (turn) => dispatch(actions.noAddPoint(turn)),
+        onPlayAgain: () => dispatch(actions.playAgain())
     }
 }
 

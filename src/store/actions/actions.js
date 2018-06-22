@@ -52,3 +52,9 @@ export const noAddPoint = (turn) => {
         turn: turn
     }
 }
+
+export const playAgain = () => {
+    return {
+        type: actionTypes.PLAY_AGAIN
+    }
+}

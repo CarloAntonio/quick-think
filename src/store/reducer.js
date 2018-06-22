@@ -12,10 +12,7 @@ const initialState = {
     hideQuestion: true,
     hideStartButton: false,
     questionNumber: 0,
-
-    //test
     turn: 0
-    //teams: [{name: 'Awesome Possum', score: 0}, {name: 'Blue Lightning!', score: 0}]
 }
 
 const onTeamOneChanged = (state, action) => {
@@ -101,6 +98,19 @@ const noAddPoint = (state, action) => {
     return returnObject;
 }
 
+const playAgain = (state, action) => {
+    return {
+        ...state,
+        teamOneScore: 0,
+        teamTwoScore: 0,
+        promptAddScore: false,
+        hideQuestion: true,
+        hideStartButton: false,
+        questionNumber: 0,
+        turn: 0
+    }
+}
+
 const reducer = (state = initialState, action) => {
 
     switch(action.type) {
@@ -110,6 +120,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.COUNT_TO_FIVE: return count(state, action);
         case actionTypes.ADD_POINT: return addPoint(state, action);
         case actionTypes.NO_ADD_POINT: return noAddPoint(state, action);
+        case actionTypes.PLAY_AGAIN: return playAgain(state, action);
         default: return state;
     }
     
