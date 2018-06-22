@@ -40,13 +40,13 @@ class setup extends React.Component {
             <div className={classes.div}>
                 <h1 className={ classes.title }>Teams</h1>
                 <Input
-                    value={this.props.teamOne}
+                    value={this.props.teamOneName}
                     className={classes.input}
                     inputProps={{'aria-label': 'Description'}}
                     onChange={(event) => this.props.onTeamOneNameChanged(event)}/>
                 <br/>
                 <Input
-                    value={this.props.teamTwo}
+                    value={this.props.teamTwoName}
                     className={classes.input}
                     inputProps={{'aria-label': 'Description'}}
                     onChange={(event) => this.props.onTeamTwoNameChanged(event)}/>
@@ -72,8 +72,8 @@ class setup extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        teamOne: state.teamOne,
-        teamTwo: state.teamTwo
+        teamOneName: state.teamOneName,
+        teamTwoName: state.teamTwoName
     };
 };
 

@@ -19,11 +19,21 @@ const styles = theme => ({
     root: {
       flexGrow: 1,
     },
+    team: {
+        marginTop: '16px',
+        padding: theme.spacing.unit * 2,
+        textAlign: 'center',
+        color: theme.palette.text.secondary,
+        height: '45vh'
+    },
+    score: {
+        fontSize: '72px'
+    },
     paper: {
       padding: theme.spacing.unit * 2,
       textAlign: 'center',
       color: theme.palette.text.secondary,
-      height: '92vh',
+      height: '45vh',
     },
     card: {
         maxWidth: 275,
@@ -38,6 +48,14 @@ const styles = theme => ({
     },
 });
 
+const questions = [
+    "Types of dogs",
+    "Types of cats",
+    "Types of muscles",
+    "Types of coffee shops",
+    "types of cars"
+];
+
 class Game extends Component {
 
     state = {
@@ -49,14 +67,6 @@ class Game extends Component {
     }
 
     render() {
-
-        const questions = [
-            "Types of dogs",
-            "Types of cats",
-            "Types of muscles",
-            "Types of coffee shops",
-            "types of cars"
-        ];
 
         const { classes } = this.props;
 
@@ -97,7 +107,7 @@ class Game extends Component {
                             Question:
                         </Typography>
                         <Typography variant="headline" component="h2">
-                            {questions[1]}
+                            {questions[this.props.questionNumber]}
                         </Typography>
                     </CardContent>
                 </Card>
@@ -109,9 +119,21 @@ class Game extends Component {
         let game = (
             <div className={classes.root}>
                 <Grid container spacing={24}>
+                    <Grid item xs={6}>
+                        <Paper className={classes.team}>
+                            <h1>{this.props.teamOneName}</h1>
+                            <p className={classes.score}>{this.props.teamOneScore}</p>
+                        </Paper>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Paper className={classes.team}>
+                            <h1>{this.props.teamTwoName}</h1>
+                            <p className={classes.score}>{this.props.teamTwoScore}</p>
+                        </Paper>
+                    </Grid>
                     <Grid item xs={12}>
                         <Paper className={classes.paper}>
-                            {question}
+                            { question }
                             { this.props.hideStartButton ? null : startButton }
                             { this.props.promptAddScore ? promptAddPoints : null }
                         </Paper>
@@ -133,9 +155,14 @@ class Game extends Component {
 
 const mapStateToProps = state => {
     return {
+        teamOneName: state.teamOneName,
+        teamTwoName: state.teamTwoName,
+        teamOneScore: state.teamOneScore,
+        teamTwoScore: state.teamTwoScore,
         promptAddScore: state.promptAddScore,
         hideQuestion: state.hideQuestion,
-        hideStartButton: state.hideStartButton
+        hideStartButton: state.hideStartButton,
+        questionNumber: state.questionNumber
     }
 }
 

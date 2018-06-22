@@ -23,7 +23,7 @@ const styles = theme => ({
 class Welcome extends Component {
     
     state = {
-        start: true
+        start: false
     }
 
     startCancelHandler = () => {
