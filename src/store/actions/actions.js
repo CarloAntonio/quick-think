@@ -39,8 +39,9 @@ export const startTimer = () => {
     };
 };
 
-export const addPoint = () => {
+export const addPoint = (turn) => {
     return {
-        type: actionTypes.ADD_POINT
+        type: actionTypes.ADD_POINT,
+        turn: turn
     };
 };

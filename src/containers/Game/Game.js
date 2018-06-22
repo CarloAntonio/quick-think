@@ -19,7 +19,15 @@ const styles = theme => ({
     root: {
       flexGrow: 1,
     },
-    team: {
+    teamActive: {
+        marginTop: '16px',
+        padding: theme.spacing.unit * 2,
+        textAlign: 'center',
+        color: theme.palette.text.primary,
+        backgroundColor: '#cdcdcd',
+        height: '45vh'
+    },
+    teamNonactive: {
         marginTop: '16px',
         padding: theme.spacing.unit * 2,
         textAlign: 'center',
@@ -66,6 +74,12 @@ class Game extends Component {
         this.props.onStartClock();
     }
 
+    onAddClicked = (e) => {
+        e.preventDefault();
+
+        this.props.onAddPoint(this.props.turn);
+    }
+
     render() {
 
         const { classes } = this.props;
@@ -90,13 +104,16 @@ class Game extends Component {
         );
 
         let promptAddPoints = (
-            <Button 
-                variant="contained" 
-                color="primary" 
-                className={classes.button}
-                onClick={this.props.onAddPoint}>
-                +1
-            </Button>
+            <div>
+                <Button 
+                    variant="contained" 
+                    color="primary" 
+                    className={classes.button}
+                    onClick={this.onAddClicked}>
+                    +1
+                </Button>
+            </div>
+
         );
         
         if (this.props.hideQuestion !== true) {
@@ -120,13 +137,13 @@ class Game extends Component {
             <div className={classes.root}>
                 <Grid container spacing={24}>
                     <Grid item xs={6}>
-                        <Paper className={classes.team}>
+                        <Paper className={classes.teamActive}>
                             <h1>{this.props.teamOneName}</h1>
                             <p className={classes.score}>{this.props.teamOneScore}</p>
                         </Paper>
                     </Grid>
                     <Grid item xs={6}>
-                        <Paper className={classes.team}>
+                        <Paper className={classes.teamNonactive}>
                             <h1>{this.props.teamTwoName}</h1>
                             <p className={classes.score}>{this.props.teamTwoScore}</p>
                         </Paper>
@@ -162,14 +179,15 @@ const mapStateToProps = state => {
         promptAddScore: state.promptAddScore,
         hideQuestion: state.hideQuestion,
         hideStartButton: state.hideStartButton,
-        questionNumber: state.questionNumber
+        questionNumber: state.questionNumber,
+        turn: state.turn
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         onStartClock: () => dispatch(actions.startTimer()),
-        onAddPoint: () => dispatch(actions.addPoint())
+        onAddPoint: (turn) => dispatch(actions.addPoint(turn))
     }
 }
 

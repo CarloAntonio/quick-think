@@ -11,7 +11,11 @@ const initialState = {
     promptAddScore: false,
     hideQuestion: true,
     hideStartButton: false,
-    questionNumber: 0
+    questionNumber: 0,
+
+    //test
+    turn: 0
+    //teams: [{name: 'Awesome Possum', score: 0}, {name: 'Blue Lightning!', score: 0}]
 }
 
 const onTeamOneChanged = (state, action) => {
@@ -44,14 +48,31 @@ const count = (state, action) => {
 }
 
 const addPoint = (state, action) => {
-    return {
-        ...state,
-        hideQuestion: true,
-        teamOneScore: state.teamOneScore + 1,
-        promptAddScore: false,
-        questionNumber: state.questionNumber + 1,
-        hideStartButton: false
+    let returnObject = {};
+
+    if(action.turn === 0) {
+        returnObject = {
+            ...state,
+            hideQuestion: true,
+            teamOneScore: state.teamOneScore + 1,
+            promptAddScore: false,
+            questionNumber: state.questionNumber + 1,
+            hideStartButton: false,
+            turn: 1
+        }
+    } else {
+        returnObject = {
+            ...state,
+            hideQuestion: true,
+            teamTwoScore: state.teamTwoScore + 1,
+            promptAddScore: false,
+            questionNumber: state.questionNumber + 1,
+            hideStartButton: false,
+            turn: 0
+        }
     }
+
+    return returnObject;
 }
 
 const reducer = (state = initialState, action) => {
