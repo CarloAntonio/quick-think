@@ -35,7 +35,7 @@ export const startTimer = () => {
         //then start count
         setTimeout(() => {
             dispatch(countToFive());
-        }, 5000);
+        }, 2000);
     };
 };
 

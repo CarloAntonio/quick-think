@@ -35,6 +35,10 @@
     margin: 32px;
 }
 
+.result {
+    text-align: center;
+}
+
 @media (max-width: 600px) {
     .team {
         margin-top: 8px;

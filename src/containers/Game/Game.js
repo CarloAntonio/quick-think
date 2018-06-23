@@ -162,17 +162,29 @@ class Game extends Component {
             </div>
         );
 
+        let winner = (
+            <h1>Team {this.props.teamTwoName} Wins!</h1>
+        );
+
+        if(this.props.teamOneScore > this.props.teamTwoScore) {
+            winner = (
+                <h1>Team {this.props.teamOneName} Wins!</h1>
+            );
+        }
+
         return (
             <Aux>
                 <Modal show={this.props.teamOneScore === 2 || this.props.teamTwoScore === 2} closeModalFx={null}>
-                    <h1>You Win!</h1>
-                    <Button 
-                        variant="contained" 
-                        color="primary" 
-                        className={iClasses.button}
-                        onClick={this.props.onPlayAgain}>
-                        Play Again?
-                    </Button>
+                    <div className={iClasses.result}>
+                        {winner}
+                        <Button 
+                            variant="contained" 
+                            color="primary" 
+                            className={iClasses.button}
+                            onClick={this.props.onPlayAgain}>
+                            Play Again?
+                        </Button>
+                    </div>
                 </Modal>
                 {game}
             </Aux>
