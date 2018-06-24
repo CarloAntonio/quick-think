@@ -111,6 +111,22 @@ const playAgain = (state, action) => {
     }
 }
 
+const startOver = (state, action) => {
+    return {
+        numPlayers: 2,
+        maxScore: 5,
+        teamOneName: 'Awesome Possum!',
+        teamTwoName: 'Blue Lightning!',
+        teamOneScore: 0,
+        teamTwoScore: 0,
+        promptAddScore: false,
+        hideQuestion: true,
+        hideStartButton: false,
+        questionNumber: 0,
+        turn: 0
+    }
+}
+
 const reducer = (state = initialState, action) => {
 
     switch(action.type) {
@@ -121,6 +137,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.ADD_POINT: return addPoint(state, action);
         case actionTypes.NO_ADD_POINT: return noAddPoint(state, action);
         case actionTypes.PLAY_AGAIN: return playAgain(state, action);
+        case actionTypes.START_OVER: return startOver(state, action);
         default: return state;
     }
     

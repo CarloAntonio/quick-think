@@ -9,4 +9,6 @@ export const COUNT_TO_FIVE = 'COUNT_TO_FIVE';
 export const ADD_POINT = 'ADD_POINT';
 export const NO_ADD_POINT = 'NO_ADD_POINT';
 
+//general
 export const PLAY_AGAIN = 'PLAY_AGAIN';
+export const START_OVER = 'START_OVER';

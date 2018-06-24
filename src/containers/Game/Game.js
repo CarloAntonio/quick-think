@@ -69,6 +69,11 @@ class Game extends Component {
         this.props.onNoAddPoint(this.props.turn);
     }
 
+    onFreshStart = () => {
+        this.props.onStartOver();
+        this.props.history.push('/');
+    } 
+
     render() {
 
         const { classes } = this.props;
@@ -177,13 +182,22 @@ class Game extends Component {
                 <Modal show={this.props.teamOneScore === 2 || this.props.teamTwoScore === 2} closeModalFx={null}>
                     <div className={iClasses.result}>
                         {winner}
-                        <Button 
-                            variant="contained" 
-                            color="primary" 
-                            className={iClasses.button}
-                            onClick={this.props.onPlayAgain}>
-                            Play Again?
-                        </Button>
+                        <div>
+                            <Button 
+                                variant="contained" 
+                                color="primary" 
+                                className={classes.button}
+                                onClick={this.props.onPlayAgain}>
+                                Play Again?
+                            </Button>
+                            <Button 
+                                variant="contained" 
+                                color="primary" 
+                                className={classes.button}
+                                onClick={this.onFreshStart}>
+                                Start Over
+                            </Button>
+                        </div>
                     </div>
                 </Modal>
                 {game}
@@ -211,7 +225,8 @@ const mapDispatchToProps = dispatch => {
         onStartClock: () => dispatch(actions.startTimer()),
         onAddPoint: (turn) => dispatch(actions.addPoint(turn)),
         onNoAddPoint: (turn) => dispatch(actions.noAddPoint(turn)),
-        onPlayAgain: () => dispatch(actions.playAgain())
+        onPlayAgain: () => dispatch(actions.playAgain()),
+        onStartOver: () => dispatch(actions.startOver())
     }
 }
 

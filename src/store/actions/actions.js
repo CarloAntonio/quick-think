@@ -58,3 +58,9 @@ export const playAgain = () => {
         type: actionTypes.PLAY_AGAIN
     }
 }
+
+export const startOver = () => {
+    return {
+        type: actionTypes.START_OVER
+    }
+}
