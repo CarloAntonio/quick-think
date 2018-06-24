@@ -3,7 +3,7 @@ import * as actionTypes from './actions/actTypes';
 
 const initialState = {
     numPlayers: 2,
-    maxScore: 5,
+    maxScore: 2,
     teamOneName: 'Awesome Possum!',
     teamTwoName: 'Blue Lightning!',
     teamOneScore: 0,
@@ -127,6 +127,13 @@ const startOver = (state, action) => {
     }
 }
 
+const maxScoreChanged = (state, action) => {
+    return {
+        ...state,
+        maxScore: action.maxScore
+    }
+}
+
 const reducer = (state = initialState, action) => {
 
     switch(action.type) {
@@ -138,6 +145,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.NO_ADD_POINT: return noAddPoint(state, action);
         case actionTypes.PLAY_AGAIN: return playAgain(state, action);
         case actionTypes.START_OVER: return startOver(state, action);
+        case actionTypes.MAX_SCORE_CHANGED: return maxScoreChanged(state, action);
         default: return state;
     }
     

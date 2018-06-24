@@ -12,3 +12,4 @@ export const NO_ADD_POINT = 'NO_ADD_POINT';
 //general
 export const PLAY_AGAIN = 'PLAY_AGAIN';
 export const START_OVER = 'START_OVER';
+export const MAX_SCORE_CHANGED = 'MAX_SCORE_CHANGED';

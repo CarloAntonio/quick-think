@@ -64,3 +64,10 @@ export const startOver = () => {
         type: actionTypes.START_OVER
     }
 }
+
+export const maxScoreChanged = (maxScore) => {
+    return {
+        type: actionTypes.MAX_SCORE_CHANGED,
+        maxScore: maxScore
+    }
+}

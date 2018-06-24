@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -8,6 +9,7 @@ import Aux from '../../hoc/Aux';
 import Modal from '../../components/UI/Modal/Modal';
 import Setup from './subComps/Setup';
 
+import * as actions from '../../store/actions/actions';
 import classes from './Welcome.css';
 
 class Welcome extends Component {
@@ -59,7 +61,15 @@ class Welcome extends Component {
         return (
             <Aux>
                 <Modal show={this.state.start} closeModalFx={this.startCancelHandler}>
-                    <Setup startGameHandler={this.startGameHandler}/>
+                    <Setup 
+                        startGameHandler={this.startGameHandler}
+                        teamOneName={this.props.teamOneName}
+                        teamTwoName={this.props.teamTwoName}
+                        onTeamOneNameChanged={this.props.onTeamOneNameChanged}
+                        onTeamTwoNameChanged={this.props.onTeamTwoNameChanged}
+                        maxScore={this.props.maxScore}
+                        onChangeMaxScore={this.props.onChangeMaxScore}
+                        />
                 </Modal>
                 {intro}
             </Aux>
@@ -67,4 +77,20 @@ class Welcome extends Component {
     }
 }
 
-export default Welcome;
+const mapStateToProps = state => {
+    return {
+        teamOneName: state.teamOneName,
+        teamTwoName: state.teamTwoName,
+        maxScore: state.maxScore
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onTeamOneNameChanged: (event) => dispatch(actions.teamOneNameChanged(event.target.value)),
+        onTeamTwoNameChanged: (event) => dispatch(actions.teamTwoNameChanged(event.target.value)),
+        onChangeMaxScore: (event) => dispatch(actions.maxScoreChanged(parseInt(event.target.value, 10))),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Welcome);
