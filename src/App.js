@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 import AppBar from './components/AppBar/AppBar';
@@ -15,6 +15,7 @@ class App extends Component {
       <Switch>
         <Route path='/game' component={Game} />
         <Route path='/' exact component={Welcome} />
+        <Redirect to='/' />
       </Switch>
     );
 
