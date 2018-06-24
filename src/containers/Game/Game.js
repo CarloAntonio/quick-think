@@ -139,7 +139,7 @@ class Game extends Component {
 
         return (
             <Aux>
-                <Modal show={this.props.teamOneScore === 2 || this.props.teamTwoScore === 2} closeModalFx={null}>
+                <Modal show={this.props.teamOneScore === this.props.maxScore || this.props.teamTwoScore === this.props.maxScore} closeModalFx={null}>
                     <Winner
                         teamOneName={this.props.teamOneName} 
                         teamTwoName={this.props.teamTwoName}
@@ -183,6 +183,7 @@ const mapStateToProps = state => {
         teamTwoName: state.teamTwoName,
         teamOneScore: state.teamOneScore,
         teamTwoScore: state.teamTwoScore,
+        maxScore: state.maxScore,
         promptAddScore: state.promptAddScore,
         hideQuestion: state.hideQuestion,
         hideStartButton: state.hideStartButton,
