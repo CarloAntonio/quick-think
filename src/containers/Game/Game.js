@@ -10,6 +10,7 @@ import Button from '@material-ui/core/Button';
 
 import Aux from '../../hoc/Aux';
 import Modal from '../../components/UI/Modal/Modal';
+import Winner from './subComps/Winner';
 
 import * as actions from '../../store/actions/actions';
 import iClasses from './Game.css';
@@ -45,7 +46,7 @@ const styles = theme => ({
         height: '40vh',
         backgroundColor: '#ccc',
     },
-  });
+});
 
 class Game extends Component {
 
@@ -167,38 +168,17 @@ class Game extends Component {
             </div>
         );
 
-        let winner = (
-            <h1>Team {this.props.teamTwoName} Wins!</h1>
-        );
-
-        if(this.props.teamOneScore > this.props.teamTwoScore) {
-            winner = (
-                <h1>Team {this.props.teamOneName} Wins!</h1>
-            );
-        }
-
         return (
             <Aux>
                 <Modal show={this.props.teamOneScore === 2 || this.props.teamTwoScore === 2} closeModalFx={null}>
-                    <div className={iClasses.result}>
-                        {winner}
-                        <div>
-                            <Button 
-                                variant="contained" 
-                                color="primary" 
-                                className={classes.button}
-                                onClick={this.props.onPlayAgain}>
-                                Play Again?
-                            </Button>
-                            <Button 
-                                variant="contained" 
-                                color="primary" 
-                                className={classes.button}
-                                onClick={this.onFreshStart}>
-                                Start Over
-                            </Button>
-                        </div>
-                    </div>
+                    <Winner
+                        teamOneName={this.props.teamOneName} 
+                        teamTwoName={this.props.teamTwoName}
+                        teamOneScore={this.props.teamOneScore}
+                        teamTwoScore={this.props.teamTwoScore}
+                        onPlayAgain={this.props.onPlayAgain}
+                        onFreshStart={this.onFreshStart}
+                        />
                 </Modal>
                 {game}
             </Aux>
