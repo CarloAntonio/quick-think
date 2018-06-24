@@ -51,7 +51,6 @@ const setup = (props) => {
                         id: 'team-one',
                         }}
                     value={props.teamOneName}
-                    inputProps={{'aria-label': 'Description'}}
                     onChange={(event) => props.onTeamOneNameChanged(event)}/>
             </FormControl>
             <br/>
@@ -63,7 +62,6 @@ const setup = (props) => {
                         id: 'team-two',
                         }}
                     value={props.teamTwoName}
-                    inputProps={{'aria-label': 'Description'}}
                     onChange={(event) => props.onTeamTwoNameChanged(event)}/>
             </FormControl>
             <br/>

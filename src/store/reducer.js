@@ -4,8 +4,8 @@ import * as actionTypes from './actions/actTypes';
 const initialState = {
     numPlayers: 2,
     maxScore: 2,
-    teamOneName: 'Awesome Possum!',
-    teamTwoName: 'Blue Lightning!',
+    teamOneName: 'Awesome Possum',
+    teamTwoName: 'Blue Lightning',
     teamOneScore: 0,
     teamTwoScore: 0,
     promptAddScore: false,
@@ -114,7 +114,7 @@ const playAgain = (state, action) => {
 const startOver = (state, action) => {
     return {
         numPlayers: 2,
-        maxScore: 5,
+        maxScore: 2,
         teamOneName: 'Awesome Possum!',
         teamTwoName: 'Blue Lightning!',
         teamOneScore: 0,

@@ -43,7 +43,7 @@ class Welcome extends Component {
                             </div>
                             <div className= { classes.instruct }>
                                 <h1>How To Play:</h1>
-                                <p>Intructions: Pick team names, take turns coming up with three items that fit the category, first team to 10 points wins.</p>
+                                <p>Instructions: Pick team names, take turns coming up with three items that fit the category, first team to 10 points wins.</p>
                             </div>
                             <Button 
                                 variant="contained" 
