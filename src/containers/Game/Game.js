@@ -59,14 +59,10 @@ class Game extends Component {
     }
 
     onAddClicked = (event) => {
-        event.preventDefault();
-
         this.props.onAddPoint(this.props.turn);
     }
 
-    onNoPointClicked = (event) => {
-        event.preventDefault();
-
+    onNoPointClicked = () => {
         this.props.onNoAddPoint(this.props.turn);
     }
 
@@ -97,26 +93,6 @@ class Game extends Component {
                 START
             </Button>
         );
-
-        let promptAddPoints = (
-            <div>
-                <Button 
-                    variant="contained" 
-                    color="primary" 
-                    className={classes.button}
-                    onClick={this.onAddClicked}>
-                    +1
-                </Button>
-                <Button 
-                    variant="contained" 
-                    color="primary" 
-                    className={classes.button}
-                    onClick={this.onNoPointClicked}>
-                    X
-                </Button>
-            </div>
-
-        );
         
         if (this.props.hideQuestion !== true) {
             question = (
@@ -142,29 +118,22 @@ class Game extends Component {
             startButton = null;
         }
 
-        let game = (
-            <div className={iClasses.root}>
-                <Grid container spacing={24}>
-                    <Grid item xs={12} sm={6}>
-                        <Paper className={this.props.turn === 0 ? classes.teamActive : classes.teamNotActive}>
-                            <h1>{this.props.teamOneName}</h1>
-                            <p className={iClasses.score}>{this.props.teamOneScore}</p>
-                        </Paper>
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <Paper className={this.props.turn === 1 ? classes.teamActive : classes.teamNotActive}>
-                            <h1>{this.props.teamTwoName}</h1>
-                            <p className={iClasses.score}>{this.props.teamTwoScore}</p>
-                        </Paper>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Paper className={iClasses.paper}>
-                            { question }
-                            { this.props.hideStartButton ? null : startButton }
-                            { this.props.promptAddScore ? promptAddPoints : null }
-                        </Paper>
-                    </Grid>
-                </Grid>
+        let promptAddPoints = (
+            <div>
+                <Button 
+                    variant="contained" 
+                    color="primary" 
+                    className={classes.button}
+                    onClick={this.onAddClicked}>
+                    +1
+                </Button>
+                <Button 
+                    variant="contained" 
+                    color="primary" 
+                    className={classes.button}
+                    onClick={this.onNoPointClicked}>
+                    X
+                </Button>
             </div>
         );
 
@@ -180,7 +149,29 @@ class Game extends Component {
                         onFreshStart={this.onFreshStart}
                         />
                 </Modal>
-                {game}
+                <div className={iClasses.root}>
+                    <Grid container spacing={24}>
+                        <Grid item xs={12} sm={6}>
+                            <Paper className={this.props.turn === 0 ? classes.teamActive : classes.teamNotActive}>
+                                <h1>{this.props.teamOneName}</h1>
+                                <p className={iClasses.score}>{this.props.teamOneScore}</p>
+                            </Paper>
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <Paper className={this.props.turn === 1 ? classes.teamActive : classes.teamNotActive}>
+                                <h1>{this.props.teamTwoName}</h1>
+                                <p className={iClasses.score}>{this.props.teamTwoScore}</p>
+                            </Paper>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Paper className={iClasses.paper}>
+                                { question }
+                                { this.props.hideStartButton ? null : startButton }
+                                { this.props.promptAddScore ? promptAddPoints : null }
+                            </Paper>
+                        </Grid>
+                    </Grid>
+                </div>
             </Aux>
         );
     }
