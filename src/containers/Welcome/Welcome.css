@@ -9,26 +9,35 @@
     padding: 16px;
     margin: 16px;
     text-align: center;
-    height: 85vh;    
+    height: 100%;    
     color: #000;
 }
 
 .welcome {
     max-width: 80%;
-    margin: 56px auto 112px;
+    margin: 56px auto 24px;
 }
 
 .welcome p, .instruct p {
-    font-size: 1.5em;
+    font-size: 1.2em;
+}
+
+.special {
+    margin-top: 96px;
+    font-size: 1em;
 }
 
 .instruct {
     max-width: 80%;
-    margin: 0px auto 56px;
+    margin: 0px auto 24px;
 }
 
 @media (max-width: 450px) {
     .paper {
         height: 100%;
     }
+}
+
+h1 {
+    color: #388e3c;
 }

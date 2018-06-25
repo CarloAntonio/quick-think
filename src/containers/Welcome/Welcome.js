@@ -39,11 +39,20 @@ class Welcome extends Component {
                         <Paper className={classes.paper}>
                             <div className={ classes.welcome }>
                                 <h1>Welcome to Quick Think!</h1>
-                                <p>The game where you've got to... think quick! Thanks for playing! <br/><br/> This game was inspired by playing games at bubble tea shops. Special shout out to the Fadrigo and Roderos family :)</p>
+                                <p>The game where you have 5 seconds to think of 3 things that match the category given to you or your team. It's easy, as long as you don't panic :)</p>
                             </div>
                             <div className= { classes.instruct }>
                                 <h1>How To Play:</h1>
-                                <p>Instructions: Pick team names, take turns coming up with three items that fit the category, first team to 10 points wins.</p>
+                                <p>Each team will take turns answering a question</p>
+                                <p>Once the question is shown, the team has 5 second to give 3 answers that fulfill the question's criteria</p>
+                                <p>A team will recieve a point if they give 3 appropriate answers within 5 seconds</p>
+                                <p>The game ends after one team reaches the goal score</p>
+                            </div>
+                            <div className= { classes.instruct }>
+                                <h1>Getting Started:</h1>
+                                <p>1. Press Start</p>
+                                <p>2. Pick Team Names</p>
+                                <p>3. Pick Score to Reach</p>
                             </div>
                             <Button 
                                 variant="contained" 
@@ -52,6 +61,9 @@ class Welcome extends Component {
                                 >
                                 Start
                             </Button>
+                            <div className={ classes.special }>
+                                <p>Special thanks to the Fadrigo and Roderos family, with whom I first played this game.</p>
+                            </div>
                         </Paper>
                     </Grid>
                 </Grid>
