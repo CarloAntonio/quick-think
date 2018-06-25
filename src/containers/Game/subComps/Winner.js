@@ -17,19 +17,9 @@ const winner = (props) => {
 
     const { classes } = props;
 
-    let winner = (
-        <h1>Team {props.teamTwoName} Wins!</h1>
-    );
-
-    if(props.teamOneScore > props.teamTwoScore) {
-        winner = (
-            <h1>Team {props.teamOneName} Wins!</h1>
-        );
-    }
-
     return (
         <div className={classes.result}>
-            {winner}
+            <h1>Team {props.winner} Wins!</h1>
             <div>
                 <Button 
                     variant="contained" 
@@ -47,7 +37,8 @@ const winner = (props) => {
                 </Button>
             </div>
         </div>
-    )
+    );
+    
 }
 
 winner.propTypes = {

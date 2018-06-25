@@ -29,7 +29,7 @@ const styles = theme => ({
         marginBottom: '0px',
         padding: '16px',
         textAlign: 'center',
-        height: '40vh',
+        height: '30vh',
         backgroundColor: '#fff350',
     },
     teamNotActive: {
@@ -37,7 +37,7 @@ const styles = theme => ({
         marginBottom: '0px',
         padding: '16px',
         textAlign: 'center',
-        height: '40vh',
+        height: '30vh',
         backgroundColor: '#ccc',
     },
     clock: {
@@ -110,7 +110,7 @@ class Game extends Component {
                         <Typography 
                             variant="subheading" 
                             component="h2">
-                            Questing Submitted By: {shuffledQuestions[this.props.questionNumber].auth}
+                            Question Submitted By: {shuffledQuestions[this.props.questionNumber].auth}
                         </Typography>
                         <br/>
                     </CardContent>
@@ -155,18 +155,19 @@ class Game extends Component {
         );
 
         let showWinner = false;
+        let winner = '';
         this.props.teams.forEach(team => {
-            if (team.score === this.props.maxScore) showWinner = true;
+            if (team.score === this.props.maxScore) {
+                showWinner = true;
+                winner = team.name;
+            }
         });
 
         return (
             <Aux>
                 <Modal show={showWinner} closeModalFx={null}>
                     <Winner
-                        teamOneName={this.props.teamOneName} 
-                        teamTwoName={this.props.teamTwoName}
-                        teamOneScore={this.props.teamOneScore}
-                        teamTwoScore={this.props.teamTwoScore}
+                        winner={winner}
                         onPlayAgain={this.props.onPlayAgain}
                         onFreshStart={this.onFreshStart}
                         />
