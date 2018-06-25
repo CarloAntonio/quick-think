@@ -9,27 +9,15 @@ export const teamNameChanged = (newTeamName, index) => {
     };
 };
 
-const hideStartButton = () => {
+export const hideStartButton = () => {
     return {
         type: actionTypes.HIDE_START_BUTTON
     };
 };
 
-const countToFive = () => {
+export const clockFinished = () => {
     return {
-        type: actionTypes.COUNT_TO_FIVE
-    };
-};
-
-export const startTimer = () => {
-    return dispatch => {
-        //first hide start button
-        dispatch(hideStartButton());
-
-        //then start count
-        setTimeout(() => {
-            dispatch(countToFive());
-        }, 500);
+        type: actionTypes.CLOCK_FINISHED
     };
 };
 

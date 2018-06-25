@@ -80,7 +80,7 @@ const hideStartButton = (state, action) => {
     }
 }
 
-const count = (state, action) => {
+const promptScore = (state, action) => {
     return {
         ...state,
         promptAddScore: true,
@@ -145,7 +145,7 @@ const reducer = (state = initialState, action) => {
     switch(action.type) {
         case actionTypes.TEAM_NAME_CHANGE: return onTeamNameChanged(state, action);
         case actionTypes.HIDE_START_BUTTON: return hideStartButton(state, action);
-        case actionTypes.COUNT_TO_FIVE: return count(state, action);
+        case actionTypes.CLOCK_FINISHED: return promptScore(state, action);
         case actionTypes.ADD_POINT: return addPoint(state, action);
         case actionTypes.NO_ADD_POINT: return noAddPoint(state, action);
         case actionTypes.PLAY_AGAIN: return playAgain(state, action);

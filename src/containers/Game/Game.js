@@ -54,10 +54,6 @@ class Game extends Component {
         gameOver: false
     }
 
-    onStartTimer = () => {
-        this.props.onStartClock();
-    }
-
     onAddClicked = (event) => {
         this.props.onAddPoint(this.props.turn);
     }
@@ -89,7 +85,7 @@ class Game extends Component {
             <Button 
                 variant="contained" 
                 color="primary"
-                onClick={this.onStartTimer}>
+                onClick={this.props.onHideClock}>
                 START
             </Button>
         );
@@ -124,7 +120,7 @@ class Game extends Component {
                             color="#000"
                             alpha={0.9}
                             size={100}
-                            onComplete={null} />
+                            onComplete={this.props.onClockFinished} />
                     </div>
                     
                 </Card>
@@ -213,7 +209,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onStartClock: () => dispatch(actions.startTimer()),
+        onHideClock: () => dispatch(actions.hideStartButton()),
+        onClockFinished: () => dispatch(actions.clockFinished()),
         onAddPoint: (turn) => dispatch(actions.addPoint(turn)),
         onNoAddPoint: (turn) => dispatch(actions.noAddPoint(turn)),
         onPlayAgain: () => dispatch(actions.playAgain()),
