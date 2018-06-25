@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import CountdownClock from 'react-countdown-clock';
 
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -39,6 +40,10 @@ const styles = theme => ({
         height: '40vh',
         backgroundColor: '#ccc',
     },
+    clock: {
+        height: '120px',
+        paddingLeft: '30%'
+    }
 });
 
 const shuffledQuestions = shuffle(questions);
@@ -99,20 +104,29 @@ class Game extends Component {
                             gutterBottom>
                             Question:
                         </Typography>
-                        <br/><br/>
+                        <br/>
                         <Typography 
                             variant="headline" 
                             component="h2">
                             {shuffledQuestions[this.props.questionNumber].question}
                         </Typography>
-                        <br/><br/>
+                        <br/>
                         <Typography 
                             variant="subheading" 
                             component="h2">
                             Questing Submitted By: {shuffledQuestions[this.props.questionNumber].auth}
                         </Typography>
-                        <br/><br/>
+                        <br/>
                     </CardContent>
+                    <div className={classes.clock}>
+                        <CountdownClock 
+                            seconds={5}
+                            color="#000"
+                            alpha={0.9}
+                            size={100}
+                            onComplete={null} />
+                    </div>
+                    
                 </Card>
             );
 
