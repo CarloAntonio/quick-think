@@ -26,3 +26,12 @@ export const addOneToObjectInArray = (array, action) => {
         };    
     });
 }
+
+export const resetWithSameNames = (array, action, oldNames) => {
+    return array.map( (item, index) => {
+        return {
+            name: oldNames[index],
+            score: 0,
+        };    
+    });
+}

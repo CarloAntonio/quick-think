@@ -1,6 +1,6 @@
 
 import * as actionTypes from './actions/actTypes';
-import { updateObjectInArray, addOneToObjectInArray } from '../utility/utility';
+import { updateObjectInArray, addOneToObjectInArray, resetWithSameNames } from '../utility/utility';
 
 const initialState = {
     numPlayers: 2,
@@ -88,18 +88,21 @@ const count = (state, action) => {
 }
 
 const playAgain = (state, action) => {
+    
+    let oldNames = [];
+    
+    state.teams.map(team => {
+        oldNames.push(team.name);
+        return null;
+    });
+
     return {
         ...state,
-        teams: [
-            {
-                name: 'Awesome Possum',
-                score: 0,
-            },
-            {
-                name: 'Blue Lightning',
-                score: 0,
-            },
-        ],
+        teams: resetWithSameNames(
+            state.teams, 
+            action, 
+            oldNames
+        ),
         promptAddScore: false,
         hideQuestion: true,
         hideStartButton: false,
