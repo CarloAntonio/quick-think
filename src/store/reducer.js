@@ -1,13 +1,20 @@
 
 import * as actionTypes from './actions/actTypes';
+import { updateObjectInArray, addOneToObjectInArray } from '../utility/utility';
 
 const initialState = {
     numPlayers: 2,
     maxScore: 2,
-    teamOneName: 'Awesome Possum',
-    teamTwoName: 'Blue Lightning',
-    teamOneScore: 0,
-    teamTwoScore: 0,
+    teams: [
+        {
+            name: 'Awesome Possum',
+            score: 0,
+        },
+        {
+            name: 'Blue Lightning',
+            score: 0,
+        },
+    ],
     promptAddScore: false,
     hideQuestion: true,
     hideStartButton: false,
@@ -15,18 +22,54 @@ const initialState = {
     turn: 0
 }
 
-const onTeamOneChanged = (state, action) => {
+const onTeamNameChanged = (state, action) => {
     return {
         ...state,
-        teamOneName: action.teamOneName
+        teams: updateObjectInArray(
+            state.teams, 
+            action, 
+            { name: action.newTeamName }
+        )
     }
 }
 
-const onTeamTwoChanged = (state, action) => {
+const addPoint = (state, action) => {
+
+    let nextTurn = state.turn + 1;
+    if(nextTurn >= state.teams.length) {
+        nextTurn = 0;
+    }
+
     return {
         ...state,
-        teamTwoName: action.teamTwoName
+        teams: addOneToObjectInArray(
+            state.teams, 
+            action
+        ),
+        hideQuestion: true,
+        promptAddScore: false,
+        questionNumber: state.questionNumber + 1,
+        hideStartButton: false,
+        turn: nextTurn
+    };
+}
+
+const noAddPoint = (state, action) => {
+
+    //update to next team on the list
+    let nextTurn = state.turn + 1;
+    if (nextTurn === state.teams.length) {
+        nextTurn = 0;
     }
+
+    return {
+        ...state,
+        hideQuestion: true,
+        promptAddScore: false,
+        questionNumber: state.questionNumber + 1,
+        hideStartButton: false,
+        turn: nextTurn
+    };
 }
 
 const hideStartButton = (state, action) => {
@@ -44,65 +87,19 @@ const count = (state, action) => {
     }
 }
 
-const addPoint = (state, action) => {
-    let returnObject = {};
-
-    if(action.turn === 0) {
-        returnObject = {
-            ...state,
-            hideQuestion: true,
-            teamOneScore: state.teamOneScore + 1,
-            promptAddScore: false,
-            questionNumber: state.questionNumber + 1,
-            hideStartButton: false,
-            turn: 1
-        }
-    } else {
-        returnObject = {
-            ...state,
-            hideQuestion: true,
-            teamTwoScore: state.teamTwoScore + 1,
-            promptAddScore: false,
-            questionNumber: state.questionNumber + 1,
-            hideStartButton: false,
-            turn: 0
-        }
-    }
-
-    return returnObject;
-}
-
-const noAddPoint = (state, action) => {
-    let returnObject = {};
-
-    if(action.turn === 0) {
-        returnObject = {
-            ...state,
-            hideQuestion: true,
-            promptAddScore: false,
-            questionNumber: state.questionNumber + 1,
-            hideStartButton: false,
-            turn: 1
-        }
-    } else {
-        returnObject = {
-            ...state,
-            hideQuestion: true,
-            promptAddScore: false,
-            questionNumber: state.questionNumber + 1,
-            hideStartButton: false,
-            turn: 0
-        }
-    }
-
-    return returnObject;
-}
-
 const playAgain = (state, action) => {
     return {
         ...state,
-        teamOneScore: 0,
-        teamTwoScore: 0,
+        teams: [
+            {
+                name: 'Awesome Possum',
+                score: 0,
+            },
+            {
+                name: 'Blue Lightning',
+                score: 0,
+            },
+        ],
         promptAddScore: false,
         hideQuestion: true,
         hideStartButton: false,
@@ -115,10 +112,16 @@ const startOver = (state, action) => {
     return {
         numPlayers: 2,
         maxScore: 2,
-        teamOneName: 'Awesome Possum!',
-        teamTwoName: 'Blue Lightning!',
-        teamOneScore: 0,
-        teamTwoScore: 0,
+        teams: [
+            {
+                name: 'Awesome Possum',
+                score: 0,
+            },
+            {
+                name: 'Blue Lightning',
+                score: 0,
+            },
+        ],
         promptAddScore: false,
         hideQuestion: true,
         hideStartButton: false,
@@ -137,8 +140,7 @@ const maxScoreChanged = (state, action) => {
 const reducer = (state = initialState, action) => {
 
     switch(action.type) {
-        case actionTypes.TEAM_ONE_NAME_CHANGE: return onTeamOneChanged(state, action);
-        case actionTypes.TEAM_TWO_NAME_CHANGE: return onTeamTwoChanged(state, action);
+        case actionTypes.TEAM_NAME_CHANGE: return onTeamNameChanged(state, action);
         case actionTypes.HIDE_START_BUTTON: return hideStartButton(state, action);
         case actionTypes.COUNT_TO_FIVE: return count(state, action);
         case actionTypes.ADD_POINT: return addPoint(state, action);

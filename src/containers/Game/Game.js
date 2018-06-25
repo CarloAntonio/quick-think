@@ -137,9 +137,14 @@ class Game extends Component {
             </div>
         );
 
+        let showWinner = false;
+        this.props.teams.forEach(team => {
+            if (team.score === this.props.maxScore) showWinner = true;
+        });
+
         return (
             <Aux>
-                <Modal show={this.props.teamOneScore === this.props.maxScore || this.props.teamTwoScore === this.props.maxScore} closeModalFx={null}>
+                <Modal show={showWinner} closeModalFx={null}>
                     <Winner
                         teamOneName={this.props.teamOneName} 
                         teamTwoName={this.props.teamTwoName}
@@ -151,18 +156,14 @@ class Game extends Component {
                 </Modal>
                 <div className={iClasses.root}>
                     <Grid container spacing={24}>
-                        <Grid item xs={12} sm={6}>
-                            <Paper className={this.props.turn === 0 ? classes.teamActive : classes.teamNotActive}>
-                                <h1>{this.props.teamOneName}</h1>
-                                <p className={iClasses.score}>{this.props.teamOneScore}</p>
-                            </Paper>
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <Paper className={this.props.turn === 1 ? classes.teamActive : classes.teamNotActive}>
-                                <h1>{this.props.teamTwoName}</h1>
-                                <p className={iClasses.score}>{this.props.teamTwoScore}</p>
-                            </Paper>
-                        </Grid>
+                        {this.props.teams.map((team, index) => {
+                            return <Grid item xs={12} sm={6} key={index}>
+                                        <Paper className={this.props.turn === index ? classes.teamActive : classes.teamNotActive}>
+                                            <h1>{team.name}</h1>
+                                            <p className={iClasses.score}>{team.score}</p>
+                                        </Paper>
+                                    </Grid>
+                        })}
                         <Grid item xs={12}>
                             <Paper className={iClasses.paper}>
                                 { question }
@@ -179,10 +180,7 @@ class Game extends Component {
 
 const mapStateToProps = state => {
     return {
-        teamOneName: state.teamOneName,
-        teamTwoName: state.teamTwoName,
-        teamOneScore: state.teamOneScore,
-        teamTwoScore: state.teamTwoScore,
+        teams: state.teams,
         maxScore: state.maxScore,
         promptAddScore: state.promptAddScore,
         hideQuestion: state.hideQuestion,

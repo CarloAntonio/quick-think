@@ -1,17 +1,11 @@
 
 import * as actionTypes from './actTypes';
 
-export const teamOneNameChanged = (teamOneName) => {
+export const teamNameChanged = (newTeamName, index) => {
     return {
-        type: actionTypes.TEAM_ONE_NAME_CHANGE,
-        teamOneName: teamOneName
-    };
-};
-
-export const teamTwoNameChanged = (teamTwoName) => {
-    return {
-        type: actionTypes.TEAM_TWO_NAME_CHANGE,
-        teamTwoName: teamTwoName
+        type: actionTypes.TEAM_NAME_CHANGE,
+        newTeamName: newTeamName,
+        index: index
     };
 };
 

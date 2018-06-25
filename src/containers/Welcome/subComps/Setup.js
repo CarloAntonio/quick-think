@@ -9,6 +9,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
+import Aux from '../../../hoc/Aux';
+
 const styles = theme => ({
     container: {
         display: 'flex',
@@ -43,28 +45,23 @@ const setup = (props) => {
     return (
         <div className={classes.div}>
             <h1 className={ classes.title }>New Game</h1>
-            <FormControl className={classes.formControl}>
-                <InputLabel htmlFor="team-one">Team One</InputLabel>
-                <Input
-                    inputProps={{
-                        name: 'teamOne',
-                        id: 'team-one',
-                        }}
-                    value={props.teamOneName}
-                    onChange={(event) => props.onTeamOneNameChanged(event)}/>
-            </FormControl>
-            <br/>
-            <FormControl className={classes.formControl}>
-                <InputLabel htmlFor="team-two">Team Two</InputLabel>
-                <Input
-                    inputProps={{
-                        name: 'teamTwo',
-                        id: 'team-two',
-                        }}
-                    value={props.teamTwoName}
-                    onChange={(event) => props.onTeamTwoNameChanged(event)}/>
-            </FormControl>
-            <br/>
+            {props.teams.map((team, index) => {
+                return <Aux
+                    key={index}>
+                    <FormControl className={classes.formControl}>
+                        <InputLabel htmlFor={index}>Team {index + 1}</InputLabel>
+                        <Input
+                            inputProps={{
+                                name: team.name,
+                                id: {index},
+                                }}
+                            value={team.name}
+                            onChange={(event) => props.onTeamNameChanged(event, index)}/>
+                    </FormControl>
+                    <br/>
+                </Aux>
+            })}
+
             <FormControl className={classes.formControl}>
                 <InputLabel htmlFor="max-score">Play Up To</InputLabel>
                 <Select
