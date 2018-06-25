@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -7,6 +8,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
 
 import Aux from '../../hoc/Aux';
 import Modal from '../../components/UI/Modal/Modal';
@@ -14,17 +16,8 @@ import Winner from './subComps/Winner';
 
 import * as actions from '../../store/actions/actions';
 import iClasses from './Game.css';
-
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-
-const questions = [
-    "Types of dogs",
-    "Types of cats",
-    "Types of muscles",
-    "Types of coffee shops",
-    "types of cars"
-];
+import questions from './Questions';
+import { shuffle } from '../../utility/utility';
 
 const styles = theme => ({
     button: {
@@ -48,6 +41,8 @@ const styles = theme => ({
     },
 });
 
+const shuffledQuestions = shuffle(questions);
+
 class Game extends Component {
 
     state = {
@@ -69,7 +64,7 @@ class Game extends Component {
     onFreshStart = () => {
         this.props.onStartOver();
         this.props.history.push('/');
-    } 
+    }
 
     render() {
 
@@ -108,7 +103,13 @@ class Game extends Component {
                         <Typography 
                             variant="headline" 
                             component="h2">
-                            {questions[this.props.questionNumber]}
+                            {shuffledQuestions[this.props.questionNumber].question}
+                        </Typography>
+                        <br/><br/>
+                        <Typography 
+                            variant="subheading" 
+                            component="h2">
+                            Questing Submitted By: {shuffledQuestions[this.props.questionNumber].auth}
                         </Typography>
                         <br/><br/>
                     </CardContent>
@@ -120,19 +121,25 @@ class Game extends Component {
 
         let promptAddPoints = (
             <div>
+                <Typography 
+                    variant="subheading" 
+                    component="h2">
+                    Does team {this.props.teams.slice(this.props.turn, this.props.turn + 1)[0].name} deserve to get a point? 
+                </Typography>
+                <br/>
                 <Button 
                     variant="contained" 
                     color="primary" 
                     className={classes.button}
                     onClick={this.onAddClicked}>
-                    +1
+                    YUP
                 </Button>
                 <Button 
                     variant="contained" 
                     color="primary" 
                     className={classes.button}
                     onClick={this.onNoPointClicked}>
-                    X
+                    NAH
                 </Button>
             </div>
         );
