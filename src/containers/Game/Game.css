@@ -118,6 +118,10 @@
     margin: 16px 8px 0px;
 }
 
+.addPoints {
+    font-size: 1em;
+}
+
 @media (max-width: 720px) and (min-width: 481px) {
 
     /* Team Cards */
@@ -186,6 +190,46 @@
     
     .score {
         font-size: 48px;
+    }
+
+    /* Question Section */
+
+    .questionContainer {
+        margin: 8px 16px;
+    }
+
+    .questionHidden {
+        padding: 112px 0px 176px;
+    }
+
+    .questionPrompt {
+        font-size: 2em;
+        margin-bottom: 8px;
+    }
+
+    .questionGenerated {
+        font-size: 2.2em;
+    }
+
+    .questionAuth {
+        margin-top: 8px;
+        font-size: .8em;
+    }
+
+    .card {
+        max-width: 900px;
+        min-height: 480px;
+        margin: 0px 8px 24px;
+    }
+
+    .clock {
+        height: 105px;
+        padding-left: calc(50% - 100px);
+    }
+
+    /* Bottom Controls */
+    .addPoints {
+        font-size: 1.4em;
     }
 
 }

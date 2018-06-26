@@ -6,7 +6,6 @@ import CountdownClock from 'react-countdown-clock';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -93,11 +92,9 @@ class Game extends Component {
 
         let promptAddPoints = (
             <div className={iClasses.promptPoints}>
-                <Typography 
-                    variant="subheading" 
-                    component="h2">
-                    Does team {this.props.teams.slice(this.props.turn, this.props.turn + 1)[0].name} deserve to get a point? 
-                </Typography>
+                <p className={iClasses.addPoints}>
+                    Does team {this.props.teams.slice(this.props.turn, this.props.turn + 1)[0].name} deserve to get a point?
+                </p>
                 <br/>
                 <Button 
                     variant="contained" 
