@@ -75,6 +75,19 @@
     color:  #a1887f;
 }
 
+/* Game Stats */
+.stats{
+    text-align: center;
+}
+
+.stats h2 {
+    color: #388e3c;
+}
+
+.stats p b {
+    color: #a1887f;
+}
+
 /* Question Section */
 
 .questionContainer {

@@ -45,7 +45,7 @@ class Welcome extends Component {
                                 <h1>How To Play:</h1>
                                 <p>Each team will take turns answering a question</p>
                                 <p>Once the question is shown, the team has 6 second to give 3 answers that fulfill the question's criteria</p>
-                                <p>A team will recieve a point if they give 3 appropriate answers within 5 seconds</p>
+                                <p>A team will recieve a point if they give 3 appropriate answers within 6 seconds</p>
                                 <p>The game ends after one team reaches the goal score</p>
                             </div>
                             <div className= { classes.instruct }>

@@ -133,6 +133,7 @@ class Game extends Component {
                 </Modal>
                 <div className={iClasses.root}>
                     <Grid container spacing={24}>
+
                         {this.props.teams.map((team, index) => {
                             return <Grid item xs={6} key={index}>
                                         <div className={this.props.turn === index ? index === 0 ? iClasses.teamActiveLeft : iClasses.teamActiveRight : index === 1 ? iClasses.teamNotActiveRight : iClasses.teamNotActiveLeft  }>
@@ -141,6 +142,14 @@ class Game extends Component {
                                         </div>
                                     </Grid>
                         })}
+
+                        <Grid item xs={12}>
+                            <div className={iClasses.stats}>
+                                <h2>First Team to {this.props.maxScore} Points Wins!</h2>
+                                <p>Current Turn Belongs To: <b>{this.props.teams.slice(this.props.turn, this.props.turn + 1)[0].name}</b></p> 
+                            </div>
+                        </Grid>
+
                         <Grid item xs={12} className={iClasses.paper}>
                             <Card className={iClasses.card}>
                                 { question }

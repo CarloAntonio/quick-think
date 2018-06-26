@@ -13,7 +13,7 @@ const appBar = (props) => {
             <AppBar position="static">
                 <Toolbar className={classes.bar}>
                     <Typography variant="title" color="inherit">
-                        Bobba Shop Games
+                        Boba Shop Games
                     </Typography>
                 </Toolbar>
             </AppBar>
