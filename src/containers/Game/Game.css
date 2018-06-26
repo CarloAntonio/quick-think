@@ -1,25 +1,10 @@
 
+/* General */
+
 .root {
     flex-grow: 1;
     max-width: 1200px;
     margin: auto;
-}
-  
-.team {
-    margin: 16px;
-    margin-bottom: 0px;
-    padding: 16px;
-    text-align: center;
-    height: 40vh;
-    background-color: tomato;
-}
-  
-.score {
-    font-size: 72px;
-}
-
-.logic {
-    margin: 0px;
 }
 
 .paper {
@@ -28,83 +13,172 @@
     text-align: center;
     height: 55vh;
 }
-  
-.card {
-    max-width: 900px;
-    min-height: 315px;
-    margin: 16px auto 32px;
-}
-  
+
 .button {
     margin: 32px;
 }
 
+/* Team Cards */
+
+.teamName {
+    font-size: 12px;
+}
+
+.score {
+    font-size: 20px;
+    margin: 8px;
+}
+
 .teamActiveLeft {
-    margin: 16px;
+    margin: 8px;
     margin-bottom: 0px;
     margin-right: 0px;
     padding: 16px;
     text-align: center;
-    height: 30vh;
+    height: 100%;
     background-color: #a1887f;
     color: #fff;
 }
 
 .teamNotActiveLeft {
-    margin: 16px;
+    margin: 8px;
     margin-bottom: 0px;
     margin-right: 0px;
     padding: 16px;
     text-align: center;
-    height: 30vh;
+    height: 100%;
     background-color: #ccc;
     color:  #a1887f;
 }
 
 .teamActiveRight {
-    margin: 16px;
+    margin: 8px;
     margin-bottom: 0px;
     margin-left: 0px;
     padding: 16px;
     text-align: center;
-    height: 30vh;
+    height: 100%;
     background-color: #a1887f;
     color: #fff;
 }
 
 .teamNotActiveRight {
-    margin: 16px;
+    margin: 8px;
     margin-bottom: 0px;
     margin-left: 0px;
     padding: 16px;
     text-align: center;
-    height: 30vh;
+    height: 100%;
     background-color: #ccc;
     color:  #a1887f;
 }
 
+/* Question Section */
+.card {
+    max-width: 900px;
+    min-height: 315px;
+    margin: 0px 8px 24px;
+}
+
+.clock {
+    height: 120px;
+    padding-left: calc(50% - 100px);
+}
+
+/* Bottom Controls */
+.promptPoints {
+    margin-left: 8px;
+    margin-right: 8px;
+}
 
 @media (max-width: 720px) and (min-width: 481px) {
 
+    /* Team Cards */
+
+    .teamName {
+        font-size: 16px;
+    }
+    
+    .score {
+        font-size: 24px;
+        margin: 8px;
+    }
+
+    .teamActiveLeft {
+        margin: 8px;
+        margin-bottom: 0px;
+        margin-right: 0px;
+        padding: 16px;
+        text-align: center;
+        height: 100%;
+        background-color: #a1887f;
+        color: #fff;
+    }
+    
+    .teamNotActiveLeft {
+        margin: 8px;
+        margin-bottom: 0px;
+        margin-right: 0px;
+        padding: 16px;
+        text-align: center;
+        height: 100%;
+        background-color: #ccc;
+        color:  #a1887f;
+    }
+    
+    .teamActiveRight {
+        margin: 8px;
+        margin-bottom: 0px;
+        margin-left: 0px;
+        padding: 16px;
+        text-align: center;
+        height: 100%;
+        background-color: #a1887f;
+        color: #fff;
+    }
+    
+    .teamNotActiveRight {
+        margin: 8px;
+        margin-bottom: 0px;
+        margin-left: 0px;
+        padding: 16px;
+        text-align: center;
+        height: 100%;
+        background-color: #ccc;
+        color:  #a1887f;
+    }
 }
 
-@media (max-width: 600px) {
-    .team {
-        margin-top: 8px;
-        padding: 8px;
-        text-align: center;
-        height: 20vh;
-    }
+@media (max-width: 1399px) and (min-width: 721px) {
 
-    .team h1 {
-        font-size: 24px;
-    }
+    /* Team Cards */
 
+    .teamName {
+        font-size: 20px;
+    }
+    
     .score {
         font-size: 48px;
+    }
+
+}
+
+@media(min-width: 910px) {
+
+    /* Question Section */
+    .card {
+        margin: 0px auto 24px;
     }
 }
 
 @media (min-width: 1400px) {
 
+    /* Team Cards */
+    .teamName {
+        font-size: 48px;
+    }
+
+    .score {
+        font-size: 96px;
+    }
 }

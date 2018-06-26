@@ -24,10 +24,6 @@ const styles = theme => ({
     button: {
       margin: theme.spacing.unit,
     },
-    clock: {
-        height: '120px',
-        paddingLeft: '38.5%'
-    }
 });
 
 const shuffledQuestions = shuffle(questions);
@@ -98,8 +94,9 @@ class Game extends Component {
                         </Typography>
                         <br/>
                     </CardContent>
-                    <div className={classes.clock}>
+                    <div className={iClasses.clock}>
                         <CountdownClock 
+                            className={iClasses.test}
                             seconds={6}
                             color="#a1887f"
                             alpha={0.9}
@@ -113,7 +110,7 @@ class Game extends Component {
         }
 
         let promptAddPoints = (
-            <div>
+            <div className={iClasses.promptPoints}>
                 <Typography 
                     variant="subheading" 
                     component="h2">
@@ -158,9 +155,9 @@ class Game extends Component {
                 <div className={iClasses.root}>
                     <Grid container spacing={24}>
                         {this.props.teams.map((team, index) => {
-                            return <Grid item xs={12} sm={6} key={index}>
+                            return <Grid item xs={6} key={index}>
                                         <div className={this.props.turn === index ? index === 0 ? iClasses.teamActiveLeft : iClasses.teamActiveRight : index === 1 ? iClasses.teamNotActiveRight : iClasses.teamNotActiveLeft  }>
-                                            <h1>{team.name}</h1>
+                                            <h1 className={iClasses.teamName}>{team.name}</h1>
                                             <p className={iClasses.score}>{team.score}</p>
                                         </div>
                                     </Grid>
