@@ -30,7 +30,8 @@ const styles = theme => ({
         padding: '16px',
         textAlign: 'center',
         height: '30vh',
-        backgroundColor: '#fff350',
+        backgroundColor: theme.palette.secondary.main,
+        color: theme.palette.secondary.contrastText
     },
     teamNotActive: {
         margin: '16px',
@@ -39,6 +40,7 @@ const styles = theme => ({
         textAlign: 'center',
         height: '30vh',
         backgroundColor: '#ccc',
+        color: theme.palette.secondary.main
     },
     clock: {
         height: '120px',
@@ -117,7 +119,7 @@ class Game extends Component {
                     <div className={classes.clock}>
                         <CountdownClock 
                             seconds={5}
-                            color="#000"
+                            color="#a1887f"
                             alpha={0.9}
                             size={100}
                             onComplete={this.props.onClockFinished} />

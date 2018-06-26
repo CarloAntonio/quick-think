@@ -38,6 +38,6 @@
     }
 }
 
-h1 {
+.welcome h1, .instruct h1 {
     color: #388e3c;
 }
