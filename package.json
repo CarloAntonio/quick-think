@@ -56,6 +56,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
+    "deploy": "aws s3 cp --recursive ./build s3://www.bobashopgames.fun",
     "test": "node scripts/test.js --env=jsdom"
   },
   "jest": {
