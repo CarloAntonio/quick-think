@@ -24,7 +24,7 @@ const styles = theme => ({
     },
 });
 
-const shuffledQuestions = shuffle(questions);
+let shuffledQuestions = shuffle(questions);
 
 class Game extends Component {
 
@@ -43,6 +43,11 @@ class Game extends Component {
     onFreshStart = () => {
         this.props.onStartOver();
         this.props.history.push('/');
+    }
+
+    onShuffleAndPlayAgain = () => {
+        shuffledQuestions = shuffle(shuffledQuestions);
+        this.props.onPlayAgain();
     }
 
     render() {
@@ -127,7 +132,7 @@ class Game extends Component {
                 <Modal show={showWinner} closeModalFx={null}>
                     <Winner
                         winner={winner}
-                        onPlayAgain={this.props.onPlayAgain}
+                        onPlayAgain={this.onShuffleAndPlayAgain}
                         onFreshStart={this.onFreshStart}
                         />
                 </Modal>
