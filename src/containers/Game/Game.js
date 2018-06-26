@@ -52,9 +52,7 @@ class Game extends Component {
 
         let question = (
             <CardContent>
-                <Typography variant="headline" component="h2">
-                    HIDDEN
-                </Typography>
+                <h1 className={iClasses.questionHidden}>HIDDEN</h1>
             </CardContent>
         );
 
@@ -63,7 +61,7 @@ class Game extends Component {
                 variant="contained" 
                 color="primary"
                 onClick={this.props.onHideClock}>
-                START
+                GO!
             </Button>
         );
         

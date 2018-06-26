@@ -77,6 +77,15 @@
 
 /* Question Section */
 
+.questionContainer {
+    margin: 0px 8px;
+}
+
+.questionHidden {
+    color:  #a1887f;
+    padding: 96px 0px 142px;
+}
+
 .questionPrompt {
     font-size: 1.5em;
     color: #388e3c;
@@ -91,10 +100,6 @@
 .questionAuth {
     margin-top: 0px;
     font-size: .8em;
-}
-
-.questionContainer {
-    margin: 0px 8px;
 }
 
 .card {
