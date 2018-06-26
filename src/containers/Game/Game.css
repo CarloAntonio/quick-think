@@ -252,4 +252,39 @@
     .score {
         font-size: 96px;
     }
+
+    /* Question Section */
+
+    .questionContainer {
+        margin: 16px 16px;
+    }
+
+    .questionHidden {
+        padding: 128px 0px 176px;
+    }
+
+    .questionPrompt {
+        font-size: 2.4em;
+        margin-bottom: 8px;
+    }
+
+    .questionGenerated {
+        font-size: 2.8em;
+        margin: 8px 16px;
+    }
+
+    .questionAuth {
+        margin-top: 8px;
+        font-size: 1em;
+    }
+
+    .card {
+        max-width: 1020px;
+        min-height: 560px;
+    }
+
+    /* Bottom Controls */
+    .addPoints {
+        font-size: 1.4em;
+    }
 }

@@ -21,6 +21,7 @@
 
 .welcome h1, .instruct h1 {
     font-size: 1em;
+    color: #388e3c;
 }
 
 .welcome p, .instruct p {
