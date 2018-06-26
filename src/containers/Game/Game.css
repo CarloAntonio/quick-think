@@ -5,6 +5,8 @@
     flex-grow: 1;
     max-width: 1200px;
     margin: auto;
+    height: 100%;
+    min-height: 85vh;
 }
 
 .paper {
@@ -74,21 +76,41 @@
 }
 
 /* Question Section */
+
+.questionPrompt {
+    font-size: 1.5em;
+    color: #388e3c;
+    margin-bottom: 0px;
+}
+
+.questionGenerated {
+    margin: 0px;
+    font-size: 1.6em;
+}
+
+.questionAuth {
+    margin-top: 0px;
+    font-size: .8em;
+}
+
+.questionContainer {
+    margin: 0px 8px;
+}
+
 .card {
     max-width: 900px;
-    min-height: 315px;
+    min-height: 420px;
     margin: 0px 8px 24px;
 }
 
 .clock {
-    height: 120px;
+    height: 105px;
     padding-left: calc(50% - 100px);
 }
 
 /* Bottom Controls */
 .promptPoints {
-    margin-left: 8px;
-    margin-right: 8px;
+    margin: 16px 8px 0px;
 }
 
 @media (max-width: 720px) and (min-width: 481px) {

@@ -9,6 +9,7 @@
     padding: 16px;
     margin: 16px;
     text-align: center;
+    min-height: 85vh;
     height: 100%;    
     color: #000;
 }

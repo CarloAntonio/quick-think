@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import CountdownClock from 'react-countdown-clock';
 
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -52,13 +51,11 @@ class Game extends Component {
         const { classes } = this.props;
 
         let question = (
-            <Card className={iClasses.card}>
-                <CardContent>
-                    <Typography variant="headline" component="h2">
-                        HIDDEN
-                    </Typography>
-                </CardContent>
-            </Card>
+            <CardContent>
+                <Typography variant="headline" component="h2">
+                    HIDDEN
+                </Typography>
+            </CardContent>
         );
 
         let startButton = (
@@ -72,28 +69,15 @@ class Game extends Component {
         
         if (this.props.hideQuestion !== true) {
             question = (
-                <Card className={iClasses.card}>
-                    <CardContent>
-                        <Typography 
-                            variant="display1" 
-                            color="primary"
-                            gutterBottom>
-                            Question:
-                        </Typography>
+                <Aux>
+                    <div className={iClasses.questionContainer}>
+                        <h1 className={iClasses.questionPrompt}>Question:</h1>
                         <br/>
-                        <Typography 
-                            variant="headline" 
-                            component="h2">
-                            {shuffledQuestions[this.props.questionNumber].question}
-                        </Typography>
+                        <p className={iClasses.questionGenerated}>{shuffledQuestions[this.props.questionNumber].question}</p>
                         <br/>
-                        <Typography 
-                            variant="subheading" 
-                            component="h2">
-                            Question Submitted By: {shuffledQuestions[this.props.questionNumber].auth}
-                        </Typography>
+                        <p className={iClasses.questionAuth}>Question Submitted By: {shuffledQuestions[this.props.questionNumber].auth}</p>
                         <br/>
-                    </CardContent>
+                    </div>
                     <div className={iClasses.clock}>
                         <CountdownClock 
                             className={iClasses.test}
@@ -103,7 +87,7 @@ class Game extends Component {
                             size={100}
                             onComplete={this.props.onClockFinished} />
                     </div>
-                </Card>
+                </Aux>
             );
 
             startButton = null;
@@ -163,9 +147,11 @@ class Game extends Component {
                                     </Grid>
                         })}
                         <Grid item xs={12} className={iClasses.paper}>
-                            { question }
-                            { this.props.hideStartButton ? null : startButton }
-                            { this.props.promptAddScore ? promptAddPoints : null }
+                            <Card className={iClasses.card}>
+                                { question }
+                                { this.props.hideStartButton ? null : startButton }
+                                { this.props.promptAddScore ? promptAddPoints : null }
+                            </Card>
                         </Grid>
                     </Grid>
                 </div>
