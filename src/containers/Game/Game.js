@@ -44,7 +44,7 @@ const styles = theme => ({
     },
     clock: {
         height: '120px',
-        paddingLeft: '30%'
+        paddingLeft: '38.5%'
     }
 });
 
@@ -124,7 +124,6 @@ class Game extends Component {
                             size={100}
                             onComplete={this.props.onClockFinished} />
                     </div>
-                    
                 </Card>
             );
 
@@ -184,12 +183,10 @@ class Game extends Component {
                                         </Paper>
                                     </Grid>
                         })}
-                        <Grid item xs={12}>
-                            <Paper className={iClasses.paper}>
-                                { question }
-                                { this.props.hideStartButton ? null : startButton }
-                                { this.props.promptAddScore ? promptAddPoints : null }
-                            </Paper>
+                        <Grid item xs={12} className={iClasses.paper}>
+                            { question }
+                            { this.props.hideStartButton ? null : startButton }
+                            { this.props.promptAddScore ? promptAddPoints : null }
                         </Grid>
                     </Grid>
                 </div>

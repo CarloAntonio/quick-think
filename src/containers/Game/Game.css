@@ -18,16 +18,20 @@
     font-size: 72px;
 }
 
+.logic {
+    margin: 0px;
+}
+
 .paper {
     margin: 16px;
     margin-top: 0px;
-    padding: 16px;
     text-align: center;
     height: 55vh;
 }
   
 .card {
-    max-width: 500px;
+    max-width: 900px;
+    min-height: 315px;
     margin: 16px auto 32px;
 }
   
