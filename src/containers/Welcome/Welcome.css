@@ -15,29 +15,79 @@
 
 .welcome {
     max-width: 80%;
-    margin: 56px auto 24px;
-}
-
-.welcome p, .instruct p {
-    font-size: 1.2em;
-}
-
-.special {
-    margin-top: 96px;
-    font-size: 1em;
-}
-
-.instruct {
-    max-width: 80%;
-    margin: 0px auto 24px;
-}
-
-@media (max-width: 450px) {
-    .paper {
-        height: 100%;
-    }
+    margin: 24px auto 16px;
 }
 
 .welcome h1, .instruct h1 {
-    color: #388e3c;
+    font-size: 1em;
 }
+
+.welcome p, .instruct p {
+    font-size: .8em;
+}
+
+.special {
+    margin-top: 32px;
+    font-size: .6em;
+}
+
+@media (max-width: 720px) and (min-width: 481px) {
+    .welcome {
+        max-width: 80%;
+        margin: 24px auto 16px;
+    }
+
+    .welcome h1, .instruct h1 {
+        font-size: 1.2em;
+    }
+
+    .welcome p, .instruct p {
+        font-size: 1em;
+    }
+
+    .special {
+        margin-top: 16px;
+        font-size: .8em;
+    }
+}
+
+@media (max-width: 1399px) and (min-width: 721px) {
+    .welcome {
+        max-width: 80%;
+        margin: 24px auto 16px;
+    }
+
+    .welcome h1, .instruct h1 {
+        font-size: 1.4em;
+    }
+
+    .welcome p, .instruct p {
+        font-size: 1.2em;
+    }
+
+    .special {
+        margin-top: 16px;
+        font-size: .8em;
+    }
+}
+
+@media (min-width: 1400px) {
+    .welcome {
+        max-width: 80%;
+        margin: 32px auto 24px;
+    }
+
+    .welcome h1, .instruct h1 {
+        font-size: 1.6em;
+    }
+    
+    .welcome p, .instruct p {
+        font-size: 1.4em;
+    }
+    
+    .special {
+        margin-top: 48px;
+        font-size: 1em;
+    }
+}
+
