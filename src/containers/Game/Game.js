@@ -118,7 +118,7 @@ class Game extends Component {
                     </CardContent>
                     <div className={classes.clock}>
                         <CountdownClock 
-                            seconds={5}
+                            seconds={6}
                             color="#a1887f"
                             alpha={0.9}
                             size={100}
