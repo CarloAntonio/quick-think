@@ -24,24 +24,6 @@ const styles = theme => ({
     button: {
       margin: theme.spacing.unit,
     },
-    teamActive: {
-        margin: '16px',
-        marginBottom: '0px',
-        padding: '16px',
-        textAlign: 'center',
-        height: '30vh',
-        backgroundColor: theme.palette.secondary.main,
-        color: theme.palette.secondary.contrastText
-    },
-    teamNotActive: {
-        margin: '16px',
-        marginBottom: '0px',
-        padding: '16px',
-        textAlign: 'center',
-        height: '30vh',
-        backgroundColor: '#ccc',
-        color: theme.palette.secondary.main
-    },
     clock: {
         height: '120px',
         paddingLeft: '38.5%'
@@ -177,10 +159,10 @@ class Game extends Component {
                     <Grid container spacing={24}>
                         {this.props.teams.map((team, index) => {
                             return <Grid item xs={12} sm={6} key={index}>
-                                        <Paper className={this.props.turn === index ? classes.teamActive : classes.teamNotActive}>
+                                        <div className={this.props.turn === index ? index === 0 ? iClasses.teamActiveLeft : iClasses.teamActiveRight : index === 1 ? iClasses.teamNotActiveRight : iClasses.teamNotActiveLeft  }>
                                             <h1>{team.name}</h1>
                                             <p className={iClasses.score}>{team.score}</p>
-                                        </Paper>
+                                        </div>
                                     </Grid>
                         })}
                         <Grid item xs={12} className={iClasses.paper}>
