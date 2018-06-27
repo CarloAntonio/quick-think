@@ -15,8 +15,6 @@ import Winner from './subComps/Winner';
 
 import * as actions from '../../store/actions/actions';
 import iClasses from './Game.css';
-import questions from './Questions';
-import { shuffle } from '../../utility/utility';
 
 const styles = theme => ({
     button: {
@@ -24,12 +22,15 @@ const styles = theme => ({
     },
 });
 
-let shuffledQuestions = shuffle(questions);
-
 class Game extends Component {
 
     state = {
         gameOver: false
+    }
+
+    //fetch data only when component has loaded on the page
+    componentDidMount() {
+        this.props.onFetchQuestions();
     }
 
     onAddClicked = (event) => {
@@ -46,7 +47,7 @@ class Game extends Component {
     }
 
     onShuffleAndPlayAgain = () => {
-        shuffledQuestions = shuffle(shuffledQuestions);
+        this.props.onFetchQuestions();
         this.props.onPlayAgain();
     }
 
@@ -75,9 +76,9 @@ class Game extends Component {
                     <div className={iClasses.questionContainer}>
                         <h1 className={iClasses.questionPrompt}>Question:</h1>
                         <br/>
-                        <p className={iClasses.questionGenerated}>{shuffledQuestions[this.props.questionNumber].question}</p>
+                        <p className={iClasses.questionGenerated}>{this.props.questions[this.props.questionNumber].question}</p>
                         <br/>
-                        <p className={iClasses.questionAuth}>Question Submitted By: {shuffledQuestions[this.props.questionNumber].auth}</p>
+                        <p className={iClasses.questionAuth}>Question Submitted By: {this.props.questions[this.props.questionNumber].auth}</p>
                         <br/>
                     </div>
                     <div className={iClasses.clock}>
@@ -174,12 +175,14 @@ const mapStateToProps = state => {
         hideQuestion: state.hideQuestion,
         hideStartButton: state.hideStartButton,
         questionNumber: state.questionNumber,
-        turn: state.turn
+        turn: state.turn,
+        questions: state.questions,
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
+        onFetchQuestions: () => dispatch(actions.fetchQuestions()),
         onHideClock: () => dispatch(actions.hideStartButton()),
         onClockFinished: () => dispatch(actions.clockFinished()),
         onAddPoint: (turn) => dispatch(actions.addPoint(turn)),

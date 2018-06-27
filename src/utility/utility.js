@@ -1,4 +1,10 @@
 
+import axios from 'axios';
+
+export const axiosInstance = axios.create({
+    baseURL: 'https://boba-shop-games.firebaseio.com/'
+});
+
 export const updateObjectInArray = (array, action, updatedProperties) => {
     return array.map( (item, index) => {
         if(index !== action.index) {
