@@ -148,6 +148,10 @@ class Game extends Component {
                                     </Grid>
                         })}
 
+                        <div>
+                            <hr/>
+                        </div>
+
                         <Grid item xs={12} className={iClasses.paper}>
                             <Card className={iClasses.card}>
                                 { question }
