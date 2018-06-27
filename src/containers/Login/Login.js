@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import Button from '@material-ui/core/Button';
@@ -104,20 +105,28 @@ class Login extends Component {
 
         });
 
+        //show spinner while waiting for response from firebase api
         if (this.props.loading) {
             form = <Spinner />
         }
 
+        //show error message if error occurs
         let errorMessage = null;
-
         if (this.props.error) {
             errorMessage = (
                 <p>{this.props.error.message}</p>
             );
         }
 
+        //setup redirect once user is authenticated
+        let authRedirect = null;
+        if (this.props.isAuth) {
+            authRedirect = <Redirect to={this.props.authRedirectPath}/>
+        }
+
         return (
             <div className={iClasses.Auth}>
+                {authRedirect}
                 {errorMessage}
                 <form>
                     {form}
