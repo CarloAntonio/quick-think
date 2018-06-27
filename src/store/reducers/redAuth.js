@@ -6,7 +6,8 @@ const initialState = {
     userId: null,
     error: null,
     loading: false,
-    authRedirectPath: '/'
+    authRedirectPath: '/',
+    loggingIn: false
 };
 
 const authStart = (state, action ) => {
@@ -45,6 +46,18 @@ const setAuthRedirectPath = (state, action) => {
     });
 }
 
+const onLoginPage = (state, action) => {
+    return updateObject(state, {
+        loggingIn: true
+    })
+}
+
+const leavingLoginPage = (state, action) => {
+    return updateObject(state, {
+        loggingIn: false
+    })
+}
+
 const redAuth = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.AUTH_START: return authStart(state, action); 
@@ -52,6 +65,8 @@ const redAuth = (state = initialState, action) => {
         case actionTypes.AUTH_FAIL: return authFail(state, action); 
         case actionTypes.AUTH_LOGOUT: return authLogout(state, action);
         case actionTypes.SET_AUTH_REDIRECT_PATH: return setAuthRedirectPath(state, action);
+        case actionTypes.ON_LOGIN_PAGE: return onLoginPage(state, action);
+        case actionTypes.LEAVING_LOGIN_PAGE: return leavingLoginPage(state, action);
         default: return state;
     }
 }

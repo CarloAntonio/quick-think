@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 import AppBar from './components/AppBar/AppBar';
@@ -31,4 +31,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);

@@ -120,3 +120,15 @@ export const authCheckState = () => {
     };
 };
 
+export const onLoginPage = () => {
+    return {
+        type: actionTypes.ON_LOGIN_PAGE
+    }
+}
+
+export const leavingLoginPage = () => {
+    return {
+        type: actionTypes.LEAVING_LOGIN_PAGE
+    }
+}
+

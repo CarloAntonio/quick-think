@@ -53,6 +53,14 @@ class Login extends Component {
         },
     }
 
+    componentDidMount() {
+        this.props.onLoginPage();
+    }
+
+    componentWillUnmount() {
+        this.props.leavingLoginPage();
+    }
+
     inputChangedHandler = (event, controlName) => {
         const updatedControls = {
             ...this.state.controls,
@@ -172,6 +180,8 @@ const mapDispatchToProps = dispatch => {
     return {
         onAuth: (email, password) => dispatch(actions.auth(email, password)),
         onRegister: (email, password) => dispatch(actions.register(email, password)),
+        onLoginPage: () => dispatch(actions.onLoginPage()),
+        leavingLoginPage: () => dispatch(actions.leavingLoginPage()),
     }
 }
 

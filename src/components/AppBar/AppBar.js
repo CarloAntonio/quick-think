@@ -11,7 +11,7 @@ import classes from './AppBar.css';
   
 class appBar extends Component {
     state = {
-        redirect: false
+        redirect: false,
     }
 
     goToLogin = () => {
@@ -19,7 +19,7 @@ class appBar extends Component {
     }
 
     render () {
-
+        
         let loginRedirect = null;
         if (this.state.redirect) {
             loginRedirect = <Redirect to='/login'/>
@@ -33,7 +33,7 @@ class appBar extends Component {
                         <Typography variant="title" color="inherit" className={classes.flex}>
                             Boba Shop Games
                         </Typography>
-                        { this.props.isAuth 
+                        { this.props.isAuth || this.props.loggingIn
                             ? null 
                             : <Button 
                                 color="inherit"
@@ -47,7 +47,8 @@ class appBar extends Component {
 
 const mapPropsToState = state => {
     return {
-        isAuth: state.redAuth.token !== null
+        isAuth: state.redAuth.token !== null,
+        loggingIn: state.redAuth.loggingIn
     }
 }
 

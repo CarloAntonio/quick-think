@@ -16,6 +16,8 @@ export {
 export {
     auth,
     register,
+    onLoginPage,
+    leavingLoginPage,
     logout,
     setAuthRedirectPath,
     authCheckState,
