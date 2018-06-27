@@ -40,7 +40,7 @@ export const checkAuthTimeout = (expirationTime) => {
     };
 }
 
-export const auth = (email, password, isSignup) => {
+export const auth = (email, password) => {
     return dispatch => {
         dispatch(authStart());
 
@@ -50,11 +50,7 @@ export const auth = (email, password, isSignup) => {
             returnSecureToken: true
         }
 
-        let url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyCXDeaD0Bgwlyj4g9YqYrbZZlQEUiy5iFE';
-
-        if(!isSignup) {
-            url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyCXDeaD0Bgwlyj4g9YqYrbZZlQEUiy5iFE';
-        }
+        const url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyCXDeaD0Bgwlyj4g9YqYrbZZlQEUiy5iFE';
 
         axios.post(url, authData)
             .then(response => {
@@ -68,7 +64,33 @@ export const auth = (email, password, isSignup) => {
             .catch(error => {
                 dispatch(authFail(error.response.data.error));
             })
+    }
+}
 
+export const register = (email, password) => {
+    return dispatch => {
+        dispatch(authStart());
+
+        const authData = {
+            email: email,
+            password: password,
+            returnSecureToken: true
+        }
+
+        const url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyCXDeaD0Bgwlyj4g9YqYrbZZlQEUiy5iFE';
+
+        axios.post(url, authData)
+            .then(response => {
+                const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
+                localStorage.setItem('token', response.data.idToken);
+                localStorage.setItem('expirationDate', expirationDate);
+                localStorage.setItem('userId', response.data.localId);
+                dispatch(authSuccess(response.data.idToken, response.data.localId));
+                dispatch(checkAuthTimeout(response.data.expiresIn));
+            })
+            .catch(error => {
+                dispatch(authFail(error.response.data.error));
+            })
     }
 }
 

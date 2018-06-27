@@ -1,14 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import Button from '@material-ui/core/Button';
 import Input from '../../components/UI/Input/Input';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import { withStyles } from '@material-ui/core/styles';
  
 import { checkValidity } from '../../utility/utility';
 
-import classes from './Login.css';
+import iClasses from './Login.css';
 import * as actions from '../../store/actions/actions';
+
+const styles = theme => ({
+    button: {
+      margin: theme.spacing.unit,
+    },
+});
 
 class Login extends Component {
     state = {
@@ -42,7 +50,6 @@ class Login extends Component {
                 touched: false
             }
         },
-        isSignup: true
     }
 
     inputChangedHandler = (event, controlName) => {
@@ -59,22 +66,23 @@ class Login extends Component {
         this.setState({ controls: updatedControls });
     }
 
-    onSumbitHandler = (event) => {
-        event.preventDefault();
+    onLogin = () => {
         this.props.onAuth(
             this.state.controls.email.value, 
             this.state.controls.password.value, 
-            this.state.isSignup
         );
     }
 
-    switchAuthModeHandler = () => {
-        this.setState(prevState => {
-            return {isSignup: !prevState.isSignup }
-        })
+    onSignup = () => {
+        this.props.onRegister(
+            this.state.controls.email.value, 
+            this.state.controls.password.value, 
+        );
     }
 
     render() {
+        const { classes } = this.props;
+
         const formElementsArray = [];
 
         for (let key in this.state.controls) {
@@ -109,7 +117,7 @@ class Login extends Component {
         }
 
         return (
-            <div className={classes.Auth}>
+            <div className={iClasses.Auth}>
                 {errorMessage}
                 <form>
                     {form}
@@ -138,15 +146,19 @@ const mapStateToProps = state => {
         loading: state.redAuth.loading,
         error: state.redAuth.error,
         isAuth: state.redAuth.token !== null,
-        buildingBurger: state.redBurgerBuilder.building,
         authRedirectPath: state.redAuth.authRedirectPath
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onLogin: (email, password, isSignup) => dispatch(actions.auth(email, password, isSignup)),
+        onAuth: (email, password) => dispatch(actions.auth(email, password)),
+        onRegister: (email, password) => dispatch(actions.register(email, password)),
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+Login.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Login));
