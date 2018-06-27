@@ -89,8 +89,8 @@ class Welcome extends Component {
 
 const mapStateToProps = state => {
     return {
-        teams: state.teams,
-        maxScore: state.maxScore
+        teams: state.redGame.teams,
+        maxScore: state.redGame.maxScore
     };
 };
 

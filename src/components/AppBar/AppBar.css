@@ -4,6 +4,10 @@
     color: #000;
 }
 
+.flex {
+    flex: 1;
+}
+
 .bar {
     background-color: #388e3c;
 }

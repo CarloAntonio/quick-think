@@ -7,12 +7,14 @@ import AppBar from './components/AppBar/AppBar';
 //Containers
 import Welcome from './containers/Welcome/Welcome';
 import Game from './containers/Game/Game';
+import Login from './containers/Login/Login';
 
 class App extends Component {
   render() {
 
     let routes = (
       <Switch>
+        <Route path='/login' conponent={Login} />
         <Route path='/game' component={Game} />
         <Route path='/' exact component={Welcome} />
         <Redirect to='/' />

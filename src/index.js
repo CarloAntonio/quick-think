@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
@@ -9,8 +9,9 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-
-import reducer from './store/reducer';
+import gameReducer from './store/reducers/redGame';
+import APIReducer from './store/reducers/redAPI';
+import authReducer from './store/reducers/redAuth';
 
 //App level theme
 const theme = createMuiTheme({
@@ -35,8 +36,14 @@ const composeEnhancers =
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ 
     : null || compose;
 
+const rootReducer = combineReducers({
+    redGame: gameReducer,
+    redAPI: APIReducer,
+    redAuth: authReducer
+});
+
 const store = createStore(
-    reducer,
+    rootReducer,
     composeEnhancers(applyMiddleware(thunk))
 );
 

@@ -169,14 +169,14 @@ class Game extends Component {
 
 const mapStateToProps = state => {
     return {
-        teams: state.teams,
-        maxScore: state.maxScore,
-        promptAddScore: state.promptAddScore,
-        hideQuestion: state.hideQuestion,
-        hideStartButton: state.hideStartButton,
-        questionNumber: state.questionNumber,
-        turn: state.turn,
-        questions: state.questions,
+        teams: state.redGame.teams,
+        maxScore: state.redGame.maxScore,
+        promptAddScore: state.redGame.promptAddScore,
+        hideQuestion: state.redGame.hideQuestion,
+        hideStartButton: state.redGame.hideStartButton,
+        questionNumber: state.redGame.questionNumber,
+        turn: state.redGame.turn,
+        questions: state.redAPI.questions,
     }
 }
 
