@@ -117,11 +117,11 @@ const startOver = (state, action) => {
         maxScore: 2,
         teams: [
             {
-                name: 'Awesome Possum',
+                name: 'Average Joes',
                 score: 0,
             },
             {
-                name: 'Blue Lightning',
+                name: 'Globo Gym',
                 score: 0,
             },
         ],
