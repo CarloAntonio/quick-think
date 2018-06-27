@@ -113,8 +113,17 @@ class Login extends Component {
         //show error message if error occurs
         let errorMessage = null;
         if (this.props.error) {
+
+            let message = this.props.error.message
+
+            if(this.props.error.message === "EMAIL_EXISTS") {
+                message = "Email Already Registered";
+            } else if (this.props.error.message === "INVALID_PASSWORD") {
+                message = "Incorrect Password";
+            }
+
             errorMessage = (
-                <p>{this.props.error.message}</p>
+                <p>{message}</p>
             );
         }
 
