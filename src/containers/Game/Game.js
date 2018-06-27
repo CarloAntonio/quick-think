@@ -143,17 +143,10 @@ class Game extends Component {
                             return <Grid item xs={6} key={index}>
                                         <div className={this.props.turn === index ? index === 0 ? iClasses.teamActiveLeft : iClasses.teamActiveRight : index === 1 ? iClasses.teamNotActiveRight : iClasses.teamNotActiveLeft  }>
                                             <h1 className={iClasses.teamName}>{team.name}</h1>
-                                            <p className={iClasses.score}>{team.score}</p>
+                                            <p className={iClasses.score}>{team.score}/{this.props.maxScore}</p>
                                         </div>
                                     </Grid>
                         })}
-
-                        <Grid item xs={12}>
-                            <div className={iClasses.stats}>
-                                <h2>First Team to {this.props.maxScore} Points Wins!</h2>
-                                <p>Current Turn Belongs To: <b>{this.props.teams.slice(this.props.turn, this.props.turn + 1)[0].name}</b></p> 
-                            </div>
-                        </Grid>
 
                         <Grid item xs={12} className={iClasses.paper}>
                             <Card className={iClasses.card}>
