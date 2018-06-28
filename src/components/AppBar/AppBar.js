@@ -46,6 +46,11 @@ class appBar extends Component {
         this.setState({ goResume: true })
     }
 
+    newGame = () => {
+        this.props.shuffle();
+        this.props.playAgain();
+    }
+
     render () {
 
         const { classes } = this.props;
@@ -75,7 +80,7 @@ class appBar extends Component {
                                 className={classes.button}
                                 variant="contained" 
                                 color="secondary" 
-                                onClick={this.props.newGame} >New Game</Button>
+                                onClick={this.newGame} >New Game</Button>
                             : null 
                         }
 
@@ -124,7 +129,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         logout: () => dispatch(actions.userLogout()),
-        newGame: () => dispatch(actions.playAgain()),
+        playAgain: () => dispatch(actions.playAgain()),
+        shuffle: () => dispatch(actions.fetchQuestions()),
     }
 }
 
