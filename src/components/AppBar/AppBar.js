@@ -1,14 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect} from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
 
-import classes from './AppBar.css';
+import iClasses from './AppBar.css';
 import * as actions from '../../store/actions/actions';
+
+const styles = theme => ({
+    button: {
+      margin: theme.spacing.unit,
+    },
+});
   
 class appBar extends Component {
 
@@ -40,22 +48,34 @@ class appBar extends Component {
 
     render () {
 
+        const { classes } = this.props;
+
         return (
-            <div className={classes.root}>
+            <div className={iClasses.root}>
                 {this.state.goLogin ? <Redirect to='/login'/> : null }
                 {this.state.goHome ? <Redirect to='/' /> : null }
                 {this.state.goResume ? <Redirect to='/game' /> : null }
                 <AppBar position="static">
-                    <Toolbar className={classes.bar}>
-                        <Typography variant="title" color="inherit" className={classes.flex}>
+                    <Toolbar className={iClasses.bar}>
+                        <Typography variant="title" color="inherit" className={iClasses.flex}>
                             Boba Shop Games
                         </Typography>
 
                         { this.props.path === '/game'
                             ? <Button
+                                className={classes.button}
                                 variant="contained" 
                                 color="secondary" 
                                 onClick={this.home} >Home</Button>
+                            : null 
+                        }
+
+                        { this.props.path === '/game'
+                            ? <Button
+                                className={classes.button}
+                                variant="contained" 
+                                color="secondary" 
+                                onClick={this.props.newGame} >New Game</Button>
                             : null 
                         }
 
@@ -71,6 +91,7 @@ class appBar extends Component {
                         { this.props.isAuth || this.props.loggingIn
                             ? null 
                             : <Button
+                                className={classes.button}
                                 variant="contained" 
                                 color="secondary" 
                                 onClick={this.login} >Login</Button> 
@@ -78,6 +99,7 @@ class appBar extends Component {
 
                         { this.props.isAuth 
                             ? <Button
+                                className={classes.button}
                                 variant="contained" 
                                 color="secondary" 
                                 onClick={this.props.logout} >Logout</Button>
@@ -101,8 +123,13 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        logout: () => dispatch(actions.userLogout())
+        logout: () => dispatch(actions.userLogout()),
+        newGame: () => dispatch(actions.playAgain()),
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(appBar);
+appBar.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(appBar));
