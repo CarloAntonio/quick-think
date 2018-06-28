@@ -18,6 +18,10 @@ class Welcome extends Component {
         start: false
     }
 
+    componentDidMount() {
+        this.props.onSetPath();
+    }
+
     startCancelHandler = () => {
         this.setState({ start: false });
     }
@@ -98,6 +102,7 @@ const mapDispatchToProps = dispatch => {
     return {
         onTeamNameChanged: (event, index) => dispatch(actions.teamNameChanged(event.target.value, index)),
         onChangeMaxScore: (event) => dispatch(actions.maxScoreChanged(parseInt(event.target.value, 10))),
+        onSetPath: () => dispatch(actions.setAuthRedirectPath('/')),
     }
 }
 

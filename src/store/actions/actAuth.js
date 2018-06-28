@@ -132,3 +132,9 @@ export const leavingLoginPage = () => {
     }
 }
 
+export const userLogout = () => {
+    return {
+        type: actionTypes.AUTH_LOGOUT
+    }
+}
+

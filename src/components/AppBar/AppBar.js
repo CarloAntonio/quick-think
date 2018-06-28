@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect} from 'react-router-dom';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -8,26 +8,27 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
 import classes from './AppBar.css';
+import * as actions from '../../store/actions/actions';
   
 class appBar extends Component {
+
     state = {
-        redirect: false,
+        loginTime: false
     }
 
-    goToLogin = () => {
-        this.setState({ redirect: true })
+    componentWillReceiveProps(nextProps) {
+        this.setState({ loginTime: false })
+    }
+
+    login = () => {
+        this.setState({ loginTime: true })
     }
 
     render () {
-        
-        let loginRedirect = null;
-        if (this.state.redirect) {
-            loginRedirect = <Redirect to='/login'/>
-        }
 
         return (
             <div className={classes.root}>
-                {loginRedirect}
+                {this.state.loginTime ? <Redirect to='/login'/> : null }
                 <AppBar position="static">
                     <Toolbar className={classes.bar}>
                         <Typography variant="title" color="inherit" className={classes.flex}>
@@ -35,9 +36,19 @@ class appBar extends Component {
                         </Typography>
                         { this.props.isAuth || this.props.loggingIn
                             ? null 
-                            : <Button 
-                                color="inherit"
-                                onClick={this.goToLogin}>Login</Button> }
+                            : <Button
+                                variant="contained" 
+                                color="secondary" 
+                                onClick={this.login} >Login</Button> 
+                        }
+
+                        { this.props.isAuth 
+                            ? <Button
+                                variant="contained" 
+                                color="secondary" 
+                                onClick={this.props.logout} >Logout</Button>
+                            : null }
+                            
                     </Toolbar>
                 </AppBar>
             </div>
@@ -45,11 +56,18 @@ class appBar extends Component {
     }
 }
 
-const mapPropsToState = state => {
+const mapStateToProps = state => {
     return {
         isAuth: state.redAuth.token !== null,
-        loggingIn: state.redAuth.loggingIn
+        loggingIn: state.redAuth.loggingIn,
+        lastPage: state.redAuth.authRedirectPath,
     }
 }
 
-export default connect(mapPropsToState)(appBar);
+const mapDispatchToProps = dispatch => {
+    return {
+        logout: () => dispatch(actions.userLogout())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(appBar);

@@ -18,7 +18,7 @@ export {
     register,
     onLoginPage,
     leavingLoginPage,
-    logout,
+    userLogout,
     setAuthRedirectPath,
     authCheckState,
 } from './actAuth'
