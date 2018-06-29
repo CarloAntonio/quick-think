@@ -56,14 +56,19 @@ const SideBar = (props) => {
                     : null 
                 }
 
-                    {/* Implement a new redux state: "playing" */}
-                    {/* { this.props.path === '/'
-                        ? <Button
-                            variant="contained" 
-                            color="secondary" 
-                            onClick={this.resume} >Resume</Button>
-                        : null 
-                    } */}
+                { props.path === '/' && props.playing
+                    ? (
+                        <ListItem 
+                            button
+                            onClick={props.resume}>
+                            <ListItemIcon>
+                                <LoginIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Resume" />
+                        </ListItem>
+                    )
+                    : null 
+                }
 
 
                 { props.isAuth || props.loggingIn

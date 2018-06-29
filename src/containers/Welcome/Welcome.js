@@ -31,6 +31,7 @@ class Welcome extends Component {
     }
 
     startGameHandler = () => {
+        this.props.startGame();
         this.props.history.push('/game');
     }
 
@@ -103,6 +104,7 @@ const mapDispatchToProps = dispatch => {
         onTeamNameChanged: (event, index) => dispatch(actions.teamNameChanged(event.target.value, index)),
         onChangeMaxScore: (event) => dispatch(actions.maxScoreChanged(parseInt(event.target.value, 10))),
         onSetPath: () => dispatch(actions.setAuthRedirectPath('/')),
+        startGame: () => dispatch(actions.startGame())
     }
 }
 

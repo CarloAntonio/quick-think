@@ -52,3 +52,9 @@ export const maxScoreChanged = (maxScore) => {
         maxScore: maxScore
     }
 }
+
+export const startGame = () => {
+    return {
+        type: actionTypes.START_GAME
+    }
+}

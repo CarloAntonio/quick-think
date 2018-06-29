@@ -7,6 +7,7 @@ export {
     playAgain,
     startOver,
     maxScoreChanged,
+    startGame,
 } from './actGame';
 
 export {

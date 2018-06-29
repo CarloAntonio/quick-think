@@ -57,6 +57,7 @@ class Layout extends Component {
                     isAuth={this.props.isAuth}
                     loggingIn={this.props.loggingIn}
                     path={this.props.path}
+                    playing={this.props.playing}
                     toggleDrawer={this.toggleDrawer}
                     login={this.login}
                     home={this.home}
@@ -66,6 +67,7 @@ class Layout extends Component {
                     isAuth={this.props.isAuth}
                     loggingIn={this.props.loggingIn}
                     path={this.props.path}
+                    playing={this.props.playing}
                     showSideDrawer={this.state.showSideDrawer}
                     toggleDrawer={this.toggleDrawer}
                     login={this.login}
@@ -85,6 +87,7 @@ const mapStateToProps = state => {
         isAuth: state.redAuth.token !== null,
         loggingIn: state.redAuth.loggingIn,
         path: state.redAuth.authRedirectPath,
+        playing: state.redGame.playing
     }
 }
 

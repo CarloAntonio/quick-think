@@ -25,8 +25,6 @@ const TopBar = (props) => {
 
     let { classes } = props;
 
-    console.log(classes);
-
     return (
         <div className={iClasses.root}>
             <AppBar position="static">
@@ -62,14 +60,13 @@ const TopBar = (props) => {
                             : null 
                         }
 
-                        {/* Implement a new redux state: "playing" */}
-                        {/* { this.props.path === '/'
+                        { props.path === '/' && props.playing
                             ? <Button
                                 variant="contained" 
                                 color="secondary" 
-                                onClick={this.resume} >Resume</Button>
+                                onClick={props.resume} >Resume</Button>
                             : null 
-                        } */}
+                        }
 
 
                         { props.isAuth || props.loggingIn

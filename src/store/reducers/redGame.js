@@ -19,6 +19,7 @@ const initialState = {
     hideStartButton: false,
     questionNumber: 0,
     turn: 0,
+    playing: false
 }
 
 const onTeamNameChanged = (state, action) => {
@@ -139,6 +140,13 @@ const maxScoreChanged = (state, action) => {
     }
 }
 
+const startGame = (state, action) => {
+    return {
+        ...state,
+        playing: true
+    }
+}
+
 const redGame = (state = initialState, action) => {
 
     switch(action.type) {
@@ -150,6 +158,7 @@ const redGame = (state = initialState, action) => {
         case actionTypes.PLAY_AGAIN: return playAgain(state, action);
         case actionTypes.START_OVER: return startOver(state, action);
         case actionTypes.MAX_SCORE_CHANGED: return maxScoreChanged(state, action);
+        case actionTypes.START_GAME: return startGame(state, action);
         default: return state;
     }
     
