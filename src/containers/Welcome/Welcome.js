@@ -44,7 +44,7 @@ class Welcome extends Component {
         this.props.history.push('/game');
     }
 
-    quickStart = () => {
+    quickStartHandler = () => {
         this.props.startGame();
         this.props.quickStart();
         this.props.history.push('/game');
@@ -88,7 +88,7 @@ class Welcome extends Component {
                                 className={classes.button}
                                 variant="contained" 
                                 color="primary"
-                                onClick={this.quickStart}
+                                onClick={this.quickStartHandler}
                                 >
                                 Quick Start
                             </Button>
@@ -132,7 +132,7 @@ const mapDispatchToProps = dispatch => {
         onSetPath: () => dispatch(actions.setAuthRedirectPath('/')),
         startGame: () => dispatch(actions.startGame()),
         quickStart: () => dispatch(actions.quickStart()),
-        newGame: () => dispatch(actions.playAgain()), //action says play again but also works for 
+        newGame: () => dispatch(actions.newGame()), 
     }
 }
 

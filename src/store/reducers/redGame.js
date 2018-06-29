@@ -87,7 +87,7 @@ const promptScore = (state, action) => {
     }
 }
 
-const playAgain = (state, action) => {
+const newGame = (state, action) => {
     
     let oldNames = [];
     
@@ -162,7 +162,7 @@ const redGame = (state = initialState, action) => {
         case actionTypes.CLOCK_FINISHED: return promptScore(state, action);
         case actionTypes.ADD_POINT: return addPoint(state, action);
         case actionTypes.NO_ADD_POINT: return noAddPoint(state, action);
-        case actionTypes.PLAY_AGAIN: return playAgain(state, action);
+        case actionTypes.NEW_GAME: return newGame(state, action);
         case actionTypes.START_OVER: return startOver(state, action);
         case actionTypes.MAX_SCORE_CHANGED: return maxScoreChanged(state, action);
         case actionTypes.START_GAME: return startGame(state, action);

@@ -43,7 +43,7 @@ class Layout extends Component {
 
     newGame = () => {
         this.props.shuffle();
-        this.props.playAgain();
+        this.props.newGame();
     }
 
     render () {
@@ -94,7 +94,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         logout: () => dispatch(actions.userLogout()),
-        playAgain: () => dispatch(actions.playAgain()),
+        newGame: () => dispatch(actions.newGame()),
         shuffle: () => dispatch(actions.fetchQuestions()),
     }
 }

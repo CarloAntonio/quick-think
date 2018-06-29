@@ -49,7 +49,7 @@ class Game extends Component {
 
     onShuffleAndPlayAgain = () => {
         this.props.onFetchQuestions();
-        this.props.onPlayAgain();
+        this.props.onNewGame();
     }
 
     render() {
@@ -188,7 +188,7 @@ const mapDispatchToProps = dispatch => {
         onClockFinished: () => dispatch(actions.clockFinished()),
         onAddPoint: (turn) => dispatch(actions.addPoint(turn)),
         onNoAddPoint: (turn) => dispatch(actions.noAddPoint(turn)),
-        onPlayAgain: () => dispatch(actions.playAgain()),
+        onNewGame: () => dispatch(actions.newGame()),
         onStartOver: () => dispatch(actions.startOver()),
         onSetPath: () => dispatch(actions.setAuthRedirectPath('/game')),
     }

@@ -11,7 +11,7 @@ export const START_GAME = 'START_GAME';
 export const QUICK_START = 'QUICK_START';
 
 //Game Over
-export const PLAY_AGAIN = 'PLAY_AGAIN';
+export const NEW_GAME = 'NEW_GAME';
 export const START_OVER = 'START_OVER';
 export const MAX_SCORE_CHANGED = 'MAX_SCORE_CHANGED';
 
