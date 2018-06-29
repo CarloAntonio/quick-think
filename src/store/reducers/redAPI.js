@@ -3,10 +3,12 @@ import * as actionTypes from '../actions/actTypes';
 
 const initialState = {
     questions: [],
-    questionsLoading: false
+    questionsLoading: false,
+    submitting: false,
+    submitted: false
 }
 
-// Firebase API Calls
+// Fetch Questions
 const onFetchQuestionsSuccess = (state, action) => {
     return {
         ...state,
@@ -29,12 +31,47 @@ const onFetchQuestionsFail = (state, action) => {
     }
 }
 
+// Fetch Questions
+const onSubmitQuestionsSuccess = (state, action) => {
+    return {
+        ...state,
+        submitting: false,
+        submitted: true,
+    }
+}
+
+const onSubmitQuestionsStart = (state, action) => {
+    return {
+        ...state,
+        submitting: true,
+    }
+}
+
+const onSubmitQuestionsFail = (state, action) => {
+    return {
+        ...state,
+        submitted: true,
+        submitting: false
+    }
+}
+
+const onSubmitAnotherQuestion = (state, action) => {
+    return {
+        ...state,
+        submitted: false
+    }
+}
+
 const redAPI = (state = initialState, action) => {
 
     switch(action.type) {
         case actionTypes.FETCH_QUESTIONS_START: return onFetchQuestionsStart(state, action);
         case actionTypes.FETCH_QUESTIONS_FAIL: return onFetchQuestionsFail(state, action);
         case actionTypes.FETCH_QUESTIONS_SUCCESS: return onFetchQuestionsSuccess(state, action);
+        case actionTypes.SUBMIT_QUESTION_START: return onSubmitQuestionsStart(state, action);
+        case actionTypes.SUBMIT_QUESTION_FAIL: return onSubmitQuestionsFail(state, action);
+        case actionTypes.SUBMIT_QUESTION_SUCCESS: return onSubmitQuestionsSuccess(state, action);
+        case actionTypes.SUBMIT_ANOTHER_QUESTION: return onSubmitAnotherQuestion(state, action);
         default: return state;
     }
     

@@ -13,6 +13,7 @@ import Input from '@material-ui/core/Input';
 import Aux from '../../hoc/Aux';
 import Modal from '../../components/UI/Modal/Modal';
 import Setup from './subComps/Setup';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 import * as actions from '../../store/actions/actions';
 import iClasses from './Welcome.css';
@@ -40,8 +41,7 @@ class Welcome extends Component {
                 label: 'Author:',
                 value: 'Anonymous'
             },
-        },
-        submitted: false
+        }
     }
 
     componentDidMount() {
@@ -69,11 +69,14 @@ class Welcome extends Component {
     }
 
     submitQuestionHandler = () => {
-        this.setState({ submitted: true })
-    }
+        //create question object
+        const qObject = {
+            auth: this.state.controls.author.value,
+            question: this.state.controls.question.value,
+            rating: 1000
+        }
 
-    submitAnotherQuestionHandler = () => {
-        this.setState({ submitted: false })
+        this.props.onSubmitQuestion(this.props.token, qObject);
     }
 
     inputChangedHandler = (event, controlName) => {
@@ -138,7 +141,7 @@ class Welcome extends Component {
             </Aux>
         );
 
-        if (true) {
+        if (this.props.isAuth) {
             topSection = (
                 <Aux>
                     <Grid item xs={12} sm={6}>
@@ -163,7 +166,13 @@ class Welcome extends Component {
                                     {form}
                                 </form>
                             </div>
-                            {this.state.submitted 
+
+                            {this.props.submitting
+                                ? <Spinner />
+                                : null
+                            }
+
+                            {this.props.submitted 
                                 ? <div className="wow fadeInUp">
                                     <div className={iClasses.thanks}>
                                         Thanks For Contributing!
@@ -172,7 +181,7 @@ class Welcome extends Component {
                                         className={classes.button}
                                         variant="contained" 
                                         color="secondary"
-                                        onClick={this.submitAnotherQuestionHandler}
+                                        onClick={this.props.onSubmitAnotherQuestion}
                                         >
                                         Submit Another!
                                     </Button>
@@ -260,7 +269,10 @@ const mapStateToProps = state => {
     return {
         teams: state.redGame.teams,
         maxScore: state.redGame.maxScore,
-        isAuth: state.redAuth.token !== null
+        isAuth: state.redAuth.token !== null,
+        token: state.redAuth.token,
+        submitted: state.redAPI.submitted,
+        submitting: state.redAPI.submitting
     };
 };
 
@@ -272,6 +284,8 @@ const mapDispatchToProps = dispatch => {
         startGame: () => dispatch(actions.startGame()),
         quickStart: () => dispatch(actions.quickStart()),
         newGame: () => dispatch(actions.newGame()), 
+        onSubmitQuestion: (token, qObject) => dispatch(actions.submitQuestion(token, qObject)),
+        onSubmitAnotherQuestion: () => dispatch(actions.submitAnotherQuestion())
     }
 }
 

@@ -13,6 +13,8 @@ export {
 
 export {
     fetchQuestions,
+    submitQuestion,
+    submitAnotherQuestion
 } from './actAPI';
 
 export {

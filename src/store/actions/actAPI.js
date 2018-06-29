@@ -53,3 +53,41 @@ export const fetchQuestions = () => {
         })
     }
 }
+
+const submitQuestionSuccess = () => {
+    return {
+        type: actionTypes.SUBMIT_QUESTION_SUCCESS,
+    };
+};
+
+const submitQuestionFail = (error) => {
+    return {
+        type: actionTypes.SUBMIT_QUESTION_FAIL,
+        error: error
+    };
+};
+
+const submitQuestionStart = () => {
+    return {
+        type: actionTypes.SUBMIT_QUESTION_START
+    };
+};
+
+export const submitQuestion = (token, qObject) => {
+    return dispatch => {
+        dispatch(submitQuestionStart());
+        axiosInstance.post('questions.json?auth=' + token, qObject)
+            .then(res => {
+                dispatch(submitQuestionSuccess())
+            })
+            .catch(err => {
+                dispatch(submitQuestionFail(err))
+            })
+    }
+}
+
+export const submitAnotherQuestion = () => {
+    return {
+        type: actionTypes.SUBMIT_ANOTHER_QUESTION
+    }
+}
