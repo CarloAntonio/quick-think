@@ -23,7 +23,9 @@ const styles = theme => ({
   
 const TopBar = (props) => {
 
-    const { classes } = props;
+    let { classes } = props;
+
+    console.log(classes);
 
     return (
         <div className={iClasses.root}>
@@ -40,52 +42,56 @@ const TopBar = (props) => {
                         Boba Shop Games
                     </Typography>
 
-                    { props.path === '/game'
-                        ? <Button
-                            className={classes.button}
-                            variant="contained" 
-                            color="secondary" 
-                            onClick={props.home} >Home</Button>
-                        : null 
-                    }
+                    <div className={iClasses.buttonWrap}>
 
-                    { props.path === '/game'
-                        ? <Button
-                            className={classes.button}
-                            variant="contained" 
-                            color="secondary" 
-                            onClick={props.newGame} >New Game</Button>
-                        : null 
-                    }
+                        { props.path === '/game'
+                            ? <Button
+                                className={classes.button}
+                                variant="contained" 
+                                color="secondary" 
+                                onClick={props.home} >Home</Button>
+                            : null 
+                        }
 
-                    {/* Implement a new redux state: "playing" */}
-                    {/* { this.props.path === '/'
-                        ? <Button
-                            variant="contained" 
-                            color="secondary" 
-                            onClick={this.resume} >Resume</Button>
-                        : null 
-                    } */}
+                        { props.path === '/game'
+                            ? <Button
+                                className={classes.button}
+                                variant="contained" 
+                                color="secondary" 
+                                onClick={props.newGame} >New Game</Button>
+                            : null 
+                        }
+
+                        {/* Implement a new redux state: "playing" */}
+                        {/* { this.props.path === '/'
+                            ? <Button
+                                variant="contained" 
+                                color="secondary" 
+                                onClick={this.resume} >Resume</Button>
+                            : null 
+                        } */}
 
 
-                    { props.isAuth || props.loggingIn
-                        ? null 
-                        : <Button
-                            className={classes.button}
-                            variant="contained" 
-                            color="secondary" 
-                            onClick={props.login} >Login</Button> 
-                    }
+                        { props.isAuth || props.loggingIn
+                            ? null 
+                            : <Button
+                                className={classes.button}
+                                variant="contained" 
+                                color="secondary" 
+                                onClick={props.login} >Login</Button> 
+                        }
 
-                    { props.isAuth 
-                        ? <Button
-                            className={classes.button}
-                            variant="contained" 
-                            color="secondary" 
-                            onClick={props.logout} >Logout</Button>
-                        : null 
-                    }
-                        
+                        { props.isAuth 
+                            ? <Button
+                                className={classes.button}
+                                variant="contained" 
+                                color="secondary" 
+                                onClick={props.logout} >Logout</Button>
+                            : null 
+                        }
+
+                    </div>
+
                 </Toolbar>
             </AppBar>
         </div>
