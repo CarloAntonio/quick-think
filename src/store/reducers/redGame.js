@@ -147,6 +147,13 @@ const startGame = (state, action) => {
     }
 }
 
+const quickStart = (state, action) => {
+    return {
+        ...state,
+        maxScore: 10,
+    }
+}
+
 const redGame = (state = initialState, action) => {
 
     switch(action.type) {
@@ -159,6 +166,7 @@ const redGame = (state = initialState, action) => {
         case actionTypes.START_OVER: return startOver(state, action);
         case actionTypes.MAX_SCORE_CHANGED: return maxScoreChanged(state, action);
         case actionTypes.START_GAME: return startGame(state, action);
+        case actionTypes.QUICK_START: return quickStart(state, action);
         default: return state;
     }
     

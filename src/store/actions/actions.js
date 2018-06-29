@@ -8,6 +8,7 @@ export {
     startOver,
     maxScoreChanged,
     startGame,
+    quickStart
 } from './actGame';
 
 export {

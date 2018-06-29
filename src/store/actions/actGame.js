@@ -58,3 +58,9 @@ export const startGame = () => {
         type: actionTypes.START_GAME
     }
 }
+
+export const quickStart = () => {
+    return {
+        type: actionTypes.QUICK_START
+    }
+}

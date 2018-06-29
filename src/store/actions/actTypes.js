@@ -8,6 +8,7 @@ export const CLOCK_FINISHED = 'CLOCK_FINISHED';
 export const ADD_POINT = 'ADD_POINT';
 export const NO_ADD_POINT = 'NO_ADD_POINT';
 export const START_GAME = 'START_GAME';
+export const QUICK_START = 'QUICK_START';
 
 //Game Over
 export const PLAY_AGAIN = 'PLAY_AGAIN';
