@@ -7,20 +7,24 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
 import HomeIcon from '@material-ui/icons/Home';
 import NewIcon from '@material-ui/icons/FiberNew';
 import LoginIcon from '@material-ui/icons/Fingerprint';
 import LogoutIcon from '@material-ui/icons/HighlightOff';
 import ResumeIcon from '@material-ui/icons/Done';
 
-const styles = {
+const styles = theme => ({
   list: {
     width: 250,
   },
   fullList: {
     width: 'auto',
   },
-};
+  sidebarHeader: {
+      backgroundColor: theme.palette.secondary.main
+  },
+});
 
 const SideBar = (props) => {
 
@@ -28,6 +32,10 @@ const SideBar = (props) => {
 
     const sideList = (
         <div className={classes.list}>
+            <ListItem className={classes.sidebarHeader}>
+                <ListItemText primary="Boba Shop Games" />
+            </ListItem>
+            <Divider />
             <List>
                 { props.path === '/game'
                     ? (
