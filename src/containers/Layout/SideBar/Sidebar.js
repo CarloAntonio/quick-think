@@ -7,10 +7,10 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import StarIcon from '@material-ui/icons/Star';
-import SendIcon from '@material-ui/icons/Send';
+import HomeIcon from '@material-ui/icons/Home';
+import NewIcon from '@material-ui/icons/FiberNew';
+import LoginIcon from '@material-ui/icons/Fingerprint';
+import LogoutIcon from '@material-ui/icons/HighlightOff';
 
 const styles = {
   list: {
@@ -27,38 +27,73 @@ const SideBar = (props) => {
 
     const sideList = (
         <div className={classes.list}>
-          <List>
-            <ListItem 
-                button
-                onClick={() => props.login}>
-                <ListItemIcon>
-                    <InboxIcon />
-                </ListItemIcon>
-                <ListItemText primary="Login" />
-            </ListItem>
+            <List>
+                { props.path === '/game'
+                    ? (
+                        <ListItem 
+                            button
+                            onClick={props.home}>
+                            <ListItemIcon>
+                                <HomeIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Home" />
+                        </ListItem>
+                    )
+                    : null 
+                }
 
-            <ListItem 
-                button
-                onClick={() => props.toggleDrawer(true)}>
-                <ListItemIcon>
-                    <StarIcon />
-                </ListItemIcon>
-                <ListItemText primary="Starred" />
-            </ListItem>
+                { props.path === '/game'
+                    ? (
+                        <ListItem 
+                            button
+                            onClick={props.newGame}>
+                            <ListItemIcon>
+                                <NewIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="New Game" />
+                        </ListItem>
+                    )
+                    : null 
+                }
 
-            <ListItem button>
-                <ListItemIcon>
-                    <SendIcon />
-                </ListItemIcon>
-                <ListItemText primary="Send mail" />
-            </ListItem>
+                    {/* Implement a new redux state: "playing" */}
+                    {/* { this.props.path === '/'
+                        ? <Button
+                            variant="contained" 
+                            color="secondary" 
+                            onClick={this.resume} >Resume</Button>
+                        : null 
+                    } */}
 
-            <ListItem button>
-                <ListItemIcon>
-                    <DraftsIcon />
-                </ListItemIcon>
-                <ListItemText primary="Drafts" />
-            </ListItem>
+
+                { props.isAuth || props.loggingIn
+                    ? null 
+                    : (
+                        <ListItem 
+                            button
+                            onClick={props.login}>
+                            <ListItemIcon>
+                                <LoginIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Login" />
+                        </ListItem>
+                    )
+                }
+
+                { props.isAuth 
+                    ? (
+                        <ListItem 
+                            button
+                            onClick={props.logout}>
+                            <ListItemIcon>
+                                <LogoutIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Logout" />
+                        </ListItem>
+                    )
+                    : null 
+                }
+
           </List>
         </div>
       );

@@ -1,6 +1,4 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Redirect} from 'react-router-dom';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import AppBar from '@material-ui/core/AppBar';
@@ -35,28 +33,28 @@ const TopBar = (props) => {
                         className={classes.menuButton} 
                         color="inherit" 
                         aria-label="Menu"
-                        onClick={() => this.props.toggleDrawer(true)}>
+                        onClick={() => props.toggleDrawer(true)}>
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="title" color="inherit" className={iClasses.flex}>
                         Boba Shop Games
                     </Typography>
 
-                    { this.props.path === '/game'
+                    { props.path === '/game'
                         ? <Button
                             className={classes.button}
                             variant="contained" 
                             color="secondary" 
-                            onClick={this.home} >Home</Button>
+                            onClick={props.home} >Home</Button>
                         : null 
                     }
 
-                    { this.props.path === '/game'
+                    { props.path === '/game'
                         ? <Button
                             className={classes.button}
                             variant="contained" 
                             color="secondary" 
-                            onClick={this.newGame} >New Game</Button>
+                            onClick={props.newGame} >New Game</Button>
                         : null 
                     }
 
@@ -70,21 +68,21 @@ const TopBar = (props) => {
                     } */}
 
 
-                    { this.props.isAuth || this.props.loggingIn
+                    { props.isAuth || props.loggingIn
                         ? null 
                         : <Button
                             className={classes.button}
                             variant="contained" 
                             color="secondary" 
-                            onClick={this.login} >Login</Button> 
+                            onClick={props.login} >Login</Button> 
                     }
 
-                    { this.props.isAuth 
+                    { props.isAuth 
                         ? <Button
                             className={classes.button}
                             variant="contained" 
                             color="secondary" 
-                            onClick={this.props.logout} >Logout</Button>
+                            onClick={props.logout} >Logout</Button>
                         : null 
                     }
                         

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect} from 'react-router-dom';
 
 import Aux from '../../hoc/Aux';
-import TopBar from './TopBar/TopBar';
+import TopBar from './Topbar/TopBar';
 import Sidebar from './SideBar/Sidebar';
 
 import * as actions from '../../store/actions/actions';
@@ -63,9 +63,15 @@ class Layout extends Component {
                     resume={this.resume}
                     newGame={this.newGame}/>
                 <Sidebar 
+                    isAuth={this.props.isAuth}
+                    loggingIn={this.props.loggingIn}
+                    path={this.props.path}
                     showSideDrawer={this.state.showSideDrawer}
                     toggleDrawer={this.toggleDrawer}
-                    login={this.login}/>
+                    login={this.login}
+                    home={this.home}
+                    resume={this.resume}
+                    newGame={this.newGame}/>
                 <main>
                     {this.props.children}
                 </main> 
