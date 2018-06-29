@@ -6,6 +6,9 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import Input from '@material-ui/core/Input';
 
 import Aux from '../../hoc/Aux';
 import Modal from '../../components/UI/Modal/Modal';
@@ -18,12 +21,27 @@ const styles = theme => ({
     button: {
       margin: theme.spacing.unit,
     },
+    formControl: {
+        margin: theme.spacing.unit,
+        minWidth: 380,
+    },
 });
 
 class Welcome extends Component {
     
     state = {
-        start: false
+        start: false,
+        controls: {
+            question: {
+                label: 'Question:',
+                value: 'Name 3 '
+            },
+            author: {
+                label: 'Author:',
+                value: 'Anonymous'
+            },
+        },
+        submitted: false
     }
 
     componentDidMount() {
@@ -50,30 +68,136 @@ class Welcome extends Component {
         this.props.history.push('/game');
     }
 
+    submitQuestionHandler = () => {
+        this.setState({ submitted: true })
+    }
+
+    submitAnotherQuestionHandler = () => {
+        this.setState({ submitted: false })
+    }
+
+    inputChangedHandler = (event, controlName) => {
+        const updatedControls = {
+            ...this.state.controls,
+            [controlName]: {
+                ...this.state.controls[controlName],
+                value: event.target.value,
+            }
+        };
+
+        this.setState({ controls: updatedControls });
+    }
+
     render() {
 
         const { classes } = this.props;
+
+        const formElementsArray = [];
+
+        for (let key in this.state.controls) {
+            formElementsArray.push({
+                id: key,
+                config: this.state.controls[key]
+            })
+        }
+
+        let form = formElementsArray.map((formElement, index) => {
+            return <Aux
+                        key={index}>
+                        <FormControl className={classes.formControl}>
+                            <InputLabel htmlFor={index}>{formElement.config.label}</InputLabel>
+                            <Input
+                            inputProps={{
+                                name: formElement.config.label,
+                                id: {index},
+                            }}
+                            value={formElement.config.value}
+                            onChange={(event) => this.inputChangedHandler(event, formElement.id)}/>
+                        </FormControl>
+                        <br/>
+                    </Aux>
+        });
+
+        let topSection = (
+            <Aux>
+                <Grid item xs={12}>
+                    <div className={ iClasses.welcome }>
+                        <h1>Welcome to Quick Think!</h1>
+                        <p>The game where you have 6 seconds to think of 3 things that match the category given to you or your team. It's easy, as long as you don't panic :)</p>
+                    </div>
+                </Grid>
+                <Grid item xs={12}>
+                    <div className= { iClasses.welcome }>
+                        <h1>How To Play:</h1>
+                        <p>Each team will take turns answering a question</p>
+                        <p>Once the question is shown, the team has 6 second to give 3 answers that fulfill the question's criteria</p>
+                        <p>A team will recieve a point if they give 3 appropriate answers within 6 seconds</p>
+                        <p>The game ends after one team reaches the goal score</p>
+                    </div>
+                </Grid>
+            </Aux>
+        );
+
+        if (true) {
+            topSection = (
+                <Aux>
+                    <Grid item xs={12} sm={6}>
+                        <div className={ iClasses.welcome }>
+                            <h1>Welcome to Quick Think!</h1>
+                            <p>The game where you have 6 seconds to think of 3 things that match the category given to you or your team. It's easy, as long as you don't panic :)</p>
+                        </div>
+                        <div className= { iClasses.welcome }>
+                            <h1>How To Play:</h1>
+                            <p>1. Each team will take turns answering a question</p>
+                            <p>2. Once the question is shown, the team has 6 second to give 3 answers that fulfill the question's criteria</p>
+                            <p>3. A team will recieve a point if they give 3 appropriate answers within 6 seconds</p>
+                            <p>4. The game ends after one team reaches the goal score</p>
+                        </div>
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <Paper className={iClasses.paper}>
+                            <div className= { iClasses.instruct }>
+                                <h1>Add To Our Question List</h1>
+                                <p>Please keep in mind kids of will ages will play this game</p>
+                                <form>
+                                    {form}
+                                </form>
+                            </div>
+                            {this.state.submitted 
+                                ? <div className="wow fadeInUp">
+                                    <div className={iClasses.thanks}>
+                                        Thanks For Contributing!
+                                    </div>
+                                    <Button 
+                                        className={classes.button}
+                                        variant="contained" 
+                                        color="secondary"
+                                        onClick={this.submitAnotherQuestionHandler}
+                                        >
+                                        Submit Another!
+                                    </Button>
+                                  </div>
+                                : <Button 
+                                    className={classes.button + " wow fadeInUp"}
+                                    variant="contained" 
+                                    color="secondary"
+                                    onClick={this.submitQuestionHandler}
+                                    >
+                                    Submit
+                                  </Button>
+                            }
+                            
+                        </Paper>
+                    </Grid>
+                </Aux>
+            )
+        }
 
         let intro = (
             <div className={iClasses.root}>
                 <Grid container spacing={8}>
 
-                    <Grid item xs={12}>
-                        <div className={ iClasses.welcome }>
-                            <h1>Welcome to Quick Think!</h1>
-                            <p>The game where you have 6 seconds to think of 3 things that match the category given to you or your team. It's easy, as long as you don't panic :)</p>
-                        </div>
-                    </Grid>
-
-                    <Grid item xs={12}>
-                        <div className= { iClasses.welcome }>
-                            <h1>How To Play:</h1>
-                            <p>Each team will take turns answering a question</p>
-                            <p>Once the question is shown, the team has 6 second to give 3 answers that fulfill the question's criteria</p>
-                            <p>A team will recieve a point if they give 3 appropriate answers within 6 seconds</p>
-                            <p>The game ends after one team reaches the goal score</p>
-                        </div>
-                    </Grid>
+                    {topSection}
 
                     <Grid item xs={12} sm={6}>
                         <Paper className={iClasses.paper}>
@@ -135,7 +259,8 @@ class Welcome extends Component {
 const mapStateToProps = state => {
     return {
         teams: state.redGame.teams,
-        maxScore: state.redGame.maxScore
+        maxScore: state.redGame.maxScore,
+        isAuth: state.redAuth.token !== null
     };
 };
 

@@ -32,6 +32,15 @@
     font-size: .6em;
 }
 
+/* Submit Question Secton */
+.thanks {
+    margin: 16px;
+    padding: 16px 0px;
+    color: #fff;
+    background-color: #6abf69;
+    border-radius: 5px;
+}
+
 @media (max-width: 600px) {
     .paper {
         padding: 16px;
