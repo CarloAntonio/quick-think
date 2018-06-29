@@ -38,8 +38,9 @@ class Welcome extends Component {
         this.setState({ start: true });
     }
 
-    startGameHandler = () => {
+    newGameHandler = () => {
         this.props.startGame();
+        this.props.newGame();
         this.props.history.push('/game');
     }
 
@@ -104,7 +105,7 @@ class Welcome extends Component {
             <Aux>
                 <Modal show={this.state.start} closeModalFx={this.startCancelHandler}>
                     <Setup 
-                        startGameHandler={this.startGameHandler}
+                        newGameHandler={this.newGameHandler}
                         teams={this.props.teams}
                         onTeamNameChanged={this.props.onTeamNameChanged}
                         maxScore={this.props.maxScore}
@@ -131,6 +132,7 @@ const mapDispatchToProps = dispatch => {
         onSetPath: () => dispatch(actions.setAuthRedirectPath('/')),
         startGame: () => dispatch(actions.startGame()),
         quickStart: () => dispatch(actions.quickStart()),
+        newGame: () => dispatch(actions.playAgain()), //action says play again but also works for 
     }
 }
 

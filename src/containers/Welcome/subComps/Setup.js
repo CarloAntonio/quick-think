@@ -83,7 +83,7 @@ const setup = (props) => {
                 variant="contained" 
                 color="primary" 
                 className={classes.button}
-                onClick={props.startGameHandler}>
+                onClick={props.newGameHandler}>
                 PLAY
             </Button>
         </div>
