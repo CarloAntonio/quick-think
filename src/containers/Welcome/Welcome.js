@@ -56,25 +56,31 @@ class Welcome extends Component {
 
         let intro = (
             <div className={iClasses.root}>
-                <Grid container spacing={24}>
+                <Grid container spacing={8}>
+
                     <Grid item xs={12}>
+                        <div className={ iClasses.welcome }>
+                            <h1>Welcome to Quick Think!</h1>
+                            <p>The game where you have 6 seconds to think of 3 things that match the category given to you or your team. It's easy, as long as you don't panic :)</p>
+                        </div>
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <div className= { iClasses.welcome }>
+                            <h1>How To Play:</h1>
+                            <p>Each team will take turns answering a question</p>
+                            <p>Once the question is shown, the team has 6 second to give 3 answers that fulfill the question's criteria</p>
+                            <p>A team will recieve a point if they give 3 appropriate answers within 6 seconds</p>
+                            <p>The game ends after one team reaches the goal score</p>
+                        </div>
+                    </Grid>
+
+                    <Grid item xs={12} sm={6}>
                         <Paper className={iClasses.paper}>
-                            <div className={ iClasses.welcome }>
-                                <h1>Welcome to Quick Think!</h1>
-                                <p>The game where you have 6 seconds to think of 3 things that match the category given to you or your team. It's easy, as long as you don't panic :)</p>
-                            </div>
                             <div className= { iClasses.instruct }>
-                                <h1>How To Play:</h1>
-                                <p>Each team will take turns answering a question</p>
-                                <p>Once the question is shown, the team has 6 second to give 3 answers that fulfill the question's criteria</p>
-                                <p>A team will recieve a point if they give 3 appropriate answers within 6 seconds</p>
-                                <p>The game ends after one team reaches the goal score</p>
-                            </div>
-                            <div className= { iClasses.instruct }>
-                                <h1>Getting Started:</h1>
-                                <p>1. Press Start</p>
-                                <p>2. Pick Team Names</p>
-                                <p>3. Pick Score to Reach</p>
+                                <h1>Quick Setup:</h1>
+                                <p>Pick Team Names</p>
+                                <p>Pick Score to Reach</p>
                             </div>
                             <Button 
                                 className={classes.button}
@@ -84,6 +90,16 @@ class Welcome extends Component {
                                 >
                                 New Game
                             </Button>
+                        </Paper>
+                    </Grid>
+
+                    <Grid item xs={12} sm={6}>
+                        <Paper className={iClasses.paper}>
+                            <div className= { iClasses.instruct }>
+                                <h1>Play Now:</h1>
+                                <p>Default Team Name</p>
+                                <p>First to 10</p>
+                            </div>
                             <Button 
                                 className={classes.button}
                                 variant="contained" 
@@ -92,11 +108,9 @@ class Welcome extends Component {
                                 >
                                 Quick Start
                             </Button>
-                            <div className={ iClasses.special }>
-                                <p>Special thanks to the Fadrigo and Roderos family, with whom I first played this game.</p>
-                            </div>
                         </Paper>
                     </Grid>
+
                 </Grid>
             </div>
         );
