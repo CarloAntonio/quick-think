@@ -11,6 +11,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import NewIcon from '@material-ui/icons/FiberNew';
 import LoginIcon from '@material-ui/icons/Fingerprint';
 import LogoutIcon from '@material-ui/icons/HighlightOff';
+import ResumeIcon from '@material-ui/icons/Done';
 
 const styles = {
   list: {
@@ -62,7 +63,7 @@ const SideBar = (props) => {
                             button
                             onClick={props.resume}>
                             <ListItemIcon>
-                                <LoginIcon />
+                                <ResumeIcon />
                             </ListItemIcon>
                             <ListItemText primary="Resume" />
                         </ListItem>
