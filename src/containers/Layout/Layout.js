@@ -60,6 +60,7 @@ class Layout extends Component {
                     playing={this.props.playing}
                     toggleDrawer={this.toggleDrawer}
                     login={this.login}
+                    logout={this.props.logout}
                     home={this.home}
                     resume={this.resume}
                     newGame={this.newGame}/>
@@ -71,6 +72,7 @@ class Layout extends Component {
                     showSideDrawer={this.state.showSideDrawer}
                     toggleDrawer={this.toggleDrawer}
                     login={this.login}
+                    logout={this.props.logout}
                     home={this.home}
                     resume={this.resume}
                     newGame={this.newGame}/>
