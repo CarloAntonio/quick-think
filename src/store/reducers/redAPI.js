@@ -53,6 +53,16 @@ const onFetchQuestionsFail = (state, action) => {
     return {
         ...state,
         questionsLoading: false,
+        questionForm: {
+            question: {
+                label: 'Question:',
+                value: 'Name 3 '
+            },
+            author: {
+                label: 'Author:',
+                value: 'Anonymous'
+            },
+        },
     }
 }
 
@@ -62,6 +72,16 @@ const onSubmitQuestionsSuccess = (state, action) => {
         ...state,
         submitting: false,
         submitted: true,
+        questionForm: {
+            question: {
+                label: 'Question:',
+                value: 'Name 3 '
+            },
+            author: {
+                label: 'Author:',
+                value: 'Anonymous'
+            },
+        },
     }
 }
 
