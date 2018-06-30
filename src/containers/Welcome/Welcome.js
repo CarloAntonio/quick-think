@@ -140,9 +140,12 @@ class Welcome extends Component {
                             <div className= { iClasses.instruct }>
                                 <h1>Add To Our Question List</h1>
                                 <p>Please keep in mind kids of will ages will play this game</p>
-                                <form>
-                                    {form}
-                                </form>
+
+                                { this.props.submitted 
+                                    ? null
+                                    : <form>{form} </form> 
+                                }
+                                
                             </div>
 
                             {this.props.submitting
