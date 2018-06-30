@@ -12,6 +12,7 @@ export {
 } from './actGame';
 
 export {
+    questionInputChangedHandler,
     fetchQuestions,
     submitQuestion,
     submitAnotherQuestion

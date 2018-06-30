@@ -3,6 +3,14 @@ import { shuffle } from '../../utility/utility';
 import { axiosInstance } from '../../utility/utility';
 
 // Firebase API Calls
+export const questionInputChangedHandler = (event, id) => {
+    return {
+        type: actionTypes.QUESTION_INPUT_CHANGE_HANDLER,
+        controlName: id,
+        value: event.target.value
+    };
+};
+
 const fetchQuestionsSuccess = (questions) => {
     return {
         type: actionTypes.FETCH_QUESTIONS_SUCCESS,

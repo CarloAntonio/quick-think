@@ -32,16 +32,6 @@ class Welcome extends Component {
     
     state = {
         start: false,
-        controls: {
-            question: {
-                label: 'Question:',
-                value: 'Name 3 '
-            },
-            author: {
-                label: 'Author:',
-                value: 'Anonymous'
-            },
-        }
     }
 
     componentDidMount() {
@@ -71,24 +61,12 @@ class Welcome extends Component {
     submitQuestionHandler = () => {
         //create question object
         const qObject = {
-            auth: this.state.controls.author.value,
-            question: this.state.controls.question.value,
+            auth: this.props.questionForm.author.value,
+            question: this.props.questionForm.question.value,
             rating: 1000
         }
 
         this.props.onSubmitQuestion(this.props.token, qObject);
-    }
-
-    inputChangedHandler = (event, controlName) => {
-        const updatedControls = {
-            ...this.state.controls,
-            [controlName]: {
-                ...this.state.controls[controlName],
-                value: event.target.value,
-            }
-        };
-
-        this.setState({ controls: updatedControls });
     }
 
     render() {
@@ -97,10 +75,10 @@ class Welcome extends Component {
 
         const formElementsArray = [];
 
-        for (let key in this.state.controls) {
+        for (let key in this.props.questionForm) {
             formElementsArray.push({
                 id: key,
-                config: this.state.controls[key]
+                config: this.props.questionForm[key]
             })
         }
 
@@ -115,7 +93,7 @@ class Welcome extends Component {
                                 id: {index},
                             }}
                             value={formElement.config.value}
-                            onChange={(event) => this.inputChangedHandler(event, formElement.id)}/>
+                            onChange={(event) => this.props.questionInputChangedHandler(event, formElement.id)}/>
                         </FormControl>
                         <br/>
                     </Aux>
@@ -272,7 +250,8 @@ const mapStateToProps = state => {
         isAuth: state.redAuth.token !== null,
         token: state.redAuth.token,
         submitted: state.redAPI.submitted,
-        submitting: state.redAPI.submitting
+        submitting: state.redAPI.submitting,
+        questionForm: state.redAPI.questionForm,
     };
 };
 
@@ -285,7 +264,8 @@ const mapDispatchToProps = dispatch => {
         quickStart: () => dispatch(actions.quickStart()),
         newGame: () => dispatch(actions.newGame()), 
         onSubmitQuestion: (token, qObject) => dispatch(actions.submitQuestion(token, qObject)),
-        onSubmitAnotherQuestion: () => dispatch(actions.submitAnotherQuestion())
+        onSubmitAnotherQuestion: () => dispatch(actions.submitAnotherQuestion()),
+        questionInputChangedHandler: (event, id) => dispatch(actions.questionInputChangedHandler(event, id)),
     }
 }
 

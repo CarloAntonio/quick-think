@@ -4,8 +4,33 @@ import * as actionTypes from '../actions/actTypes';
 const initialState = {
     questions: [],
     questionsLoading: false,
+    questionForm: {
+        question: {
+            label: 'Question:',
+            value: 'Name 3 '
+        },
+        author: {
+            label: 'Author:',
+            value: 'Anonymous'
+        },
+    },
     submitting: false,
     submitted: false
+}
+//Submit Questions
+const questionInputChangedHandler = (state, action) => {
+    const updatedForm = {
+        ...state.questionForm,
+        [action.controlName]: {
+            ...state.questionForm[action.controlName],
+            value: action.value
+        }
+    };
+
+    return {
+        ...state,
+        questionForm: updatedForm
+    }
 }
 
 // Fetch Questions
@@ -65,6 +90,7 @@ const onSubmitAnotherQuestion = (state, action) => {
 const redAPI = (state = initialState, action) => {
 
     switch(action.type) {
+        case actionTypes.QUESTION_INPUT_CHANGE_HANDLER: return questionInputChangedHandler(state, action);
         case actionTypes.FETCH_QUESTIONS_START: return onFetchQuestionsStart(state, action);
         case actionTypes.FETCH_QUESTIONS_FAIL: return onFetchQuestionsFail(state, action);
         case actionTypes.FETCH_QUESTIONS_SUCCESS: return onFetchQuestionsSuccess(state, action);
