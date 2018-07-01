@@ -31,7 +31,10 @@ class Game extends Component {
 
     //fetch data only when component has loaded on the page
     componentDidMount() {
-        if(this.props.questions.length === 0) this.props.onFetchQuestions();
+        if(this.props.questions.length === 0) {
+            this.props.onFetchQuestions();
+            this.props.startGame();
+        }
         this.props.onSetPath();
     }
 
@@ -188,6 +191,7 @@ const mapDispatchToProps = dispatch => {
         onAddPoint: (turn) => dispatch(actions.addPoint(turn)),
         onNoAddPoint: (turn) => dispatch(actions.noAddPoint(turn)),
         onNewGame: () => dispatch(actions.newGame()),
+        startGame: () => dispatch(actions.startGame()),
         onStartOver: () => dispatch(actions.startOver()),
         onSetPath: () => dispatch(actions.setAuthRedirectPath('/game')),
         onFreeSkip: () => dispatch(actions.skipUsed()),
