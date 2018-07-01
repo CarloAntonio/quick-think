@@ -27,13 +27,17 @@ const RightMain = (props) => {
                 ? null
                 : <Aux>
                     <br/>
+                    <p className={iClasses.addPoints}>
+                        Use Free Skip?
+                    </p>
                     <Button 
                         variant="contained" 
                         color="primary" 
                         className={classes.button}
                         onClick={props.onFreeSkip}>
-                        FREE SKIP!
+                        SKIP!
                     </Button>
+                    <br/>
                    </Aux>
             }
 
