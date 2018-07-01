@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import CountdownClock from 'react-countdown-clock';
 
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
@@ -12,6 +11,8 @@ import { withStyles } from '@material-ui/core/styles';
 import Aux from '../../hoc/Aux';
 import Modal from '../../components/UI/Modal/Modal';
 import Winner from './subComps/Winner';
+import LeftMain from './subComps/LeftMain/LeftMain';
+import RightMain from './subComps/RightMain/RightMain';
 
 import * as actions from '../../store/actions/actions';
 import iClasses from './Game.css';
@@ -57,86 +58,7 @@ class Game extends Component {
 
         const { classes } = this.props;
 
-        let question = (
-            <CardContent>
-                <h1 className={iClasses.questionHidden}>HIDDEN</h1>
-            </CardContent>
-        );
-
-        let startButton = (
-            <Button 
-                variant="contained" 
-                color="primary"
-                onClick={this.props.onHideClock}>
-                GO!
-            </Button>
-        );
-        
-        if (this.props.hideQuestion !== true) {
-            question = (
-                <Aux>
-                    <div className={iClasses.questionContainer}>
-                        <h1 className={iClasses.questionPrompt}>Question:</h1>
-                        <br/>
-                        <p className={iClasses.questionGenerated}>{this.props.questions[this.props.questionNumber].question}</p>
-                        <br/>
-                        <p className={iClasses.questionAuth}>Question Submitted By: {this.props.questions[this.props.questionNumber].auth}</p>
-                        <br/>
-                    </div>
-                    <div className={iClasses.clock}>
-                        <CountdownClock 
-                            className={iClasses.test}
-                            seconds={6}
-                            color="#a1887f"
-                            alpha={0.9}
-                            size={100}
-                            onComplete={this.props.onClockFinished} />
-                    </div>
-                    
-                </Aux>
-            );
-
-            startButton = null;
-        }
-
-        let promptAddPoints = (
-            <div className={iClasses.promptPoints}>
-
-                {this.props.skipUsed
-                    ? null
-                    : <Aux>
-                        <br/>
-                        <Button 
-                            variant="contained" 
-                            color="primary" 
-                            className={classes.button}
-                            onClick={this.props.onFreeSkip}>
-                            FREE SKIP!
-                        </Button>
-                      </Aux>
-                }
-
-                <br/>
-                <p className={iClasses.addPoints}>
-                    Does team {this.props.teams.slice(this.props.turn, this.props.turn + 1)[0].name} deserve to get a point?
-                </p>
-                <Button 
-                    variant="contained" 
-                    color="primary" 
-                    className={classes.button}
-                    onClick={this.onAddClicked}>
-                    YUP
-                </Button>
-                <Button 
-                    variant="contained" 
-                    color="primary" 
-                    className={classes.button}
-                    onClick={this.onNoPointClicked}>
-                    NAH
-                </Button>
-            </div>
-        );
-
+        //Check if there's a winner
         let showWinner = false;
         let winner = '';
         this.props.teams.forEach(team => {
@@ -145,6 +67,50 @@ class Game extends Component {
                 winner = team.name;
             }
         });
+
+        //Main Game Content
+        let main = (
+            <div className="container">
+                <div className="row">
+                    <div className="col-xs-12 col-sm-6">
+                        <div className={iClasses.questionContainer}>
+                            { this.props.hideQuestion
+                                ? <CardContent>
+                                    <h1 className={iClasses.questionHidden}>HIDDEN</h1>
+                                  </CardContent>
+                                : <LeftMain 
+                                    questions={this.props.questions}
+                                    questionNumber={this.props.questionNumber}
+                                    onClockFinished={this.props.onClockFinished}/>
+                            }
+                            { this.props.hideStartButton 
+                                ? null 
+                                : <Button 
+                                className={classes.button}
+                                variant="contained" 
+                                color="primary"
+                                onClick={this.props.onHideClock}>
+                                GO!
+                                  </Button> 
+                            }
+                        </div>
+                    </div>
+                    <div className="col-xs-12 col-sm-6">
+                        <div className={iClasses.questionContainer}>
+                            { this.props.promptAddScore 
+                                ? <RightMain 
+                                    skipUsed={this.props.skipUsed}
+                                    onFreeSkip={this.props.onFreeSkip}
+                                    teams={this.props.teams}
+                                    turn={this.props.turn}
+                                    onAddClicked={this.onAddClicked}
+                                    onNoPointClicked={this.onNoPointClicked}/> 
+                                : null }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
 
         return (
             <Aux>
@@ -160,7 +126,15 @@ class Game extends Component {
 
                         {this.props.teams.map((team, index) => {
                             return <Grid item xs={6} key={index}>
-                                        <div className={this.props.turn === index ? index === 0 ? iClasses.teamActiveLeft : iClasses.teamActiveRight : index === 1 ? iClasses.teamNotActiveRight : iClasses.teamNotActiveLeft  }>
+                                        <div className={
+                                                this.props.turn === index 
+                                                ? index === 0 
+                                                    ? iClasses.teamActiveLeft 
+                                                    : iClasses.teamActiveRight 
+                                                : index === 1 
+                                                    ? iClasses.teamNotActiveRight 
+                                                    : iClasses.teamNotActiveLeft  
+                                            }>
                                             <h1 className={iClasses.teamName}>{team.name}</h1>
                                             <p className={iClasses.score}>{team.score}/{this.props.maxScore}</p>
                                         </div>
@@ -173,9 +147,7 @@ class Game extends Component {
 
                         <Grid item xs={12} className={iClasses.paper}>
                             <Card className={iClasses.card}>
-                                { question }
-                                { this.props.hideStartButton ? null : startButton }
-                                { this.props.promptAddScore ? promptAddPoints : null }
+                                {main}
                             </Card>
                         </Grid>
                     </Grid>

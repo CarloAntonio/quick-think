@@ -1,0 +1,28 @@
+
+
+.addPoints {
+    font-size: 1em;
+}
+
+.questionPrompt {
+    font-size: 1.5em;
+    color: #388e3c;
+    margin-bottom: 0px;
+}
+
+@media (max-width: 1399px) and (min-width: 721px) {
+
+    /* Bottom Controls */
+    .addPoints {
+        font-size: 1.4em;
+    }
+
+}
+
+@media (min-width: 1400px) {
+
+    .addPoints {
+        font-size: 1.4em;
+    }
+    
+}

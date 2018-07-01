@@ -1,0 +1,64 @@
+
+
+.questionPrompt {
+    font-size: 1.5em;
+    color: #388e3c;
+    margin-bottom: 0px;
+}
+
+.questionGenerated {
+    margin: 0px;
+    font-size: 1.6em;
+}
+
+.questionAuth {
+    margin-top: 0px;
+    font-size: .8em;
+}
+
+.clock {
+    height: 105px;
+    padding-left: calc(50% - 100px);
+}
+
+@media (max-width: 1399px) and (min-width: 721px) {
+
+    .questionPrompt {
+        font-size: 2em;
+        margin-bottom: 8px;
+    }
+
+    .questionGenerated {
+        font-size: 2.2em;
+    }
+
+    .questionAuth {
+        margin-top: 8px;
+        font-size: .8em;
+    }
+
+    .clock {
+        height: 105px;
+        padding-left: calc(50% - 100px);
+    }
+
+}
+
+@media (min-width: 1400px) {
+
+    .questionPrompt {
+        font-size: 2.4em;
+        margin-bottom: 8px;
+    }
+
+    .questionGenerated {
+        font-size: 2.8em;
+        margin: 8px 16px;
+    }
+
+    .questionAuth {
+        margin-top: 8px;
+        font-size: 1em;
+    }
+    
+}
