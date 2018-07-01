@@ -1,0 +1,54 @@
+
+.LeftMain {
+    padding: 16px;
+    margin: 16px 8px;
+    text-align: center;
+    height: 100%;    
+    color: #fff;
+    background-color: #725b53;
+}
+
+.LeftMain h1 {
+    font-size: 1em;
+    color: #fff;
+}
+
+.LeftMain p {
+    font-size: .8em;
+}
+
+@media (max-width: 720px) and (min-width: 481px) {
+
+    .LeftMain h1 {
+        font-size: 1.2em;
+    }
+
+    .LeftMain p, {
+        font-size: 1em;
+    }
+
+}
+
+@media (max-width: 1399px) and (min-width: 721px) {
+
+    .LeftMain h1 {
+        font-size: 1.6em;
+    }
+
+    .LeftMain p {
+        font-size: 1.2em;
+    }
+
+}
+
+@media (min-width: 1400px) {
+
+    .LeftMain h1 {
+        font-size: 2em;
+    }
+    
+    .LeftMain p {
+        font-size: 1.4em;
+    }
+
+}

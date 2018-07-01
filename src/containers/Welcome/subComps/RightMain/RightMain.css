@@ -1,0 +1,66 @@
+.paper {
+    padding: 16px;
+    margin: 16px 8px;
+    text-align: center;
+    height: 100%;    
+    color: #000;
+}
+
+.RightMain h1 {
+    font-size: 1em;
+    color: #388e3c;
+}
+
+.RightMain p {
+    font-size: .8em;
+}
+
+.divider {
+    border: 1px solid #ccc;
+}
+
+@media (max-width: 600px) {
+    .paper {
+        padding: 16px;
+        margin: 0px 24px;
+        text-align: center;
+        height: 100%;    
+        color: #000;
+    }
+}
+
+@media (max-width: 720px) and (min-width: 481px) {
+
+    .RightMain h1 {
+        font-size: 1.2em;
+    }
+
+    .RightMain p {
+        font-size: 1em;
+    }
+
+}
+
+@media (max-width: 1399px) and (min-width: 721px) {
+
+    .RightMain h1 {
+        font-size: 1.4em;
+    }
+
+    .RightMain p {
+        font-size: 1.2em;
+    }
+
+}
+
+@media (min-width: 1400px) {
+
+    .RightMain h1 {
+        font-size: 1.6em;
+    }
+    
+    .RightMain p {
+        font-size: 1.4em;
+    }
+
+}
