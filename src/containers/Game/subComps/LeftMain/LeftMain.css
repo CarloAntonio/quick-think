@@ -21,7 +21,7 @@
     padding-left: calc(50% - 100px);
 }
 
-@media (max-width: 1399px) and (min-width: 721px) {
+@media (max-width: 1599px) and (min-width: 721px) {
 
     .questionPrompt {
         font-size: 2em;
@@ -44,7 +44,7 @@
 
 }
 
-@media (min-width: 1400px) {
+@media (min-width: 1600px) {
 
     .questionPrompt {
         font-size: 2.4em;

@@ -95,10 +95,19 @@
     padding: 96px 0px 142px;
 }
 
+.questionNeddih {
+    color:  #fff;
+    padding: 96px 0px 142px;
+}
+
 .card {
     max-width: 900px;
     min-height: 420px;
     margin: 0px 8px 24px;
+}
+
+.rightFiller {
+    background-color: #a1887f;
 }
 
 @media (max-width: 720px) and (min-width: 481px) {
@@ -159,7 +168,7 @@
     }
 }
 
-@media (max-width: 1399px) and (min-width: 721px) {
+@media (max-width: 1599px) and (min-width: 721px) {
 
     /* Team Cards */
 
@@ -197,7 +206,7 @@
     }
 }
 
-@media (min-width: 1400px) {
+@media (min-width: 1600px) {
 
     /* Team Cards */
     .teamName {

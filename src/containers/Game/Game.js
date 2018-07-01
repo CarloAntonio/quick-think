@@ -105,7 +105,12 @@ class Game extends Component {
                                     turn={this.props.turn}
                                     onAddClicked={this.onAddClicked}
                                     onNoPointClicked={this.onNoPointClicked}/> 
-                                : null }
+                                : <CardContent>
+                                    <div className={iClasses.rightFiller}>
+                                        <h1 className={iClasses.questionNeddih}>NEDDIH</h1>
+                                    </div>
+                                  </CardContent>
+                                }
                         </div>
                     </div>
                 </div>
