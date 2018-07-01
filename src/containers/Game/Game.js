@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import CountdownClock from 'react-countdown-clock';
 
@@ -31,6 +30,7 @@ class Game extends Component {
 
     //fetch data only when component has loaded on the page
     componentDidMount() {
+        if(this.props.questions.length === 0) this.props.onFetchQuestions();
         this.props.onSetPath();
     }
 
@@ -148,10 +148,6 @@ class Game extends Component {
 
         return (
             <Aux>
-                {this.props.questions.length ===  0
-                    ? <Redirect to='/' />
-                    : null
-                }
                 <Modal show={showWinner} closeModalFx={null}>
                     <Winner
                         winner={winner}
