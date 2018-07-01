@@ -42,6 +42,15 @@ const TopBar = (props) => {
 
                     <div className={iClasses.buttonWrap}>
 
+                        { props.path === '/login'
+                            ? <Button
+                                className={classes.button}
+                                variant="contained" 
+                                color="secondary" 
+                                onClick={props.home} >Home</Button>
+                            : null 
+                        }
+
                         { props.path === '/game'
                             ? <Button
                                 className={classes.button}

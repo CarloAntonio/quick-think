@@ -55,6 +55,7 @@ class Login extends Component {
 
     componentDidMount() {
         this.props.onLoginPage();
+        this.props.onSetPath();
     }
 
     componentWillUnmount() {
@@ -182,6 +183,7 @@ const mapDispatchToProps = dispatch => {
         onRegister: (email, password) => dispatch(actions.register(email, password)),
         onLoginPage: () => dispatch(actions.onLoginPage()),
         leavingLoginPage: () => dispatch(actions.leavingLoginPage()),
+        onSetPath: () => dispatch(actions.setAuthRedirectPath('/login')),
     }
 }
 

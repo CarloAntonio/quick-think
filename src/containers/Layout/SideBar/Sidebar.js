@@ -37,6 +37,21 @@ const SideBar = (props) => {
             </ListItem>
             <Divider />
             <List>
+
+                { props.path === '/login'
+                    ? (
+                        <ListItem 
+                            button
+                            onClick={props.home}>
+                            <ListItemIcon>
+                                <HomeIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Home" />
+                        </ListItem>
+                    )
+                    : null 
+                }
+
                 { props.path === '/game'
                     ? (
                         <ListItem 
