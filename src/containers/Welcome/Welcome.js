@@ -31,12 +31,14 @@ class Welcome extends Component {
     }
 
     newGameHandler = () => {
+        this.props.onFetchQuestions();
         this.props.startGame();
         this.props.newGame();
         this.props.history.push('/game');
     }
 
     quickStartHandler = () => {
+        this.props.onFetchQuestions();
         this.props.startGame();
         this.props.quickStart();
         this.props.history.push('/game');
@@ -115,6 +117,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
+        onFetchQuestions: () => dispatch(actions.fetchQuestions()),
         onTeamNameChanged: (event, index) => dispatch(actions.teamNameChanged(event.target.value, index)),
         onChangeMaxScore: (event) => dispatch(actions.maxScoreChanged(parseInt(event.target.value, 10))),
         onSetPath: () => dispatch(actions.setAuthRedirectPath('/')),

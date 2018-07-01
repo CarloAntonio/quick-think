@@ -30,7 +30,6 @@ class Game extends Component {
 
     //fetch data only when component has loaded on the page
     componentDidMount() {
-        this.props.onFetchQuestions();
         this.props.onSetPath();
     }
 
@@ -43,6 +42,7 @@ class Game extends Component {
     }
 
     onFreshStart = () => {
+        this.props.onFetchQuestions();
         this.props.onStartOver();
         this.props.history.push('/');
     }
