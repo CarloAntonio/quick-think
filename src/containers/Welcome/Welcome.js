@@ -139,7 +139,7 @@ class Welcome extends Component {
                         <Paper className={iClasses.paper}>
                             <div className= { iClasses.instruct }>
                                 <h1>Add To Our Question List</h1>
-                                <p>Please keep in mind kids of will ages will play this game</p>
+                                <p>Please keep in mind kids of all ages will play this game</p>
 
                                 { this.props.submitted 
                                     ? null
