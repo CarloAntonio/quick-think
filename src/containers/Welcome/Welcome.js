@@ -49,7 +49,8 @@ class Welcome extends Component {
         const qObject = {
             auth: this.props.questionForm.author.value,
             question: this.props.questionForm.question.value,
-            rating: 1000
+            like: 0,
+            dislike: 0,
         }
 
         this.props.onSubmitQuestion(this.props.token, qObject);
