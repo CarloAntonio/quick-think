@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Line } from 'rc-progress';
 
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
@@ -22,6 +23,12 @@ const RightMain = (props) => {
         <div>
             <h1 className={iClasses.questionPrompt}>Response:</h1>
             <br/>
+
+            <div>
+                <p className={iClasses.addPoints}>Question Likability: {props.like} likes out of {props.total}</p>
+                <Line percent={props.like/props.total} strokeWidth="4" strokeColor="#388e3c" />
+                <p className={iClasses.loginToRate}>Login to Rate Questions</p>
+            </div>
 
             {props.skipUsed
                 ? null

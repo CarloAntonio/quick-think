@@ -10,6 +10,11 @@
     margin-bottom: 0px;
 }
 
+.loginToRate {
+    margin-top: 0px;
+    font-size: .8em;
+}
+
 @media (max-width: 1599px) and (min-width: 721px) {
 
     .questionPrompt {

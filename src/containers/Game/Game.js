@@ -81,7 +81,8 @@ class Game extends Component {
                                 : <LeftMain 
                                     questions={this.props.questions}
                                     questionNumber={this.props.questionNumber}
-                                    onClockFinished={this.props.onClockFinished}/>
+                                    onClockFinished={this.props.onClockFinished}
+                                    isAuth={this.props.isAuth}/>
                             }
                             { this.props.hideStartButton 
                                 ? null 
@@ -104,7 +105,9 @@ class Game extends Component {
                                     teams={this.props.teams}
                                     turn={this.props.turn}
                                     onAddClicked={this.onAddClicked}
-                                    onNoPointClicked={this.onNoPointClicked}/> 
+                                    onNoPointClicked={this.onNoPointClicked}
+                                    like={this.props.questions[this.props.questionNumber].like}
+                                    total={this.props.questions[this.props.questionNumber].like + this.props.questions[this.props.questionNumber].dislike}/> 
                                 : <CardContent>
                                     <div className={iClasses.rightFiller}>
                                         <h1 className={iClasses.questionNeddih}>NEDDIH</h1>
@@ -172,7 +175,8 @@ const mapStateToProps = state => {
         questionNumber: state.redGame.questionNumber,
         turn: state.redGame.turn,
         questions: state.redAPI.questions,
-        skipUsed: state.redGame.skipUsed
+        skipUsed: state.redGame.skipUsed,
+        isAuth: state.redAuth.token !== null,
     }
 }
 
