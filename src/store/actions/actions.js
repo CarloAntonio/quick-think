@@ -4,6 +4,7 @@ export {
     clockFinished,
     addPoint,
     noAddPoint,
+    skipUsed,
     newGame,
     startOver,
     maxScoreChanged,

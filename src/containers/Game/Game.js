@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import CountdownClock from 'react-countdown-clock';
 
@@ -91,6 +92,7 @@ class Game extends Component {
                             size={100}
                             onComplete={this.props.onClockFinished} />
                     </div>
+                    
                 </Aux>
             );
 
@@ -99,10 +101,25 @@ class Game extends Component {
 
         let promptAddPoints = (
             <div className={iClasses.promptPoints}>
+
+                {this.props.skipUsed
+                    ? null
+                    : <Aux>
+                        <br/>
+                        <Button 
+                            variant="contained" 
+                            color="primary" 
+                            className={classes.button}
+                            onClick={this.props.onFreeSkip}>
+                            FREE SKIP!
+                        </Button>
+                      </Aux>
+                }
+
+                <br/>
                 <p className={iClasses.addPoints}>
                     Does team {this.props.teams.slice(this.props.turn, this.props.turn + 1)[0].name} deserve to get a point?
                 </p>
-                <br/>
                 <Button 
                     variant="contained" 
                     color="primary" 
@@ -131,6 +148,10 @@ class Game extends Component {
 
         return (
             <Aux>
+                {this.props.questions.length ===  0
+                    ? <Redirect to='/' />
+                    : null
+                }
                 <Modal show={showWinner} closeModalFx={null}>
                     <Winner
                         winner={winner}
@@ -178,6 +199,7 @@ const mapStateToProps = state => {
         questionNumber: state.redGame.questionNumber,
         turn: state.redGame.turn,
         questions: state.redAPI.questions,
+        skipUsed: state.redGame.skipUsed
     }
 }
 
@@ -191,6 +213,7 @@ const mapDispatchToProps = dispatch => {
         onNewGame: () => dispatch(actions.newGame()),
         onStartOver: () => dispatch(actions.startOver()),
         onSetPath: () => dispatch(actions.setAuthRedirectPath('/game')),
+        onFreeSkip: () => dispatch(actions.skipUsed()),
     }
 }
 

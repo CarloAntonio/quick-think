@@ -34,6 +34,12 @@ export const noAddPoint = (turn) => {
     }
 }
 
+export const skipUsed = () => {
+    return {
+        type: actionTypes.SKIPPED_USED
+    }
+}
+
 export const newGame = () => {
     return {
         type: actionTypes.NEW_GAME

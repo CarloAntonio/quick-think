@@ -19,7 +19,8 @@ const initialState = {
     hideStartButton: false,
     questionNumber: 0,
     turn: 0,
-    playing: false
+    playing: false,
+    skipUsed: false
 }
 
 const onTeamNameChanged = (state, action) => {
@@ -50,7 +51,8 @@ const addPoint = (state, action) => {
         promptAddScore: false,
         questionNumber: state.questionNumber + 1,
         hideStartButton: false,
-        turn: nextTurn
+        turn: nextTurn,
+        skipUsed: false
     };
 }
 
@@ -68,8 +70,20 @@ const noAddPoint = (state, action) => {
         promptAddScore: false,
         questionNumber: state.questionNumber + 1,
         hideStartButton: false,
-        turn: nextTurn
+        turn: nextTurn,
+        skipUsed: false
     };
+}
+
+const freeSkipUsed = (state, action) => {
+    return {
+        ...state,
+        hideQuestion: true,
+        promptAddScore: false,
+        questionNumber: state.questionNumber + 1, 
+        hideStartButton: false,
+        skipUsed: true
+    }
 }
 
 const hideStartButton = (state, action) => {
@@ -162,6 +176,7 @@ const redGame = (state = initialState, action) => {
         case actionTypes.CLOCK_FINISHED: return promptScore(state, action);
         case actionTypes.ADD_POINT: return addPoint(state, action);
         case actionTypes.NO_ADD_POINT: return noAddPoint(state, action);
+        case actionTypes.SKIPPED_USED: return freeSkipUsed(state, action);
         case actionTypes.NEW_GAME: return newGame(state, action);
         case actionTypes.START_OVER: return startOver(state, action);
         case actionTypes.MAX_SCORE_CHANGED: return maxScoreChanged(state, action);
