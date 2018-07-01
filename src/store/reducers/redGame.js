@@ -3,7 +3,7 @@ import { updateObjectInArray, addOneToObjectInArray, resetWithSameNames } from '
 
 const initialState = {
     numPlayers: 2,
-    maxScore: 2,
+    maxScore: 5,
     teams: [
         {
             name: 'Average Joes',
@@ -114,7 +114,7 @@ const newGame = (state, action) => {
 const startOver = (state, action) => {
     return {
         numPlayers: 2,
-        maxScore: 2,
+        maxScore: 5,
         teams: [
             {
                 name: 'Average Joes',

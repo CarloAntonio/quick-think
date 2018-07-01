@@ -69,9 +69,8 @@ const setup = (props) => {
                     }}
                 >
                     <MenuItem value={props.maxScore}>
-                    <em>Two</em>
+                    <em>Five</em>
                     </MenuItem>
-                    <MenuItem value={5}>Five</MenuItem>
                     <MenuItem value={10}>Ten</MenuItem>
                     <MenuItem value={15}>Fifteen</MenuItem>
                     <MenuItem value={20}>Twenty</MenuItem>
