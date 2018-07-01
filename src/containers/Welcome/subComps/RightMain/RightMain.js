@@ -19,7 +19,7 @@ const styles = theme => ({
     },
     formControl: {
         margin: theme.spacing.unit,
-        minWidth: 380,
+        minWidth: 350,
     },
 });
 
@@ -117,7 +117,7 @@ const RightMain = (props) => {
                 <Button 
                     className={aClasses.button + " wow fadeInRight"}
                     variant="contained" 
-                    color="primary"
+                    color="secondary"
                     onClick={props.startHandler}
                     >
                     New Game
@@ -133,7 +133,7 @@ const RightMain = (props) => {
                 <Button 
                     className={aClasses.button + " wow fadeInLeft"}
                     variant="contained" 
-                    color="primary"
+                    color="secondary"
                     onClick={props.quickStartHandler}
                     >
                     Quick Start

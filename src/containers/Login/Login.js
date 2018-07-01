@@ -139,7 +139,11 @@ class Login extends Component {
         //setup redirect once user is authenticated
         let authRedirect = null;
         if (this.props.isAuth) {
-            authRedirect = <Redirect to={this.props.authRedirectPath}/>
+            if(this.props.authRedirectPath === '/login') {
+                authRedirect = <Redirect to='/'/>
+            } else {
+                authRedirect = <Redirect to={this.props.authRedirectPath}/>
+            }
         }
 
         return (
