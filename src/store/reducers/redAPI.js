@@ -15,8 +15,9 @@ const initialState = {
         },
     },
     submitting: false,
-    submitted: false
+    submitted: false,
 }
+
 //Submit Questions
 const questionInputChangedHandler = (state, action) => {
     const updatedForm = {
@@ -66,7 +67,7 @@ const onFetchQuestionsFail = (state, action) => {
     }
 }
 
-// Fetch Questions
+// Submit Questions
 const onSubmitQuestionsSuccess = (state, action) => {
     return {
         ...state,

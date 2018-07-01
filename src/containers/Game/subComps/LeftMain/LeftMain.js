@@ -38,23 +38,32 @@ const LeftMain = (props) => {
                     onComplete={props.onClockFinished} />
             </div>
 
-            { props.isAuth
+            { props.isAuth && !props.submittedFeedback
                 ? <div>
                     <p>What'd you think of this question?</p>
                     <Button 
                         variant="fab" 
                         color="primary" 
                         aria-label="like" 
-                        className={classes.button}>
+                        className={classes.button}
+                        onClick={props.handleLike}>
                         <LikeIcon />
                     </Button>
                     <Button 
                         variant="fab" 
                         color="primary" 
                         aria-label="dislike" 
-                        className={classes.button}>
+                        className={classes.button}
+                        onClick={props.handleDislike}>
                         <DislikeIcon />
                     </Button>
+                  </div>
+                : null
+            }
+
+            { props.isAuth && props.submittedFeedback
+                ? <div>
+                    <p>Thanks For The Feedback!</p>
                   </div>
                 : null
             }

@@ -57,6 +57,28 @@ class Game extends Component {
         this.props.onNewGame();
     }
 
+    onHandleLike = () => {
+        this.props.onHandleFeedback(
+            this.props.token,
+            { 
+                questionId: this.props.questions[this.props.questionNumber].id,
+                type: 'like',
+                newValue: this.props.questions[this.props.questionNumber].like + 1
+            }
+        )
+    }
+
+    onHandleDislike = () => {
+        this.props.onHandleFeedback(
+            this.props.token,
+            { 
+                questionId: this.props.questions[this.props.questionNumber].id,
+                type: 'dislike',
+                newValue: this.props.questions[this.props.questionNumber].dislike + 1
+            }
+        )
+    }
+
     render() {
 
         const { classes } = this.props;
@@ -85,7 +107,10 @@ class Game extends Component {
                                     questions={this.props.questions}
                                     questionNumber={this.props.questionNumber}
                                     onClockFinished={this.props.onClockFinished}
-                                    isAuth={this.props.isAuth}/>
+                                    isAuth={this.props.isAuth}
+                                    handleLike={this.onHandleLike}
+                                    handleDislike={this.onHandleDislike}
+                                    submittedFeedback={this.props.submittedFeedback}/>
                             }
                             { this.props.hideStartButton 
                                 ? null 
@@ -180,6 +205,8 @@ const mapStateToProps = state => {
         questions: state.redAPI.questions,
         skipUsed: state.redGame.skipUsed,
         isAuth: state.redAuth.token !== null,
+        token: state.redAuth.token,
+        submittedFeedback: state.redGame.submittedFeedback
     }
 }
 
@@ -195,6 +222,7 @@ const mapDispatchToProps = dispatch => {
         onStartOver: () => dispatch(actions.startOver()),
         onSetPath: () => dispatch(actions.setAuthRedirectPath('/game')),
         onFreeSkip: () => dispatch(actions.skipUsed()),
+        onHandleFeedback: (token, bundle) => dispatch(actions.handleFeedback(token, bundle)),
     }
 }
 

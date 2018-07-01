@@ -1,4 +1,6 @@
-import * as actionTypes from './actTypes';;
+import * as actionTypes from './actTypes';
+
+import { axiosInstance } from '../../utility/utility';
 
 export const teamNameChanged = (newTeamName, index) => {
     return {
@@ -68,5 +70,37 @@ export const startGame = () => {
 export const quickStart = () => {
     return {
         type: actionTypes.QUICK_START
+    }
+}
+
+const submitQuestionFeedbackStart = () => {
+    return {
+        type: actionTypes.SUBMIT_QUESTION_FEEDBACK_START
+    };
+};
+
+const submitQuestionFeedbackSuccess = () => {
+    return {
+        type: actionTypes.SUBMIT_QUESTION_FEEDBACK_SUCCESS,
+    };
+};
+
+const submitQuestionFeedbackFail = (error) => {
+    return {
+        type: actionTypes.SUBMIT_QUESTION_FEEDBACK_FAIL,
+        error: error
+    };
+};
+
+export const handleFeedback = (token, bundle) => {
+    return dispatch => {
+        dispatch(submitQuestionFeedbackStart());
+        axiosInstance.put('questions/' + bundle.questionId + '/' + bundle.type + '.json?auth=' + token, bundle.newValue)
+            .then(res => {
+                dispatch(submitQuestionFeedbackSuccess())
+            })
+            .catch(err => {
+                dispatch(submitQuestionFeedbackFail(err))
+            })
     }
 }

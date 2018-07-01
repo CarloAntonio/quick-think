@@ -9,14 +9,15 @@ export {
     startOver,
     maxScoreChanged,
     startGame,
-    quickStart
+    quickStart,
+    handleFeedback,
 } from './actGame';
 
 export {
     questionInputChangedHandler,
     fetchQuestions,
     submitQuestion,
-    submitAnotherQuestion
+    submitAnotherQuestion,
 } from './actAPI';
 
 export {

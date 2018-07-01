@@ -20,7 +20,9 @@ const initialState = {
     questionNumber: 0,
     turn: 0,
     playing: false,
-    skipUsed: false
+    skipUsed: false,
+    submittingFeedback: false,
+    submittedFeedback: false,
 }
 
 const onTeamNameChanged = (state, action) => {
@@ -52,7 +54,8 @@ const addPoint = (state, action) => {
         questionNumber: state.questionNumber + 1,
         hideStartButton: false,
         turn: nextTurn,
-        skipUsed: false
+        skipUsed: false,
+        submittedFeedback: false
     };
 }
 
@@ -71,7 +74,8 @@ const noAddPoint = (state, action) => {
         questionNumber: state.questionNumber + 1,
         hideStartButton: false,
         turn: nextTurn,
-        skipUsed: false
+        skipUsed: false,
+        submittedFeedback: false
     };
 }
 
@@ -82,7 +86,8 @@ const freeSkipUsed = (state, action) => {
         promptAddScore: false,
         questionNumber: state.questionNumber + 1, 
         hideStartButton: false,
-        skipUsed: true
+        skipUsed: true,
+        submittedFeedback: false
     }
 }
 
@@ -143,7 +148,9 @@ const startOver = (state, action) => {
         hideQuestion: true,
         hideStartButton: false,
         questionNumber: 0,
-        turn: 0
+        turn: 0,
+        submittingFeedback: false,
+        submittedFeedback: false
     }
 }
 
@@ -168,6 +175,30 @@ const quickStart = (state, action) => {
     }
 }
 
+// Submit Question Feedback
+const onSubmitQuestionFeedbackSuccess = (state, action) => {
+    return {
+        ...state,
+        submittingFeedback: false,
+        submittedFeedback: true
+    }
+}
+
+const onSubmitQuestionFeedbackStart = (state, action) => {
+    return {
+        ...state,
+        submittingFeedback: true,
+    }
+}
+
+const onSubmitQuestionFeedbackFail = (state, action) => {
+    return {
+        ...state,
+        submittedFeedback: true,
+        submittingFeedback: false
+    }
+}
+
 const redGame = (state = initialState, action) => {
 
     switch(action.type) {
@@ -182,6 +213,9 @@ const redGame = (state = initialState, action) => {
         case actionTypes.MAX_SCORE_CHANGED: return maxScoreChanged(state, action);
         case actionTypes.START_GAME: return startGame(state, action);
         case actionTypes.QUICK_START: return quickStart(state, action);
+        case actionTypes.SUBMIT_QUESTION_FEEDBACK_START: return onSubmitQuestionFeedbackStart(state, action);
+        case actionTypes.SUBMIT_QUESTION_FEEDBACK_SUCCESS: return onSubmitQuestionFeedbackSuccess(state, action);
+        case actionTypes.SUBMIT_QUESTION_FEEDBACK_FAIL: return onSubmitQuestionFeedbackFail(state, action);
         default: return state;
     }
     
