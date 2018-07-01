@@ -21,6 +21,14 @@
     padding-left: calc(50% - 100px);
 }
 
+.thanks {
+    padding: 8px;
+    margin: 16px;
+    background-color: #388e3c;
+    border-radius: 4px;
+    color: #fff;
+}
+
 @media (max-width: 1599px) and (min-width: 721px) {
 
     .questionPrompt {

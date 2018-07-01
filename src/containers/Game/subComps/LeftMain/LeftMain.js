@@ -63,7 +63,7 @@ const LeftMain = (props) => {
 
             { props.isAuth && props.submittedFeedback
                 ? <div>
-                    <p>Thanks For The Feedback!</p>
+                    <p className={iClasses.thanks + " wow fadeInUp"}>Thanks For The Feedback!</p>
                   </div>
                 : null
             }

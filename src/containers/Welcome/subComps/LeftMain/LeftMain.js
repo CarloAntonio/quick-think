@@ -4,7 +4,7 @@ import classes from './LeftMain.css';
 
 const LeftMain = () => {
     return (
-        <div className={classes.LeftMain}>
+        <div className={classes.LeftMain + " wow fadeInLeft"}>
             <div>
                 <h1><u>Welcome to Quick Think!</u></h1>
                 <p>The game where you have 6 seconds to think of 3 things that match the category given to you or your team. It's easy, as long as you don't panic :)</p>
