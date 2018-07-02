@@ -2,6 +2,8 @@
 import * as actionTypes from './actTypes';
 import axios from 'axios'
 
+import { API_KEY } from '../../key';
+
 const authStart = () => {
     return {
         type: actionTypes.AUTH_START
@@ -50,7 +52,7 @@ export const auth = (email, password) => {
             returnSecureToken: true
         }
 
-        const url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyCXDeaD0Bgwlyj4g9YqYrbZZlQEUiy5iFE';
+        const url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=' + API_KEY;
 
         axios.post(url, authData)
             .then(response => {
