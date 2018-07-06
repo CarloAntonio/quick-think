@@ -123,7 +123,14 @@ const SideBar = (props) => {
                     : null 
                 }
 
-          </List>
+            </List>
+            <Divider />
+            <ListItem 
+                className={classes.sidebarHeader}
+                button
+                onClick={() => window.location = 'https://www.carlobilbao.com'}>
+                <ListItemText primary="Created By Carlo Bilbao" />
+            </ListItem>
         </div>
       );
 
