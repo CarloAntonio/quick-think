@@ -1,4 +1,4 @@
-#Boba Shop Games: Quick Think
+# Boba Shop Games: Quick Think
 This application lets users play a game called "Quick Think." Users will be able to create teams and set a target score goal. Users will have a limited amount of time to give three answers to fairly simple question. The pressure of coming up with answers within the short time frame is where the game gets exciting. 
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
