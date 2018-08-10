@@ -1,0 +1,21 @@
+
+.subTitle {
+    font-size: 1em;
+}
+
+.subLine {
+    margin-top: 0px;
+    font-size: .8em;
+}
+
+@media (max-width: 1599px) and (min-width: 721px) {
+    .subTitle {
+        font-size: 1.4em;
+    }
+}
+
+@media (min-width: 1600px) {
+    .subTitle {
+        font-size: 1.4em;
+    }
+}

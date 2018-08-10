@@ -1,27 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import CountdownClock from 'react-countdown-clock';
 
-import Grid from '@material-ui/core/Grid';
+import LikeIcon from '@material-ui/icons/ThumbUp';
+import DislikeIcon from '@material-ui/icons/ThumbDown';
 import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import { withStyles } from '@material-ui/core/styles';
 
 import Aux from '../../hoc/Aux';
 import Modal from '../../components/UI/Modal/Modal';
 import Winner from './subComps/Winner';
-import LeftMain from './subComps/LeftMain/LeftMain';
-import RightMain from './subComps/RightMain/RightMain';
+import ConsoleArea from './subComps/ConsoleArea/ConsoleArea';
 
 import * as actions from '../../store/actions/actions';
-import iClasses from './Game.css';
-
-const styles = theme => ({
-    button: {
-      margin: theme.spacing.unit,
-    },
-});
+import classes from './Game.css';
 
 class Game extends Component {
 
@@ -81,8 +74,6 @@ class Game extends Component {
 
     render() {
 
-        const { classes } = this.props;
-
         //Check if there's a winner
         let showWinner = false;
         let winner = '';
@@ -93,56 +84,109 @@ class Game extends Component {
             }
         });
 
+        let score = (
+            <div className="row mt-4">
+                {this.props.teams.map((team, index) => {
+                    return <div className="col-6 d-flex flex-column pb-2 p-md-4" key={index}>
+                                <h5 className={classes.cFont + " text-center"}>{team.name}</h5>
+                                <h5 className="text-center">{team.score}/{this.props.maxScore}</h5>
+                            </div>
+                })}
+            </div>
+        );
+
+        let question = (
+            <div>
+                <h5 className="text-center mb-1">Hidden</h5>
+                <div className="d-flex justify-content-center mt-5">
+                    <Button 
+                        className={classes.button}
+                        variant="contained" 
+                        color="primary"
+                        onClick={this.props.onHideClock}>
+                        GO!
+                    </Button> 
+                </div>
+            </div>
+        );
+        if(!this.props.hideQuestion) {
+            question = (
+                <div>
+                    <h5 className="text-center mb-1">{this.props.questions[this.props.questionNumber].question}</h5>
+                    <p className="text-center mb-0">Submitted By: {this.props.questions[this.props.questionNumber].auth}</p>
+                    <div className={classes.clock + " d-flex justify-content-center mt-2"}>
+                        <CountdownClock 
+                            seconds={6}
+                            color="#a1887f"
+                            alpha={0.9}
+                            size={100}
+                            onComplete={this.props.onClockFinished} />
+                    </div>
+                </div>
+            )
+        }
+
+        let dash = null;
+        if(this.props.promptAddScore){
+            dash = (
+                <ConsoleArea
+                skipUsed={this.props.skipUsed}
+                onFreeSkip={this.props.onFreeSkip}
+                teams={this.props.teams}
+                turn={this.props.turn}
+                onAddClicked={this.onAddClicked}
+                onNoPointClicked={this.onNoPointClicked}
+                like={this.props.questions[this.props.questionNumber].like}
+                total={this.props.questions[this.props.questionNumber].like + this.props.questions[this.props.questionNumber].dislike}/> 
+            )
+        }
+
+        let feedback = null;
+        if(this.props.isAuth && !this.props.submittedFeedback) {
+            feedback = (
+                <div>
+                    <p className="text-center">What'd you think of this question?</p>
+                    <div className="d-flex justify-content-center">
+                        <Button 
+                            variant="fab" 
+                            color="primary" 
+                            aria-label="like" 
+                            className={classes.button}
+                            onClick={this.onHandleLike}>
+                            <LikeIcon />
+                        </Button>
+                        <Button 
+                            variant="fab" 
+                            color="primary" 
+                            aria-label="dislike" 
+                            className={classes.button}
+                            onClick={this.onHandleDislike}>
+                            <DislikeIcon />
+                        </Button>
+                    </div>
+                </div>
+            )
+        }
+
+        let thanks = null;
+        if(this.props.isAuth && this.props.submittedFeedback) {
+            thanks = (
+                <div>
+                    <p className={classes.thanks + " wow fadeInUp text-center"}>Thanks For The Feedback!</p>
+                </div>
+            )
+        }
+
         //Main Game Content
         let main = (
             <div className="container">
+                { score }
                 <div className="row">
-                    <div className="col-xs-12 col-sm-6">
-                        <div className={iClasses.questionContainer}>
-                            { this.props.hideQuestion
-                                ? <CardContent>
-                                    <h1 className={iClasses.questionHidden}>HIDDEN</h1>
-                                  </CardContent>
-                                : <LeftMain 
-                                    questions={this.props.questions}
-                                    questionNumber={this.props.questionNumber}
-                                    onClockFinished={this.props.onClockFinished}
-                                    isAuth={this.props.isAuth}
-                                    handleLike={this.onHandleLike}
-                                    handleDislike={this.onHandleDislike}
-                                    submittedFeedback={this.props.submittedFeedback}/>
-                            }
-                            { this.props.hideStartButton 
-                                ? null 
-                                : <Button 
-                                className={classes.button}
-                                variant="contained" 
-                                color="primary"
-                                onClick={this.props.onHideClock}>
-                                GO!
-                                  </Button> 
-                            }
-                        </div>
-                    </div>
-                    <div className="col-xs-12 col-sm-6">
-                        <div className={iClasses.questionContainer}>
-                            { this.props.promptAddScore 
-                                ? <RightMain 
-                                    skipUsed={this.props.skipUsed}
-                                    onFreeSkip={this.props.onFreeSkip}
-                                    teams={this.props.teams}
-                                    turn={this.props.turn}
-                                    onAddClicked={this.onAddClicked}
-                                    onNoPointClicked={this.onNoPointClicked}
-                                    like={this.props.questions[this.props.questionNumber].like}
-                                    total={this.props.questions[this.props.questionNumber].like + this.props.questions[this.props.questionNumber].dislike}/> 
-                                : <CardContent>
-                                    <div className={iClasses.rightFiller}>
-                                        <h1 className={iClasses.questionNeddih}>NEDDIH</h1>
-                                    </div>
-                                  </CardContent>
-                                }
-                        </div>
+                    <div className="col-12 pt-3">
+                        { question }
+                        { dash }
+                        { feedback }
+                        { thanks }
                     </div>
                 </div>
             </div>
@@ -157,37 +201,9 @@ class Game extends Component {
                         onFreshStart={this.onFreshStart}
                         />
                 </Modal>
-                <div className={iClasses.root}>
-                    <Grid container spacing={24}>
-
-                        {this.props.teams.map((team, index) => {
-                            return <Grid item xs={6} key={index}>
-                                        <div className={
-                                                this.props.turn === index 
-                                                ? index === 0 
-                                                    ? iClasses.teamActiveLeft 
-                                                    : iClasses.teamActiveRight 
-                                                : index === 1 
-                                                    ? iClasses.teamNotActiveRight 
-                                                    : iClasses.teamNotActiveLeft  
-                                            }>
-                                            <h1 className={iClasses.teamName}>{team.name}</h1>
-                                            <p className={iClasses.score}>{team.score}/{this.props.maxScore}</p>
-                                        </div>
-                                    </Grid>
-                        })}
-
-                        <div>
-                            <hr/>
-                        </div>
-
-                        <Grid item xs={12} className={iClasses.paper}>
-                            <Card className={iClasses.card}>
-                                {main}
-                            </Card>
-                        </Grid>
-                    </Grid>
-                </div>
+                <Card className={classes.bg}>
+                    {main}
+                </Card>
             </Aux>
         );
     }
@@ -226,8 +242,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-Game.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Game));
+export default connect(mapStateToProps, mapDispatchToProps)(Game);
