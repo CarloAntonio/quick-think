@@ -67,10 +67,10 @@ class Welcome extends Component {
         let form = (
             <form>
                 {formElementsArray.map((formElement, index) => {
-                    return <div class="form-group" key={index}>
+                    return <div className="form-group" key={index}>
                                 <input 
                                     type="text" 
-                                    class="form-control" 
+                                    className="form-control" 
                                     id={formElement.config.label} 
                                     aria-describedby="emailHelp"
                                     onChange={(event) => this.props.questionInputChangedHandler(event, formElement.id)} 
