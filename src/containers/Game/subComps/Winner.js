@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
+import iClasses from './Winner.css';
+
 const styles = theme => ({
     button: {
       margin: theme.spacing.unit,
@@ -19,7 +21,7 @@ const winner = (props) => {
 
     return (
         <div className={classes.result}>
-            <h1>Team {props.winner} Wins!</h1>
+            <h3 className={iClasses.style}>Team {props.winner} Wins!</h3>
             <div>
                 <Button 
                     variant="contained" 

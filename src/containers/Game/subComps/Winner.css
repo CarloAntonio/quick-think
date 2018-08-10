@@ -1,0 +1,16 @@
+
+.style {
+    font-family: 'Bangers', cursive;
+}
+
+@media (min-width: 540px) {
+    .style {
+        font-size: 3rem;
+    }
+}
+
+@media (min-width: 960px) {
+    .style {
+        font-size: 5rem;
+    }
+}
