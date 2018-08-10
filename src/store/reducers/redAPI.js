@@ -6,11 +6,11 @@ const initialState = {
     questionsLoading: false,
     questionForm: {
         question: {
-            label: 'Question:',
+            label: 'Question',
             value: 'Name 3 '
         },
         author: {
-            label: 'Author:',
+            label: 'Author',
             value: 'Anonymous'
         },
     },

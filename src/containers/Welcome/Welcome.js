@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Grid from '@material-ui/core/Grid';
-
 import Aux from '../../hoc/Aux';
 import Modal from '../../components/UI/Modal/Modal';
 import Setup from './subComps/Setup';
-import LeftMain from './subComps/LeftMain/LeftMain';
-import RightMain from './subComps/RightMain/RightMain';
+
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 import * as actions from '../../store/actions/actions';
 import classes from './Welcome.css';
@@ -58,27 +56,122 @@ class Welcome extends Component {
 
     render() {
 
+        const formElementsArray = [];
+        for (let key in this.props.questionForm) {
+            formElementsArray.push({
+                id: key,
+                config: this.props.questionForm[key]
+            })
+        }
+
+        let form = (
+            <form>
+                {formElementsArray.map((formElement, index) => {
+                    return <div class="form-group">
+                                <input 
+                                    type="text" 
+                                    class="form-control" 
+                                    id={formElement.config.label} 
+                                    aria-describedby="emailHelp"
+                                    onChange={(event) => this.props.questionInputChangedHandler(event, formElement.id)} 
+                                    placeholder={formElement.config.label}/>
+                                {
+                                    index === 0
+                                    ? <small id="emailHelp" class="form-text text-muted">Please keep in mind kids of all ages will play this game.</small>
+                                    : null
+                                }
+                            </div>
+                })}
+                
+                {/* show spinner when submitting */}
+                {this.props.submitting
+                        ? <Spinner />
+                        : null
+                    }
+
+                {this.props.isAuth 
+                    ? this.props.submitted
+                        ? 
+                        <div className="wow fadeInUp">
+                            <div className="mb-2">
+                                Thanks For Contributing!
+                            </div>
+                            <button 
+                                className={classes.buttonColor + " btn mt-auto align-self-start"}
+                                onClick={this.props.onSubmitAnotherQuestion}
+                                >
+                                Submit Another
+                            </button>
+                        </div>
+                        : 
+                        <button
+                            className={classes.buttonColor + " btn mt-auto align-self-start"}
+                            onClick={this.props.submitQuestionHandler}
+                            >
+                            Submit
+                        </button>
+                
+                : null
+                }
+               
+            </form>
+        );
+       
+
+        let addQuestion = null;
+        if(this.props.isAuth){
+            addQuestion = (
+                <div className="col-10 col-sm-12 col-md-12 col-lg-4 p-2 py-4 py-md-2">
+                    <h4><u>Add To Question List:</u></h4>
+                    { this.props.submitted ? null : form }
+                </div>
+            )
+        }
+
         let main = (
             <Aux>
-                <LeftMain />
-                <RightMain 
-                        questionForm={this.props.questionForm}
-                        questionInputChangedHandler={this.props.questionInputChangedHandler}
-                        isAuth={this.props.isAuth}
-                        submitted={this.props.submitted}
-                        submitting={this.props.submitting}
-                        onSubmitAnotherQuestion={this.props.onSubmitAnotherQuestion}
-                        submitQuestionHandler={this.submitQuestionHandler}
-                        startHandler={this.startHandler}
-                        quickStartHandler={this.quickStartHandler}
-                        />
-            </Aux>
-        );
+                <div className={classes.LeftMain + " wow fadeIn container mx-auto"}>
+                    <div className="row justify-content-center">
+                        <div className="col-12">
+                            <h2 className="text-center mb-3 mt-1 wow fadeInLeft">Quick Think</h2>
+                        </div>
 
-        let body = (
-            <div>
-                {main}
-            </div>
+                        <div className={
+                                this.props.isAuth 
+                                ? "col-10 col-sm-12 col-md-6 col-lg-4 d-none d-sm-flex flex-column p-2 pb-4 pb-lg-2"
+                                : "col-10 col-sm-12 col-md-6 col-lg-4 d-none d-sm-flex flex-column p-2 pb-4 pb-lg-2"}>
+                            <h4><u>Think Fast!</u></h4>
+                            <p>You have 6 seconds to come up with 3 answers to 1 simple question. Sound easy enough right? Well if those neurons aren't crispy, the answer is no, it's hard, harder then you'd expect. 
+                                But you got this right? Remember, dont panic!</p>
+                            <button
+                                className={classes.buttonColor + " mt-auto align-self-start btn wow fadeIn"}
+                                onClick={this.startHandler}
+                                >
+                                Team Setup
+                            </button>
+                        </div>
+
+                        <div className={
+                                this.props.isAuth
+                                ? "col-10 col-sm-12 col-md-6 col-lg-4 d-sm-flex flex-column p-2 pb-4 pb-lg-2"
+                                : "col-10 col-sm-12 col-md-6 col-lg-4 d-sm-flex flex-column p-2 pb-4 pb-lg-2"}>
+                            <h4><u>How To Play:</u></h4>
+                            <p>1. Each team will take turns answering a question</p>
+                            <p>2. Once the question is shown, the team has 6 second to give 3 answers that fulfill the question's criteria</p>
+                            <p>3. A team will recieve a point if they give 3 appropriate answers within 6 seconds</p>
+                            <p>4. The game ends after one team reaches the goal score</p>
+                            <button
+                                className={classes.buttonColor + " mt-auto align-self-start btn wow fadeIn"}
+                                onClick={this.quickStartHandler}
+                                >
+                                Quick Start
+                            </button>
+                        </div>
+
+                        {addQuestion}
+                    </div>
+                </div>
+            </Aux>
         );
 
         return (

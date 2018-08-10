@@ -1,4 +1,59 @@
 
+.LeftMain {
+    padding: 1rem; 
+    color: #000;
+}
+
+.LeftMain h2 {
+    font-family: 'Bangers', cursive;
+    color: #388e3c;
+}
+
+.LeftMain h4 {
+    color: #a1887f;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.LeftMain p {
+    font-size: 1rem;
+}
+
+.buttonColor {
+    background-color: #a1887f;
+    color: white;
+}
+
+.test {
+    justify-self: end;
+}
+
+@media (min-width: 540px) {
+
+    .LeftMain h2 {
+        font-size: 2.8rem;
+    }
+
+    .LeftMain h4 {
+        font-size: 1.4rem;
+    }
+    
+    .LeftMain p {
+        font-size: 1rem;
+    }
+
+}
+
+@media (min-width: 960px) {
+    .LeftMain h2 {
+        font-size: 4.2rem;
+    }
+}
+
+
+
+
+
 .root {
     flex-grow: 1;
     max-width: 1200px;
