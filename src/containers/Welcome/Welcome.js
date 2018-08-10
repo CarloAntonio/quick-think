@@ -60,11 +60,8 @@ class Welcome extends Component {
 
         let main = (
             <Aux>
-                <Grid item xs={12} sm={6}>
-                    <LeftMain />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <RightMain 
+                <LeftMain />
+                <RightMain 
                         questionForm={this.props.questionForm}
                         questionInputChangedHandler={this.props.questionInputChangedHandler}
                         isAuth={this.props.isAuth}
@@ -75,15 +72,12 @@ class Welcome extends Component {
                         startHandler={this.startHandler}
                         quickStartHandler={this.quickStartHandler}
                         />
-                </Grid>
             </Aux>
         );
 
         let body = (
-            <div className={classes.root}>
-                <Grid container spacing={8}>
-                    {main}
-                </Grid>
+            <div>
+                {main}
             </div>
         );
 
@@ -98,7 +92,7 @@ class Welcome extends Component {
                         onChangeMaxScore={this.props.onChangeMaxScore}
                         />
                 </Modal>
-                {body}
+                {main}
             </Aux>
         );
     }

@@ -1,54 +1,42 @@
 
 .LeftMain {
-    padding: 16px;
-    margin: 16px 8px;
-    text-align: center;
-    height: 100%;    
-    color: #fff;
-    background-color: #725b53;
+    padding: 1rem; 
+    color: #000;
 }
 
-.LeftMain h1 {
-    font-size: 1em;
-    color: #fff;
+.LeftMain h2 {
+    font-family: 'Bangers', cursive;
+    color: #388e3c;
+}
+
+.LeftMain h4 {
+    color: #a1887f;
+    font-size: 1rem;
+    font-weight: 700;
 }
 
 .LeftMain p {
-    font-size: .8em;
+    font-size: .8rem;
 }
 
-@media (max-width: 720px) and (min-width: 481px) {
+@media (min-width: 540px) {
 
-    .LeftMain h1 {
-        font-size: 1.2em;
+    .LeftMain h2 {
+        font-size: 2.8rem;
     }
 
-    .LeftMain p, {
-        font-size: 1em;
-    }
-
-}
-
-@media (max-width: 1399px) and (min-width: 721px) {
-
-    .LeftMain h1 {
-        font-size: 1.6em;
-    }
-
-    .LeftMain p {
-        font-size: 1.2em;
-    }
-
-}
-
-@media (min-width: 1400px) {
-
-    .LeftMain h1 {
-        font-size: 2em;
+    .LeftMain h4 {
+        font-size: 1.4rem;
     }
     
     .LeftMain p {
-        font-size: 1.4em;
+        font-size: 1rem;
     }
 
+}
+
+@media (min-width: 960px) {
+    .LeftMain h2 {
+        font-size: 4.2rem;
+    }
 }

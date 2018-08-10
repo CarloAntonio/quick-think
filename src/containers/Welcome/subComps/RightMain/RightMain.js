@@ -14,9 +14,6 @@ import Aux from '../../../../hoc/Aux';
 import iClasses from './RightMain.css';
 
 const styles = theme => ({
-    button: {
-      margin: theme.spacing.unit,
-    },
     formControl: {
         margin: theme.spacing.unit,
         minWidth: 350,
@@ -56,7 +53,35 @@ const RightMain = (props) => {
 
     return (
         <Aux>
-            <Paper className={aClasses.paper}>
+            <div className={aClasses.paper + " px-4 pt-0 container"}>
+                <div className="row justify-content-center">
+                    <div className={ aClasses.OptionBlock + " col-5 col-md-6 col-lg-5 d-flex justify-content-center justify-content-md-start p-2"}>
+                        <button
+                            className="btn wow fadeIn"
+                            variant="contained" 
+                            color="secondary"
+                            onClick={props.startHandler}
+                            >
+                            Team Setup
+                        </button>
+                    </div>
+
+                    <div className={ aClasses.OptionBlock + " col-5 col-md-6 col-lg-5 d-flex justify-content-center justify-content-md-start p-2"}>
+                        <button
+                            className="btn wow fadeIn"
+                            variant="contained" 
+                            color="secondary"
+                            onClick={props.quickStartHandler}
+                            >
+                            Quick Start
+                        </button>
+                    </div>
+                </div>
+               
+
+                
+
+
                 { props.isAuth 
                 ? <div className= { aClasses.RightMain }>
                     <h1>Add To Our Question List</h1>
@@ -109,36 +134,10 @@ const RightMain = (props) => {
                     : null
                 }
                 
-                <div className= { aClasses.RightMain }>
-                    <h1>Quick Setup:</h1>
-                    <p>Pick Team Names</p>
-                    <p>Pick a Score to Reach</p>
-                </div>
-                <Button 
-                    className={aClasses.button + " wow fadeInRight"}
-                    variant="contained" 
-                    color="secondary"
-                    onClick={props.startHandler}
-                    >
-                    New Game
-                </Button>
+                
 
-                <hr className={aClasses.divider}/>
 
-                <div className= { aClasses.RightMain }>
-                    <h1>Play Now:</h1>
-                    <p>Default Team Names</p>
-                    <p>First Team to 10 Wins!</p>
-                </div>
-                <Button 
-                    className={aClasses.button + " wow fadeInLeft"}
-                    variant="contained" 
-                    color="secondary"
-                    onClick={props.quickStartHandler}
-                    >
-                    Quick Start
-                </Button>
-            </Paper>
+            </div>
         </Aux>
     );
 }
