@@ -67,7 +67,7 @@ class Welcome extends Component {
         let form = (
             <form>
                 {formElementsArray.map((formElement, index) => {
-                    return <div class="form-group">
+                    return <div class="form-group" key={index}>
                                 <input 
                                     type="text" 
                                     class="form-control" 
