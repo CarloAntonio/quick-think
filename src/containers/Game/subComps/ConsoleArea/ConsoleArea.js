@@ -35,7 +35,7 @@ const ConsoleArea = (props) => {
 
     return (
         <div>
-            <p className={iClasses.subTitle + " mt-3 mb-0"}>
+            <p className={iClasses.subtitle + " mt-3 mb-0"}>
                 Point for team {props.teams.slice(props.turn, props.turn + 1)[0].name}?
             </p>
             <div className="row d-flex justify-content-center">
@@ -63,9 +63,9 @@ const ConsoleArea = (props) => {
             </div>
            
             <div className="mt-3">
-                <p className={iClasses.subTitle + " mb-0"}>Question Likability: {props.like} likes out of {props.total}</p>
+                <p className={iClasses.subtitle + " mb-0"}>Question Likability: {props.like} likes out of {props.total}</p>
                 <Line percent={props.like/props.total * 100} strokeWidth="3" strokeColor="#388e3c" />
-                <p className={iClasses.subLine}>Login to Rate Questions</p>
+                <p className={iClasses.subline}>Login to Rate Questions</p>
             </div>
 
         </div>

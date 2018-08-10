@@ -88,8 +88,8 @@ class Game extends Component {
             <div className="row mt-4">
                 {this.props.teams.map((team, index) => {
                     return <div className="col-6 d-flex flex-column pb-2 p-md-4" key={index}>
-                                <h5 className={classes.cFont + " text-center"}>{team.name}</h5>
-                                <h5 className="text-center">{team.score}/{this.props.maxScore}</h5>
+                                <h5 className={classes.teamName + " text-center"}>{team.name}</h5>
+                                <h5 className={classes.subtitle + " text-center"}>{team.score}/{this.props.maxScore}</h5>
                             </div>
                 })}
             </div>
@@ -97,7 +97,7 @@ class Game extends Component {
 
         let question = (
             <div>
-                <h5 className="text-center mb-1">Hidden</h5>
+                <h5 className={classes.hidden + " text-center mb-1"}>Hidden</h5>
                 <div className="d-flex justify-content-center mt-5">
                     <Button 
                         className={classes.button}
@@ -112,8 +112,8 @@ class Game extends Component {
         if(!this.props.hideQuestion) {
             question = (
                 <div>
-                    <h5 className="text-center mb-1">{this.props.questions[this.props.questionNumber].question}</h5>
-                    <p className="text-center mb-0">Submitted By: {this.props.questions[this.props.questionNumber].auth}</p>
+                    <h5 className={classes.subtitle + " text-center mb-1"}>{this.props.questions[this.props.questionNumber].question}</h5>
+                    <p className={classes.subline + " text-center mb-0"}>Submitted By: {this.props.questions[this.props.questionNumber].auth}</p>
                     <div className={classes.clock + " d-flex justify-content-center mt-2"}>
                         <CountdownClock 
                             seconds={6}
@@ -142,10 +142,10 @@ class Game extends Component {
         }
 
         let feedback = null;
-        if(this.props.isAuth && !this.props.submittedFeedback) {
+        if(this.props.isAuth && !this.props.submittedFeedback && !this.props.hideQuestion) {
             feedback = (
                 <div>
-                    <p className="text-center">What'd you think of this question?</p>
+                    <p className={classes.subtitle + " text-center"}>What'd you think of this question?</p>
                     <div className="d-flex justify-content-center">
                         <Button 
                             variant="fab" 
@@ -172,7 +172,7 @@ class Game extends Component {
         if(this.props.isAuth && this.props.submittedFeedback) {
             thanks = (
                 <div>
-                    <p className={classes.thanks + " wow fadeInUp text-center"}>Thanks For The Feedback!</p>
+                    <p className={classes.subline + " wow fadeInUp text-center"}>Thanks For The Feedback!</p>
                 </div>
             )
         }
@@ -181,8 +181,8 @@ class Game extends Component {
         let main = (
             <div className="container">
                 { score }
-                <div className="row">
-                    <div className="col-12 pt-3">
+                <div>
+                    <div className={classes.main + " col-xl-10 mx-auto pt-3"}>
                         { question }
                         { dash }
                         { feedback }

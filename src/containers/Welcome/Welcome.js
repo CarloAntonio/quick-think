@@ -77,7 +77,7 @@ class Welcome extends Component {
                                     placeholder={formElement.config.label}/>
                                 {
                                     index === 0
-                                    ? <small id="emailHelp" class="form-text text-muted">Please keep in mind kids of all ages will play this game.</small>
+                                    ? <small id="emailHelp" className="form-text text-muted">Please keep in mind kids of all ages will play this game.</small>
                                     : null
                                 }
                             </div>
