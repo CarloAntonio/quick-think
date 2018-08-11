@@ -34,32 +34,34 @@ const ConsoleArea = (props) => {
     }
 
     return (
-        <div>
-            <p className={iClasses.subtitle + " mt-3 mb-0"}>
-                Point for team {props.teams.slice(props.turn, props.turn + 1)[0].name}?
-            </p>
-            <div className="row d-flex justify-content-center">
-                <Button 
-                    variant="contained" 
-                    color="primary" 
-                    className={
-                        props.skipUsed
-                        ? classes.button + " col-4"
-                        : classes.button + " col-3"}
-                    onClick={props.onAddClicked}>
-                    YUP
-                </Button>
-                <Button 
-                    variant="contained" 
-                    color="primary" 
-                    className={
-                        props.skipUsed
-                        ? classes.button + " col-4"
-                        : classes.button + " col-3"}
-                    onClick={props.onNoPointClicked}>
-                    NAH
-                </Button>
-                { skip }
+        <div className="d-flex flex-column flex-xl-row justify-content-xl-between">
+            <div>
+                <p className={iClasses.subtitle + " mt-3 mb-0"}>
+                    Point for team {props.teams.slice(props.turn, props.turn + 1)[0].name}?
+                </p>
+                <div className="row d-flex justify-content-center">
+                    <Button 
+                        variant="contained" 
+                        color="primary" 
+                        className={
+                            props.skipUsed
+                            ? classes.button + " col-4"
+                            : classes.button + " col-3"}
+                        onClick={props.onAddClicked}>
+                        YUP
+                    </Button>
+                    <Button 
+                        variant="contained" 
+                        color="primary" 
+                        className={
+                            props.skipUsed
+                            ? classes.button + " col-4"
+                            : classes.button + " col-3"}
+                        onClick={props.onNoPointClicked}>
+                        NAH
+                    </Button>
+                    { skip }
+                </div>
             </div>
            
             <div className="mt-3">

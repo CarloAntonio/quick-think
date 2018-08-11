@@ -11,12 +11,7 @@
 }
 
 @media (min-width: 960px) {
-        
     .subtitle {
         font-size: 1.8rem;
-    }
-
-    .subline {
-        font-size: 1.4rem;
     }
 }

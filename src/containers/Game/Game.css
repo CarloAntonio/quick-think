@@ -23,10 +23,6 @@
     min-height: 100vh;
 }
 
-.main {
-    max-width: 960px;
-}
-
 @media (min-width: 460px) {
 
     .teamName {
@@ -57,10 +53,6 @@
         
     .subtitle {
         font-size: 1.8rem;
-    }
-
-    .subline {
-        font-size: 1.4rem;
     }
 }
 
