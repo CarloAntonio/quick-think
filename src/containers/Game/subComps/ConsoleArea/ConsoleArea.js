@@ -18,15 +18,12 @@ const ConsoleArea = (props) => {
     const { classes } = props;
 
     let skip = null;
-    if(props.onFreeSkip){
+    if(!props.skipUsed){
         skip = (
             <Button 
                 variant="contained" 
                 color="primary" 
-                className={
-                    props.skipUsed
-                    ? classes.button + " col-4"
-                    : classes.button + " col-3"}
+                className={classes.button + " col-3"}
                 onClick={props.onFreeSkip}>
                 SKIP!
             </Button>
