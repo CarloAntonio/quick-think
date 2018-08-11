@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import CountdownClock from 'react-countdown-clock';
 
 import LikeIcon from '@material-ui/icons/ThumbUp';
